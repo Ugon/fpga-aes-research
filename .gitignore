@@ -1,5 +1,6 @@
 *.sublime-project
 *.sublime-workspace
 
+mem/
 aes_data.txt
 uart_stress_test.txt

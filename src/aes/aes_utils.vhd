@@ -39,7 +39,9 @@ package aes_utils is
 	function key_expansion256 (constant key : std_logic_vector) return std_logic_vector;
     
 	function reverse_byte_order (inp : std_logic_vector) return std_logic_vector;
-
+	function reverse_bit_order (inp : std_logic_vector) return std_logic_vector;
+	
+	function and_with_bit (v : std_logic_vector; b : std_logic) return std_logic_vector;
 
 end aes_utils;
 
@@ -95,7 +97,6 @@ package body aes_utils is
 		variable result      : std_logic_vector(60 * word_length - 1 downto 0);
 	begin
 		result(word_length * Nk - 1 downto 0) := reverse_byte_order(key);
-		--result(word_length * Nk - 1 downto 0) := key;
 		for i in Nk to 59 loop
 			tmp := result(word_length * i - 1 downto word_length * (i - 1));
 			
@@ -141,6 +142,23 @@ package body aes_utils is
 
 		return result;
 	end function;
+
+	function reverse_bit_order(signal inp : std_logic_vector) return std_logic_vector is
+		variable result : std_logic_vector(inp'range);
+	begin
+		for i in inp'range loop
+			result(inp'length - i - 1) := inp(i);
+		end loop;
+
+		return result;
+	end function;
+
+	function and_with_bit (v : std_logic_vector; b : std_logic) return std_logic_vector is
+		variable b_expanded : std_logic_vector(v'range) := (others => b);
+	begin
+		return v and b_expanded;
+	end function;
+
 
 
 end aes_utils;

@@ -1,13 +1,16 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.std_logic_misc.all;
 use ieee.numeric_std.all;
 
 use work.aes_transformations.all;
+use work.aes_utils.all;
 
 
-entity top is
+entity mem_speed is
 generic (
-	ROM_NUMBER: Integer := 8);
+	MEM_FOLDER: String := "sub_bytes"
+);
 port (
       --------- ADC ---------
 	ADC_CS_N:                     inout std_logic;
@@ -150,87 +153,72 @@ port (
 	VGA_R:                        out   std_logic_vector(7 downto 0);
 	VGA_SYNC_N:                   out   std_logic;
 	VGA_VS:                       out   std_logic);
-end entity top;
+end entity mem_speed;
 
-architecture rtl of top is
+architecture rtl of mem_speed is
 
-    signal rom_address_sig : integer range 0 to 32 := 0;
-    signal rom_data       : std_logic_vector(255 downto 0);
+	component pll is
+		port (
+			refclk   : in  std_logic := 'X';
+			rst      : in  std_logic := 'X';
+			outclk_0 : out std_logic
+		);
+	end component;
 
+	signal main_clk              : std_logic := '0';
+    signal rom_data_in           : std_logic_vector(127 downto 0);
+    signal rom_data_out          : std_logic_vector(127 downto 0);
 
-	signal probe                              : std_logic_vector(7 downto 0);
-	signal probe_gnd                          : std_logic_vector(1 downto 0);
+	signal started               : std_logic := '0';
+		
+	signal transformation_input  : std_logic_vector(127 downto 0);
+	signal transformation_output : std_logic_vector(127 downto 0);
+	signal expected              : std_logic_vector(127 downto 0);
 	
-	signal reset_n                            : std_logic;
-
-	signal started: std_logic := '0';
-	
-	signal transformation_input: std_logic_vector(127 downto 0);
-	signal transformation_output: std_logic_vector(127 downto 0);
-	signal expected: std_logic_vector(127 downto 0);
-	
-	signal wrong: std_logic := '0';
-
-	signal main_clk : std_logic := '0';
-
 begin
 
-	main_clk <= CLOCK_50;
+	LEDR(8) <= started;
+	LEDR(7) <= KEY(0);
 
-	memory_arrangement_inst: entity work.memory_arrangement 
+	--main_clk <= CLOCK_50;
+	pll_inst: pll
+		port map (
+			refclk   => CLOCK_50,
+			rst      => '0',
+			outclk_0 => main_clk);
+
+	memory_arrangement_inst0: entity work.memory_arrangement 
 		generic map (
-			MEM_FOLDER => "identity")
+			MEM_FOLDER => MEM_FOLDER,
+			MEM_IN_OUT => "in")
     	port map (
     	    main_clk => main_clk,
-    	    data     => rom_data);
-	
-	transformation_input <= rom_data(255 downto 128);
-	process(main_clk) begin
-		if (falling_edge(main_clk)) then
-			transformation_output <= sub_bytes(transformation_input);
-			expected <= rom_data(127 downto 0);
-		end if;
-	end process;
+    	    data     => rom_data_in);
 
-	process(main_clk, started) begin
-		if (rising_edge(main_clk) and started = '1') then
-			if (transformation_output /= expected) then
-				wrong <= '1';
+    memory_arrangement_inst1: entity work.memory_arrangement 
+		generic map (
+			MEM_FOLDER => MEM_FOLDER,
+			MEM_IN_OUT => "out")
+    	port map (
+    	    main_clk => main_clk,
+    	    data     => rom_data_out);
+	
+	error_detector_inst0: entity work.error_detector 
+    	port map (
+    		main_clk       => main_clk,
+			started        => started,
+			--data           => not reverse_bit_order(rom_data_in),
+			data           => sub_bytes(rom_data_in),
+			expected       => rom_data_out,
+			error_detected => LEDR(9));
+
+	process(main_clk, KEY(0)) begin
+		if (rising_edge(main_clk)) then
+			if (KEY(0) = '0') then
+				started <= '1';
 			end if;
 		end if;
 	end process;
 
-	LEDR(9) <= wrong;
-
-	LEDR(8) <= main_clk;
-	LEDR(7) <= started;
-
-	LEDR(2 downto 0) <= transformation_output(2 downto 0);
-	LEDR(5 downto 3) <= expected(2 downto 0);
-
-	--reset_n <= KEY(0);
-
-	--LEDR(8) <= rom_data(8);
-	--LEDR(6) <= rom_data(6);
-	--LEDR(5) <= rom_data(5);
-	--LEDR(4) <= rom_data(4);
-	--LEDR(3) <= rom_data(3);
-	--LEDR(2) <= rom_data(2);
-	--LEDR(1) <= rom_data(1);
-	--LEDR(0) <= rom_data(0);
-	
-	--probe_gnd <= (others => '0');
-
-	--GPIO_1(27) <= probe(0);
-	--GPIO_1(26) <= probe(1);
-	--GPIO_1(29) <= probe(2);
-	--GPIO_1(28) <= probe(3);
-	--GPIO_1(31) <= probe(4);
-	--GPIO_1(30) <= probe(5);
-	--GPIO_1(33) <= probe(6);
-	--GPIO_1(32) <= probe(7);
-
-	--GPIO_1(35) <= probe_gnd(0);
-	--GPIO_1(34) <= probe_gnd(1);
 
 end architecture rtl;
