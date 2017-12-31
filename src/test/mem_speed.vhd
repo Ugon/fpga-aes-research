@@ -4,12 +4,14 @@ use ieee.std_logic_misc.all;
 use ieee.numeric_std.all;
 
 use work.aes_transformations.all;
+use work.aes_sub_bytes.all;
 use work.aes_utils.all;
 
 
 entity mem_speed is
 generic (
 	MEM_FOLDER: String := "sub_bytes"
+	--MEM_FOLDER: String := "mix_columns"
 );
 port (
       --------- ADC ---------
@@ -208,7 +210,8 @@ begin
     		main_clk       => main_clk,
 			started        => started,
 			--data           => not reverse_bit_order(rom_data_in),
-			data           => sub_bytes(rom_data_in),
+			data           => sub_bytes_calc(rom_data_in),
+			--data           => mix_columns(rom_data_in),
 			expected       => rom_data_out,
 			error_detected => LEDR(9));
 

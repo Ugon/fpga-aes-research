@@ -3,6 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 use work.aes_transformations.all;
+use work.aes_sub_bytes.all;
 
 
 entity top is
@@ -187,7 +188,7 @@ begin
 	transformation_input <= rom_data(255 downto 128);
 	process(main_clk) begin
 		if (falling_edge(main_clk)) then
-			transformation_output <= sub_bytes(transformation_input);
+			transformation_output <= sub_bytes_calc(transformation_input);
 			expected <= rom_data(127 downto 0);
 		end if;
 	end process;

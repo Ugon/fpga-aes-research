@@ -1,6 +1,7 @@
 from pyAES import shiftRows, expandKey, subBytes, addRoundKey, mixColumns, createRoundKey
 from random import randint
 
+# FILE_FOLDER = '../mem/mix_columns'
 # FILE_FOLDER = '../mem/rev_not'
 FILE_FOLDER = '../mem/sub_bytes'
 FILE_PREFIX = 'mem'
@@ -64,12 +65,14 @@ for i in xrange(NUMBER):
 		for j in xrange(DEPTH):
 			state = [randint(0, 255) for x in xrange(16)]
 			# state = string_to_state("00102030405060708090a0b0c0d0e0f0")
+			# state = string_to_state("6353e08c0960e104cd70b751bacad0e7")
 
 			f_in.write('{0:02X}: '.format(j))
 			f_in.write(asString(state))
 			f_in.write(';\n')
 
 			subBytes(state)
+			# mixColumns(state)
 			# rev_not(state)
 
 			f_out.write('{0:02X}: '.format(j))
