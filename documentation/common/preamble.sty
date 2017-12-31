@@ -1,0 +1,147 @@
+\ProvidesPackage{preamble}
+
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{tabulary}
+\usepackage{listings}
+\usepackage{lstautogobble}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz-timing}
+\usepackage{subfig}
+\usepackage{algorithmicx}
+\usepackage{algorithm2e} 
+\usepackage{courier}
+\usepackage{svg}
+\usepackage{environ}
+\usepackage{verbatim}
+\usepackage{textcomp}
+\usepackage{todonotes}
+
+\usetikzlibrary{automata}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+
+\setlength{\parindent}{0px}
+\setlength{\parskip}{6px}
+
+\usetikztiminglibrary{counters}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\newcommand{\insignal}[1]{\textcolor{OliveGreen}{\textit{#1}}}
+\newcommand{\outsignal}[1]{\textcolor{BrickRed}{\textit{#1}}}
+\newcommand{\helpsignal}[1]{\textcolor{BurntOrange}{\textit{#1}}}
+
+%L with label
+\tikztimingmetachar{J}[2]{#1l !{++(0,+.5\yunit)} N[rectangle,scale=.65]{#2} !{++(0,-.5\yunit)} #1l}
+
+%H with label
+\tikztimingmetachar{K}[2]{#1h !{++(0,-.5\yunit)} N[rectangle,scale=.65]{#2} !{++(0,+.5\yunit)} #1h}
+
+\captionsetup[figure]{aboveskip=1pt}
+
+\newenvironment{interface}[1]
+   {\begin{list}{}
+    {\renewcommand\makelabel[1]{\hfill ##1 --}
+    \settowidth\labelwidth{\makelabel{#1}}
+    \setlength\leftmargin{\labelwidth}
+    \addtolength\leftmargin{\labelsep}}}
+   {\end{list}}
+
+\graphicspath{ {figures/} }
+
+\lstdefinelanguage{VHDL}{
+    morekeywords=[1]{
+        and,
+        architecture,
+        array,
+        begin,
+        body,
+        case,
+        component,
+        configuration,
+        constant,
+        downto,
+        else,
+        elsif,
+        end,
+        entity,
+        for,
+        function,
+        generate,
+        generic,
+        if,
+        in,
+        inout,
+        is,
+        loop,
+        nand,
+        nor,
+        not,
+        of,
+        or,
+        others,
+        out,
+        package,
+        port,
+        procedure,
+        process,
+        range,
+        record,
+        register,
+        reject,
+        rem,
+        report,
+        return,
+        rol,
+        ror,
+        select,
+        severity,
+        signal,
+        then,
+        to,
+        transport,
+        type,
+        unaffected,
+        until,
+        use,
+        variable,
+        wait,
+        when,
+        while,
+        xor
+    },
+    morekeywords=[2]{
+        std_logic,
+        std_logic_vector,
+        Integer,
+        aes_state
+    },
+    morecomment=[l]{--},
+    morecomment=[s]{/*}{*/}
+}
+
+\lstdefinestyle{vhdl}{
+   language     = VHDL,
+   basicstyle   = \footnotesize \ttfamily,
+   keywordstyle = [1]\color{blue!100!black!80}\bfseries,
+   keywordstyle = [2]\color{Red}\bfseries,
+   commentstyle = \color{green!80!black!90},
+   breaklines   = true,
+   tabsize      = 3
+}
+
+\renewcommand\lstlistlistingname{Spis listingów}
+
+\DeclareCaptionType{equ}[][]
+%\captionsetup[equ]{labelformat=empty}
+
+\author{Wojciech Pachuta}
+
+\title{Sprzętowa realizacja \break algorytmu szyfrowania AES \break na platformie FPGA}
+
+\supervisor{dr. inż. Jacek Długopolski}
+
+\date{2017}
