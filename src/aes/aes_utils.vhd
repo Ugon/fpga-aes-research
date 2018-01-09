@@ -6,11 +6,11 @@ use work.aes_sub_bytes.all;
 
 package aes_utils is
 	
-	function multiply (constant left : std_logic_vector(7 downto 0); constant right : std_logic_vector(7 downto 0)) return std_logic_vector;
+	--function multiply (constant left : std_logic_vector(7 downto 0); constant right : std_logic_vector(7 downto 0)) return std_logic_vector;
 
-	function gf_mul2 (constant a : std_logic_vector(7 downto 0)) return std_logic_vector;
+	--function gf_mul2 (constant a : std_logic_vector(7 downto 0)) return std_logic_vector;
 
-	function gf_mul3 (constant a : std_logic_vector(7 downto 0)) return std_logic_vector;
+	--function gf_mul3 (constant a : std_logic_vector(7 downto 0)) return std_logic_vector;
 
     -- order of key bytes      | k31 | ... | k1  | k0  | --normal order - reversed from NIST
     -- order of words          | w59 | ... | w1  | w0  | --numbering compliant with NIST
@@ -22,10 +22,13 @@ package aes_utils is
 	
 	function and_with_bit (v : std_logic_vector; b : std_logic) return std_logic_vector;
 
+	function idx (constant row: Integer; constant column: Integer) return std_logic_vector;
+
+
 end aes_utils;
 
 package body aes_utils is
-
+/*
 	function multiply (constant left : std_logic_vector(7 downto 0); constant right : std_logic_vector(7 downto 0)) return std_logic_vector is
 		constant irred_poly       : std_logic_vector(7 downto 0) := x"1b";
 		variable a                : std_logic_vector(7 downto 0) := (others => '0');
@@ -88,7 +91,7 @@ package body aes_utils is
 
 		return b;
 	end function;
-
+*/
 	function key_expansion256 (constant key : std_logic_vector) return std_logic_vector is
 		constant word_length : Integer := 4 * 8;
 		constant byte_bits   : Integer := 8;
@@ -162,6 +165,17 @@ package body aes_utils is
 		return v and b_expanded;
 	end function;
 
+	function l (constant row: Integer; constant column: Integer) return Integer is begin
+		return ((3 - row) + 4 * (3 - column) + 1) * 8 - 1;
+	end function;
+	
+	function r (constant row: Integer; constant column: Integer) return Integer is begin
+		return ((3 - row) + 4 * (3 - column)) * 8;
+	end function;
 
-
+	function idx (constant row: Integer; constant column: Integer)  return std_logic_vector is 
+		variable rang: std_logic_vector(l(row, column) downto r(row, column)) := (others => '0');
+	begin
+		return rang;
+	end function;
 end aes_utils;
