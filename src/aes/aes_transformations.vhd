@@ -37,10 +37,6 @@ package aes_transformations is
 	
 	/* | s00 | s10 | s20 | s30 | s01 | s11 | s21 | s31 | s02 | s12 | s22 | s32 | s03 | s13 | s23 | s33 | */
 
-	--indexing
-	function l   (constant row: Integer; constant column: Integer) return Integer;
-	function r   (constant row: Integer; constant column: Integer) return Integer;
-
 	--transformations
 	function add_round_key (constant state_in : std_logic_vector; constant key_expansion : std_logic_vector; constant round_number : Integer) return std_logic_vector;
 

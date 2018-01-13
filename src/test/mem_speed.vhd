@@ -4,13 +4,16 @@ use ieee.std_logic_misc.all;
 use ieee.numeric_std.all;
 
 use work.aes_transformations.all;
+use work.aes_mix_columns.all;
 use work.aes_sub_bytes.all;
 use work.aes_utils.all;
 
 
 entity mem_speed is
 generic (
-	MEM_FOLDER: String := "sub_bytes"
+	NUMBER_OF_CYCLES: Integer := 1;
+	MEM_FOLDER:       String  := "sub_bytes"
+	--MEM_FOLDER: String := "rev_not"
 	--MEM_FOLDER: String := "mix_columns"
 );
 port (
@@ -170,6 +173,8 @@ architecture rtl of mem_speed is
 	signal main_clk              : std_logic := '0';
     signal rom_data_in           : std_logic_vector(127 downto 0);
     signal rom_data_out          : std_logic_vector(127 downto 0);
+    signal rom_data_late         : std_logic_vector(127 downto 0);
+    signal rom_data_late_late    : std_logic_vector(127 downto 0);
 
 	signal started               : std_logic := '0';
 		
@@ -192,7 +197,9 @@ begin
 	memory_arrangement_inst0: entity work.memory_arrangement 
 		generic map (
 			MEM_FOLDER => MEM_FOLDER,
-			MEM_IN_OUT => "in")
+			MEM_IN_OUT => "in",
+			--NUMBER_OF_CYCLES     => NUMBER_OF_CYCLES)
+			NUMBER_OF_CYCLES     => 0)
     	port map (
     	    main_clk => main_clk,
     	    data     => rom_data_in);
@@ -200,7 +207,9 @@ begin
     memory_arrangement_inst1: entity work.memory_arrangement 
 		generic map (
 			MEM_FOLDER => MEM_FOLDER,
-			MEM_IN_OUT => "out")
+			MEM_IN_OUT => "out",
+			--NUMBER_OF_CYCLES     => 0)
+			NUMBER_OF_CYCLES     => NUMBER_OF_CYCLES)
     	port map (
     	    main_clk => main_clk,
     	    data     => rom_data_out);
@@ -210,13 +219,17 @@ begin
     		main_clk       => main_clk,
 			started        => started,
 			--data           => not reverse_bit_order(rom_data_in),
-			data           => sub_bytes_calc(rom_data_in),
+			--data           => sub_bytes_calc(rom_data_in),
+			data           => rom_data_late,
+			--data           => sub_bytes_lookup(rom_data_in),
 			--data           => mix_columns(rom_data_in),
 			expected       => rom_data_out,
 			error_detected => LEDR(9));
 
 	process(main_clk, KEY(0)) begin
 		if (rising_edge(main_clk)) then
+			rom_data_late <= sub_bytes_lookup(rom_data_in);
+			rom_data_late_late <= rom_data_late;
 			if (KEY(0) = '0') then
 				started <= '1';
 			end if;
