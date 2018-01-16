@@ -40,6 +40,8 @@ package aes_transformations is
 	--transformations
 	function add_round_key (constant state_in : std_logic_vector; constant key_expansion : std_logic_vector; constant round_number : Integer) return std_logic_vector;
 
+	function shift_rows (constant state_in : std_logic_vector) return std_logic_vector;
+
 	/*function round_0 (constant state_in : std_logic_vector; constant key_expansion : std_logic_vector) return std_logic_vector;
 	
 	function round_n (constant state_in : std_logic_vector; constant key_expansion : std_logic_vector; constant n : Integer) return std_logic_vector;
@@ -61,8 +63,22 @@ package body aes_transformations is
 
 		return state_out;
 	end function;
-/*
 
+
+
+ 	function shift_rows (constant state_in : std_logic_vector) return std_logic_vector is
+ 	 	variable state_out : std_logic_vector(127 downto 0);
+ 	begin
+ 		for r in 0 to 3 loop
+ 			for c in 0 to 3 loop
+ 				state_out(idx(r, c)'range) := state_in(idx(r, (c + r) mod 4)'range);
+ 			end loop;
+ 		end loop;
+ 		
+ 		return state_out;
+ 	end function;
+
+/*
 	function round_0 (constant state_in : std_logic_vector; constant key_expansion : std_logic_vector) return std_logic_vector is begin
 		return add_round_key(state_in, key_expansion, 0);
 	end function;

@@ -3,49 +3,57 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 use work.aes_sub_bytes.all;
+use work.aes_mix_columns.all;
+use work.aes_transformations.all;
 
-package aes_sub_bytes_5pipe is
+package aes_encryption_pipe is
 
 	type asb_halfbytes is array (0 to 15) of std_logic_vector(3 downto 0);
 	
-	type asb_5pipe_1res is record
+	type aenc_pipe_1res is record
 		a: asb_halfbytes;
 		b: asb_halfbytes;
 		d: asb_halfbytes;
 	end record;
 
-	type asb_5pipe_2res is record
+	type aenc_pipe_2res is record
 		a: asb_halfbytes;
 		d: asb_halfbytes;
 		g: asb_halfbytes;
 	end record;
 
-	type asb_5pipe_3res is record
+	type aenc_pipe_3res is record
 		a: asb_halfbytes;
 		d: asb_halfbytes;
 		h: asb_halfbytes;
 	end record;
 
-	type asb_5pipe_4res is record
+	type aenc_pipe_4res is record
 		i: asb_halfbytes;
 		j: asb_halfbytes;
 	end record;
 
-	function asb_5pipe_stage1 (state_in: std_logic_vector) return asb_5pipe_1res;
-    function asb_5pipe_stage2 (state_in: asb_5pipe_1res) return asb_5pipe_2res;
-	function asb_5pipe_stage3 (state_in: asb_5pipe_2res) return asb_5pipe_3res;
-	function asb_5pipe_stage4 (state_in: asb_5pipe_3res) return asb_5pipe_4res;
-	function asb_5pipe_stage5 (state_in: asb_5pipe_4res) return std_logic_vector;
+	type aenc_pipe_5res is record
+		state: std_logic_vector(127 downto 0);
+	end record;
 
-end aes_sub_bytes_5pipe;
 
-package body aes_sub_bytes_5pipe is
+	function aenc_pipe_stage1 (state_in: std_logic_vector) return aenc_pipe_1res;
+    function aenc_pipe_stage2 (state_in: aenc_pipe_1res) return aenc_pipe_2res;
+	function aenc_pipe_stage3 (state_in: aenc_pipe_2res) return aenc_pipe_3res;
+	function aenc_pipe_stage4 (state_in: aenc_pipe_3res) return aenc_pipe_4res;
+	function aenc_pipe_stage5 (state_in: aenc_pipe_4res) return aenc_pipe_5res;
+	function aenc_pipe_stage6 (state_in: aenc_pipe_5res; round_key: std_logic_vector) return std_logic_vector;
 
-	function asb_5pipe_stage1 (state_in: std_logic_vector) return asb_5pipe_1res is
+end aes_encryption_pipe;
+
+package body aes_encryption_pipe is
+
+	function aenc_pipe_stage1 (state_in: std_logic_vector) return aenc_pipe_1res is
 		variable inp: std_logic_vector(7 downto 0);
 		variable inp_h: std_logic_vector(3 downto 0);
 		variable inp_l: std_logic_vector(3 downto 0);
-		variable result: asb_5pipe_1res;
+		variable result: aenc_pipe_1res;
 	begin
 		for i in 0 to 15 loop
 			inp := mul_delta_8(state_in((i + 1) * 8 - 1 downto i * 8));
@@ -59,11 +67,11 @@ package body aes_sub_bytes_5pipe is
 	end function;
 
 
-	function asb_5pipe_stage2 (state_in: asb_5pipe_1res) return asb_5pipe_2res is
+	function aenc_pipe_stage2 (state_in: aenc_pipe_1res) return aenc_pipe_2res is
 		variable c: std_logic_vector(3 downto 0);
 		variable e: std_logic_vector(3 downto 0);
 		variable f: std_logic_vector(3 downto 0);
-		variable result: asb_5pipe_2res;
+		variable result: aenc_pipe_2res;
 	begin
 		for i in 0 to 15 loop
 			c := sq_4(state_in.a(i));
@@ -77,8 +85,8 @@ package body aes_sub_bytes_5pipe is
 	end function;
 
 
-	function asb_5pipe_stage3 (state_in: asb_5pipe_2res) return asb_5pipe_3res is
-		variable result: asb_5pipe_3res;
+	function aenc_pipe_stage3 (state_in: aenc_pipe_2res) return aenc_pipe_3res is
+		variable result: aenc_pipe_3res;
 	begin
 		for i in 0 to 15 loop
 			result.a(i) := state_in.a(i);
@@ -89,8 +97,8 @@ package body aes_sub_bytes_5pipe is
 	end function;
 
 
-	function asb_5pipe_stage4 (state_in: asb_5pipe_3res) return asb_5pipe_4res is
-		variable result: asb_5pipe_4res;
+	function aenc_pipe_stage4 (state_in: aenc_pipe_3res) return aenc_pipe_4res is
+		variable result: aenc_pipe_4res;
 	begin
 		for x in 0 to 15 loop
 			result.i(x) := mul_4(state_in.a(x), state_in.h(x));
@@ -100,17 +108,24 @@ package body aes_sub_bytes_5pipe is
 	end function;
 
 
-	function asb_5pipe_stage5 (state_in: asb_5pipe_4res) return std_logic_vector is
+	function aenc_pipe_stage5 (state_in: aenc_pipe_4res) return aenc_pipe_5res is
 		variable bte   : std_logic_vector(7 downto 0);
-		variable result: std_logic_vector(127 downto 0);
+		variable state_buf: std_logic_vector(127 downto 0);
+		variable result: aenc_pipe_5res;
 	begin
 		for x in 0 to 15 loop
 			bte(7 downto 4) := state_in.i(x);
 			bte(3 downto 0) := state_in.j(x);
-			result((x + 1) * 8 - 1 downto x * 8) := mul_deltainv_affine_8(bte);
+			state_buf((x + 1) * 8 - 1 downto x * 8) := mul_deltainv_affine_8(bte);
 		end loop;
+		result.state := shift_rows(state_buf);
 		return result;
 	end function;
 
+
+	function aenc_pipe_stage6 (state_in: aenc_pipe_5res; round_key: std_logic_vector) return std_logic_vector is
+	begin
+		return mix_columns(state_in.state) xor round_key;	
+	end function;
 	
-end aes_sub_bytes_5pipe;
+end aes_encryption_pipe;
