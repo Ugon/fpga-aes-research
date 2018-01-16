@@ -39,10 +39,10 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY aes_round
+set_global_assignment -name TOP_LEVEL_ENTITY mem_speed_queue
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:59:17  AUGUST 15, 2017"
-set_global_assignment -name LAST_QUARTUS_VERSION "17.0.2 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "16.1.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -295,9 +295,9 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulati
 set_global_assignment -name VHDL_INPUT_VERSION VHDL_2008
 set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VHDL_FILE ../src/test/mem_speed_queue.vhd
+set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/memory_queue_test.vwf
+set_global_assignment -name VHDL_FILE ../src/memory_queue.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/aes_round_test.vwf
 set_global_assignment -name VHDL_FILE ../src/aes/aes_encryption_pipe.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/aes_round.vhd
@@ -343,4 +343,7 @@ set_global_assignment -name SIP_FILE pll.sip
 set_global_assignment -name QIP_FILE rom128.qip
 set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/test_byte.vwf
 set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/memory_arrangement.vwf
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

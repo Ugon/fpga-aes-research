@@ -10,7 +10,7 @@ use work.aes_sub_bytes_5pipe.all;
 use work.aes_utils.all;
 
 
-entity mem_speed is
+entity mem_speed_queue is
 generic (
 	NUMBER_OF_CYCLES: Integer := 0;
 	--MEM_FOLDER:       String  := "sub_bytes"
@@ -159,9 +159,9 @@ port (
 	VGA_R:                        out   std_logic_vector(7 downto 0);
 	VGA_SYNC_N:                   out   std_logic;
 	VGA_VS:                       out   std_logic);
-end entity mem_speed;
+end entity mem_speed_queue;
 
-architecture rtl of mem_speed is
+architecture rtl of mem_speed_queue is
 
 	component pll is
 		port (
@@ -195,7 +195,7 @@ begin
 			rst      => '0',
 			outclk_0 => main_clk);
 
-	memory_arrangement_inst0: entity work.memory_arrangement 
+	memory_queue_inst0: entity work.memory_queue 
 		generic map (
 			MEM_FOLDER       => MEM_FOLDER,
 			MEM_IN_OUT       => "in",
@@ -204,7 +204,7 @@ begin
     	    main_clk         => main_clk,
     	    data             => rom_data_in);
 
-    memory_arrangement_inst1: entity work.memory_arrangement 
+    memory_queue_inst1: entity work.memory_queue 
 		generic map (
 			MEM_FOLDER       => MEM_FOLDER,
 			MEM_IN_OUT       => "out",
