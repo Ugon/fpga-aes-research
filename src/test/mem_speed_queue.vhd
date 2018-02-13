@@ -14,8 +14,8 @@ entity mem_speed_queue is
 generic (
 	NUMBER_OF_CYCLES: Integer := 0;
 	--MEM_FOLDER:       String  := "sub_bytes"
-	MEM_FOLDER: String := "rev_not"
-	--MEM_FOLDER: String := "mix_columns"
+	--MEM_FOLDER: String := "rev_not"
+	MEM_FOLDER: String := "mix_columns"
 );
 port (
       --------- ADC ---------
@@ -217,19 +217,19 @@ begin
     	port map (
     		main_clk       => main_clk,
 			started        => started,
-			data           => not reverse_bit_order(rom_data_in),
+			--data           => not reverse_bit_order(rom_data_in),
 			--data           => rom_data_calculated,
 			--data           => rom_data_late,
 			--data           => sub_bytes_lookup(rom_data_in),
 			--data           => sub_bytes_lookup(rom_data_in),
-			--data           => mix_columns(rom_data_in),
+			data           => mix_columns(rom_data_in),
 			expected       => rom_data_out,
 			error_detected => LEDR(9));
 
 	aes256enc_inst0: entity work.aes256enc 
     	port map (
 			main_clk => main_clk,
-			key_expansion => (others => '0'),
+			key => (others => '0'),
 			plaintext => rom_data_in,
 			cyphertext => rom_data_calculated);
 	

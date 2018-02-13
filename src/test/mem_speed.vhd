@@ -12,9 +12,11 @@ use work.aes_utils.all;
 
 entity mem_speed is
 generic (
-	NUMBER_OF_CYCLES: Integer := 0;
-	--MEM_FOLDER:       String  := "sub_bytes"
-	MEM_FOLDER: String := "rev_not"
+	--NUMBER_OF_CYCLES: Integer := 0;
+	NUMBER_OF_CYCLES: Integer := 89;
+	--NUMBER_OF_CYCLES: Integer := 0;
+	MEM_FOLDER:       String  := "enc"
+	--MEM_FOLDER: String := "rev_not"
 	--MEM_FOLDER: String := "mix_columns"
 );
 port (
@@ -174,7 +176,11 @@ architecture rtl of mem_speed is
 	signal main_clk              : std_logic := '0';
     signal rom_data_in           : std_logic_vector(127 downto 0);
     signal rom_data_out          : std_logic_vector(127 downto 0);
+    signal rom_data_key_high     : std_logic_vector(127 downto 0);
+    signal rom_data_key_low      : std_logic_vector(127 downto 0);
     signal rom_data_calculated   : std_logic_vector(127 downto 0);
+    
+    signal rom_data_key          : std_logic_vector(255 downto 0);
     --signal rom_data_late_late    : std_logic_vector(127 downto 0);
 
 	signal started               : std_logic := '0';
@@ -187,6 +193,10 @@ begin
 
 	LEDR(8) <= started;
 	LEDR(7) <= KEY(0);
+	LEDR(0) <= '1';
+
+	rom_data_key(255 downto 128) <= rom_data_key_high;
+	rom_data_key(127 downto 0)   <= rom_data_key_low;
 
 	--main_clk <= CLOCK_50;
 	pll_inst: pll
@@ -212,13 +222,31 @@ begin
     	port map (
     	    main_clk         => main_clk,
     	    data             => rom_data_out);
+
+    memory_arrangement_inst2: entity work.memory_arrangement 
+		generic map (
+			MEM_FOLDER       => MEM_FOLDER,
+			MEM_IN_OUT       => "key_high",
+			NUMBER_OF_CYCLES => 0)
+    	port map (
+    	    main_clk         => main_clk,
+    	    data             => rom_data_key_high);
+
+    memory_arrangement_inst3: entity work.memory_arrangement 
+		generic map (
+			MEM_FOLDER       => MEM_FOLDER,
+			MEM_IN_OUT       => "key_low",
+			NUMBER_OF_CYCLES => 0)
+    	port map (
+    	    main_clk         => main_clk,
+    	    data             => rom_data_key_low);	
 	
 	error_detector_inst0: entity work.error_detector 
     	port map (
     		main_clk       => main_clk,
 			started        => started,
-			data           => not reverse_bit_order(rom_data_in),
-			--data           => rom_data_calculated,
+			data           => rom_data_calculated,
+			--data           => not reverse_bit_order(rom_data_in),
 			--data           => rom_data_late,
 			--data           => sub_bytes_lookup(rom_data_in),
 			--data           => sub_bytes_lookup(rom_data_in),
@@ -229,12 +257,10 @@ begin
 	aes256enc_inst0: entity work.aes256enc 
     	port map (
 			main_clk => main_clk,
-			key_expansion => (others => '0'),
+			key => rom_data_key,
 			plaintext => rom_data_in,
 			cyphertext => rom_data_calculated);
 	
-
-
 	process(main_clk, KEY(0)) begin
 		if (rising_edge(main_clk)) then
 			--rom_data_late <= sub_bytes_lookup(rom_data_in);

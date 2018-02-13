@@ -70,7 +70,7 @@ package aes_key_expansion_pipe is
 		w7_done: std_logic_vector(31 downto 0);
 	end record;
 
-	type ake_pipe_6res is record
+	type ake_pipe_result is record
 		current_key  : std_logic_vector(127 downto 0);
 		next_key     : std_logic_vector(127 downto 0);
 		next_next_key: std_logic_vector(127 downto 0);
@@ -99,7 +99,7 @@ package aes_key_expansion_pipe is
 
 	function ake_pipe_stage6 (
 		state_in             : ake_pipe_5res;    
-		next_next_round_numer: Integer range 3 to 15) return ake_pipe_6res;
+		next_next_round_numer: Integer range 3 to 15) return ake_pipe_result;
 
 
 end aes_key_expansion_pipe;
@@ -257,12 +257,12 @@ package body aes_key_expansion_pipe is
 	function ake_pipe_stage6 (
 		state_in             : ake_pipe_5res;    
 		next_next_round_numer: Integer range 3 to 15
-	) return ake_pipe_6res is
+	) return ake_pipe_result is
 		variable w8: std_logic_vector(31 downto 0);
 		variable w9: std_logic_vector(31 downto 0);
 		variable w10: std_logic_vector(31 downto 0);
 		variable w11: std_logic_vector(31 downto 0);
-		variable result: ake_pipe_6res;
+		variable result: ake_pipe_result;
 	begin
 		w8  := state_in.w8_init xor state_in.w7_done;
 		w9  := state_in.w9_init xor state_in.w7_done;
