@@ -42,7 +42,7 @@ set_global_assignment -name DEVICE 5CSEMA5F31C6
 set_global_assignment -name TOP_LEVEL_ENTITY mem_speed
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:59:17  AUGUST 15, 2017"
-set_global_assignment -name LAST_QUARTUS_VERSION "17.0.2 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "16.1.2 Standard Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -299,9 +299,6 @@ set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 set_global_assignment -name SMART_RECOMPILE ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
 set_global_assignment -name OPTIMIZATION_MODE "AGGRESSIVE PERFORMANCE"
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name INFER_RAMS_FROM_RAW_LOGIC OFF
 set_global_assignment -name OPTIMIZATION_TECHNIQUE SPEED
 set_global_assignment -name AUTO_ROM_RECOGNITION OFF
@@ -313,9 +310,21 @@ set_global_assignment -name SHIFT_REGISTER_RECOGNITION_ACLR_SIGNAL OFF
 set_global_assignment -name BLOCK_RAM_TO_MLAB_CELL_CONVERSION OFF
 set_global_assignment -name FINAL_PLACEMENT_OPTIMIZATION ALWAYS
 set_global_assignment -name PHYSICAL_SYNTHESIS_EFFORT EXTRA
+set_global_assignment -name PLACEMENT_EFFORT_MULTIPLIER 500
+set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION ON
+set_global_assignment -name ROUTER_LCELL_INSERTION_AND_LOGIC_DUPLICATION ON
+set_global_assignment -name ROUTER_REGISTER_DUPLICATION ON
+set_global_assignment -name PRE_MAPPING_RESYNTHESIS ON
+set_global_assignment -name ROUTER_CLOCKING_TOPOLOGY_ANALYSIS ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC_FOR_AREA ON
+set_global_assignment -name USE_LOGICLOCK_CONSTRAINTS_IN_BALANCING OFF
+set_global_assignment -name VHDL_FILE ../src/aes/aes_round_2_14.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/aes_key_expansion_15.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/aes_key_expansion_14.vhd
+set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/mem_speed_test.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/aes256enc_test.vwf
+set_global_assignment -name VHDL_FILE ../src/aes/aes_key_expansion_1_13.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/aes_round_15.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_round_14.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_round_2_13.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/aes_round_1.vhd
 set_global_assignment -name VHDL_FILE ../src/test/mem_speed_queue.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/memory_queue_test.vwf
@@ -363,9 +372,165 @@ set_global_assignment -name QIP_FILE pll.qip
 set_global_assignment -name SIP_FILE pll.sip
 set_global_assignment -name QIP_FILE rom128.qip
 set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/test_byte.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/memory_arrangement.vwf
-set_global_assignment -name PLACEMENT_EFFORT_MULTIPLIER 50
-set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION ON
-set_global_assignment -name ROUTER_LCELL_INSERTION_AND_LOGIC_DUPLICATION ON
-set_global_assignment -name ROUTER_REGISTER_DUPLICATION ON
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name LL_ENABLED OFF -section_id Round3
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Round3
+set_global_assignment -name LL_STATE LOCKED -section_id Round3
+set_global_assignment -name LL_RESERVED OFF -section_id Round3
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Round3
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Round3
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Round3
+set_global_assignment -name LL_PR_REGION OFF -section_id Round3
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Round3
+set_global_assignment -name LL_WIDTH 41 -section_id Round3
+set_global_assignment -name LL_HEIGHT 9 -section_id Round3
+set_global_assignment -name LL_ORIGIN X10_Y65 -section_id Round3
+set_global_assignment -name LL_ENABLED OFF -section_id Round4
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Round4
+set_global_assignment -name LL_STATE LOCKED -section_id Round4
+set_global_assignment -name LL_RESERVED OFF -section_id Round4
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Round4
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Round4
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Round4
+set_global_assignment -name LL_PR_REGION OFF -section_id Round4
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Round4
+set_global_assignment -name LL_WIDTH 41 -section_id Round4
+set_global_assignment -name LL_HEIGHT 11 -section_id Round4
+set_global_assignment -name LL_ORIGIN X10_Y59 -section_id Round4
+set_global_assignment -name LL_ENABLED OFF -section_id Round1_MemPlaintext
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Round1_MemPlaintext
+set_global_assignment -name LL_STATE LOCKED -section_id Round1_MemPlaintext
+set_global_assignment -name LL_RESERVED OFF -section_id Round1_MemPlaintext
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Round1_MemPlaintext
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Round1_MemPlaintext
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Round1_MemPlaintext
+set_global_assignment -name LL_PR_REGION OFF -section_id Round1_MemPlaintext
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Round1_MemPlaintext
+set_global_assignment -name LL_WIDTH 50 -section_id Round1_MemPlaintext
+set_global_assignment -name LL_HEIGHT 7 -section_id Round1_MemPlaintext
+set_global_assignment -name LL_ORIGIN X1_Y74 -section_id Round1_MemPlaintext
+set_global_assignment -name LL_ENABLED OFF -section_id Round2
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Round2
+set_global_assignment -name LL_STATE LOCKED -section_id Round2
+set_global_assignment -name LL_RESERVED OFF -section_id Round2
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Round2
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Round2
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Round2
+set_global_assignment -name LL_PR_REGION OFF -section_id Round2
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Round2
+set_global_assignment -name LL_WIDTH 50 -section_id Round2
+set_global_assignment -name LL_HEIGHT 7 -section_id Round2
+set_global_assignment -name LL_ORIGIN X1_Y70 -section_id Round2
+set_global_assignment -name LL_ENABLED OFF -section_id Key1
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Key1
+set_global_assignment -name LL_STATE LOCKED -section_id Key1
+set_global_assignment -name LL_RESERVED OFF -section_id Key1
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Key1
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Key1
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Key1
+set_global_assignment -name LL_PR_REGION OFF -section_id Key1
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Key1
+set_global_assignment -name LL_WIDTH 32 -section_id Key1
+set_global_assignment -name LL_HEIGHT 16 -section_id Key1
+set_global_assignment -name LL_ORIGIN X19_Y65 -section_id Key1
+set_global_assignment -name LL_ENABLED OFF -section_id Key2
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Key2
+set_global_assignment -name LL_STATE LOCKED -section_id Key2
+set_global_assignment -name LL_RESERVED OFF -section_id Key2
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Key2
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Key2
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Key2
+set_global_assignment -name LL_PR_REGION OFF -section_id Key2
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Key2
+set_global_assignment -name LL_WIDTH 32 -section_id Key2
+set_global_assignment -name LL_HEIGHT 18 -section_id Key2
+set_global_assignment -name LL_ORIGIN X19_Y59 -section_id Key2
+set_global_assignment -name LL_ENABLED OFF -section_id Key3
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Key3
+set_global_assignment -name LL_STATE LOCKED -section_id Key3
+set_global_assignment -name LL_RESERVED OFF -section_id Key3
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Key3
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Key3
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Key3
+set_global_assignment -name LL_PR_REGION OFF -section_id Key3
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Key3
+set_global_assignment -name LL_WIDTH 32 -section_id Key3
+set_global_assignment -name LL_HEIGHT 19 -section_id Key3
+set_global_assignment -name LL_ORIGIN X19_Y55 -section_id Key3
+set_global_assignment -name LL_ENABLED OFF -section_id MemKeyHigh
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id MemKeyHigh
+set_global_assignment -name LL_STATE LOCKED -section_id MemKeyHigh
+set_global_assignment -name LL_RESERVED OFF -section_id MemKeyHigh
+set_global_assignment -name LL_CORE_ONLY OFF -section_id MemKeyHigh
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id MemKeyHigh
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id MemKeyHigh
+set_global_assignment -name LL_PR_REGION OFF -section_id MemKeyHigh
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id MemKeyHigh
+set_global_assignment -name LL_WIDTH 32 -section_id MemKeyHigh
+set_global_assignment -name LL_HEIGHT 7 -section_id MemKeyHigh
+set_global_assignment -name LL_ORIGIN X19_Y74 -section_id MemKeyHigh
+set_global_assignment -name LL_ENABLED OFF -section_id MemKeyLow
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id MemKeyLow
+set_global_assignment -name LL_STATE LOCKED -section_id MemKeyLow
+set_global_assignment -name LL_RESERVED OFF -section_id MemKeyLow
+set_global_assignment -name LL_CORE_ONLY OFF -section_id MemKeyLow
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id MemKeyLow
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id MemKeyLow
+set_global_assignment -name LL_PR_REGION OFF -section_id MemKeyLow
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id MemKeyLow
+set_global_assignment -name LL_WIDTH 32 -section_id MemKeyLow
+set_global_assignment -name LL_HEIGHT 7 -section_id MemKeyLow
+set_global_assignment -name LL_ORIGIN X19_Y70 -section_id MemKeyLow
+set_global_assignment -name LL_ENABLED OFF -section_id Key5
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Key5
+set_global_assignment -name LL_STATE LOCKED -section_id Key5
+set_global_assignment -name LL_RESERVED OFF -section_id Key5
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Key5
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Key5
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Key5
+set_global_assignment -name LL_PR_REGION OFF -section_id Key5
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Key5
+set_global_assignment -name LL_WIDTH 32 -section_id Key5
+set_global_assignment -name LL_HEIGHT 22 -section_id Key5
+set_global_assignment -name LL_ORIGIN X19_Y43 -section_id Key5
+set_global_assignment -name LL_ENABLED OFF -section_id Round5
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Round5
+set_global_assignment -name LL_STATE LOCKED -section_id Round5
+set_global_assignment -name LL_RESERVED OFF -section_id Round5
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Round5
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Round5
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Round5
+set_global_assignment -name LL_PR_REGION OFF -section_id Round5
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Round5
+set_global_assignment -name LL_WIDTH 41 -section_id Round5
+set_global_assignment -name LL_HEIGHT 20 -section_id Round5
+set_global_assignment -name LL_ORIGIN X10_Y45 -section_id Round5
+set_global_assignment -name LL_ENABLED OFF -section_id Key4
+set_global_assignment -name LL_AUTO_SIZE OFF -section_id Key4
+set_global_assignment -name LL_STATE LOCKED -section_id Key4
+set_global_assignment -name LL_RESERVED OFF -section_id Key4
+set_global_assignment -name LL_CORE_ONLY OFF -section_id Key4
+set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id Key4
+set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id Key4
+set_global_assignment -name LL_PR_REGION OFF -section_id Key4
+set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id Key4
+set_global_assignment -name LL_WIDTH 32 -section_id Key4
+set_global_assignment -name LL_HEIGHT 22 -section_id Key4
+set_global_assignment -name LL_ORIGIN X19_Y48 -section_id Key4
+set_instance_assignment -name LL_MEMBER_OF Round3 -to "aes256enc:aes256enc_inst0|aes_round_2_13:\\GEN_ROUNDS:3:roundX_inst" -section_id Round3
+set_instance_assignment -name LL_MEMBER_OF Round4 -to "aes256enc:aes256enc_inst0|aes_round_2_13:\\GEN_ROUNDS:4:roundX_inst" -section_id Round4
+set_instance_assignment -name LL_MEMBER_OF Round1_MemPlaintext -to "aes256enc:aes256enc_inst0|aes_round_1:round1_inst" -section_id Round1_MemPlaintext
+set_instance_assignment -name LL_MEMBER_OF Round1_MemPlaintext -to "memory_arrangement:memory_arrangement_inst0" -section_id Round1_MemPlaintext
+set_instance_assignment -name LL_MEMBER_OF Round2 -to "aes256enc:aes256enc_inst0|aes_round_2_13:\\GEN_ROUNDS:2:roundX_inst" -section_id Round2
+set_instance_assignment -name LL_MEMBER_OF Key1 -to "aes256enc:aes256enc_inst0|aes_key_expansion_1_13:key1_inst" -section_id Key1
+set_instance_assignment -name LL_MEMBER_OF Key2 -to "aes256enc:aes256enc_inst0|aes_key_expansion_1_13:\\GEN_ROUNDS:2:keyX_inst" -section_id Key2
+set_instance_assignment -name LL_MEMBER_OF Key3 -to "aes256enc:aes256enc_inst0|aes_key_expansion_1_13:\\GEN_ROUNDS:3:keyX_inst" -section_id Key3
+set_instance_assignment -name LL_MEMBER_OF MemKeyHigh -to "memory_arrangement:memory_arrangement_inst2" -section_id MemKeyHigh
+set_instance_assignment -name LL_MEMBER_OF MemKeyLow -to "memory_arrangement:memory_arrangement_inst3" -section_id MemKeyLow
+set_instance_assignment -name LL_MEMBER_OF Key5 -to "aes256enc:aes256enc_inst0|aes_key_expansion_1_13:\\GEN_ROUNDS:5:keyX_inst" -section_id Key5
+set_instance_assignment -name LL_MEMBER_OF Round5 -to "aes256enc:aes256enc_inst0|aes_round_2_13:\\GEN_ROUNDS:5:roundX_inst" -section_id Round5
+set_instance_assignment -name LL_MEMBER_OF Key4 -to "aes256enc:aes256enc_inst0|aes_key_expansion_1_13:\\GEN_ROUNDS:4:keyX_inst" -section_id Key4
+set_global_assignment -name QII_AUTO_PACKED_REGISTERS "SPARSE AUTO"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

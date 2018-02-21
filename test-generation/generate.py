@@ -5,7 +5,8 @@ from random import randint
 # FILE_FOLDER = '../mem/mix_columns'
 # FILE_FOLDER = '../mem/rev_not'
 # FILE_FOLDER = '../mem/sub_bytes'
-FILE_FOLDER = '../mem/enc'
+# FILE_FOLDER = '../mem/enc'
+FILE_FOLDER = '../mem/enc2'
 FILE_PREFIX = 'mem'
 FILE_SUFFIX = '.mif'
 DEPTH = 32;

@@ -45,8 +45,9 @@ package aes_sub_bytes is
 	--2 => 2; multiplication in GF(2^2)
 	function mul_2(inp1: std_logic_vector; inp2: std_logic_vector) return std_logic_vector;
 	
-	--4 => 4; multiplication in GF(2^4)
-	function mul_4(inp1: std_logic_vector; inp2: std_logic_vector) return std_logic_vector;
+	--4 => 4; multiplication in GF(2^4) --in 2 stages for 4LUTs
+	function mul_4a(inp1: std_logic_vector; inp2: std_logic_vector) return std_logic_vector;
+	function mul_4b(inp: std_logic_vector) return std_logic_vector;
 	
 	--4 => 4; multiplicative inversion in GF(2^4)
 	function inv_4(inp: std_logic_vector) return std_logic_vector;
@@ -55,10 +56,13 @@ package aes_sub_bytes is
 	function inv_8(inp: std_logic_vector) return std_logic_vector;
 	
 	--8 => 8; multiplication by delta matrix in GF(2^8)
-	function mul_delta_8(inp: std_logic_vector) return std_logic_vector;
+	function mul_delta_8a(inp: std_logic_vector) return std_logic_vector;
+	function mul_delta_8b(inp: std_logic_vector) return std_logic_vector;
+	function mul_delta_8b_xored(inp: std_logic_vector) return std_logic_vector;
 	
 	--8 => 8; multiplication by delta_inv matrix + AES affine transformation in GF(2^8)
-	function mul_deltainv_affine_8(inp: std_logic_vector) return std_logic_vector;
+	function mul_deltainv_affine_8a(inp: std_logic_vector) return std_logic_vector;
+	function mul_deltainv_affine_8b(inp: std_logic_vector) return std_logic_vector;
 
 
 end aes_sub_bytes;
@@ -130,7 +134,7 @@ package body aes_sub_bytes is
 	end function;
 
 	
-	function mul_4(inp1: std_logic_vector; inp2: std_logic_vector) return std_logic_vector is
+	function mul_4a(inp1: std_logic_vector; inp2: std_logic_vector) return std_logic_vector is
 		constant a : std_logic_vector(1 downto 0) := inp1(inp1'low + 3 downto inp1'low + 2);
 		constant b : std_logic_vector(1 downto 0) := inp1(inp1'low + 1 downto inp1'low + 0);
 		constant c : std_logic_vector(1 downto 0) := inp2(inp2'low + 3 downto inp2'low + 2);
@@ -139,8 +143,25 @@ package body aes_sub_bytes is
 		constant e : std_logic_vector(1 downto 0) := a xor b;
 		constant f : std_logic_vector(1 downto 0) := c xor d;
 		constant g : std_logic_vector(1 downto 0) := mul_2(a, c);
-		constant h : std_logic_vector(1 downto 0) := mul_2(e, f);
 		constant i : std_logic_vector(1 downto 0) := mul_2(b, d);
+
+		variable result: std_logic_vector(7 downto 0);
+	begin
+		result(7 downto 6) := g;
+		result(5 downto 4) := e;
+		result(3 downto 2) := f;
+		result(1 downto 0) := i;
+		return result;
+	end function;
+
+
+	function mul_4b(inp: std_logic_vector) return std_logic_vector is
+		constant g : std_logic_vector(1 downto 0) := inp(7 downto 6);
+		constant e : std_logic_vector(1 downto 0) := inp(5 downto 4);
+		constant f : std_logic_vector(1 downto 0) := inp(3 downto 2);
+		constant i : std_logic_vector(1 downto 0) := inp(1 downto 0);
+		
+		constant h : std_logic_vector(1 downto 0) := mul_2(e, f);
 		constant j : std_logic_vector(1 downto 0) := h xor i;
 		constant k : std_logic_vector(1 downto 0) := mul_phi_2(g) xor i;
 		
@@ -151,7 +172,7 @@ package body aes_sub_bytes is
 		return result;
 	end function;
 
-	
+	/*
 	function inv_4(inp: std_logic_vector) return std_logic_vector is
 		constant x0 : std_logic := inp(inp'low + 0);
 		constant x1 : std_logic := inp(inp'low + 1);
@@ -183,8 +204,27 @@ package body aes_sub_bytes is
 	begin
 		return result;
 	end function;
+*/
 
 	
+	function inv_4(inp: std_logic_vector) return std_logic_vector is
+		constant x0 : std_logic := inp(inp'low + 0);
+		constant x1 : std_logic := inp(inp'low + 1);
+		constant x2 : std_logic := inp(inp'low + 2);
+		constant x3 : std_logic := inp(inp'low + 3);
+		
+
+		constant x3i : std_logic := x3 xor (x3 and x2 and x1) xor (x3 and x0) xor x2;
+		constant x2i : std_logic := (x3 and x2 and x1) xor (x3 and x2 and x0) xor(x3 and x0) xor x2 xor (x2 and x1);
+		constant x1i : std_logic := x3 xor (x3 and x2 and x1) xor (x3 and x1 and x0) xor x2 xor (x2 and x0) xor x1;
+		constant x0i : std_logic := (x3 and x2 and x1) xor (x3 and x2 and x0) xor (x3 and x1) xor (x3 and x1 and x0) xor (x3 and x0) xor x2 xor (x2 and x1) xor (x2 and x1 and x0) xor x1 xor x0;
+		
+		constant result: std_logic_vector(3 downto 0) := (x3i, x2i, x1i, x0i);
+	begin
+		return result;
+	end function;
+	
+
 	function inv_8(inp: std_logic_vector) return std_logic_vector is
 		constant a : std_logic_vector(3 downto 0) := inp(7 downto 4);
 		constant b : std_logic_vector(3 downto 0) := inp(3 downto 0);
@@ -192,21 +232,81 @@ package body aes_sub_bytes is
 		constant c : std_logic_vector(3 downto 0) := sq_4(a);
 		constant d : std_logic_vector(3 downto 0) := a xor b;
 		constant e : std_logic_vector(3 downto 0) := mul_lam_4(c);
-		constant f : std_logic_vector(3 downto 0) := mul_4(b, d);
-		constant g : std_logic_vector(3 downto 0) := e xor f;
-		constant h : std_logic_vector(3 downto 0) := inv_4(g);
-		constant i : std_logic_vector(3 downto 0) := mul_4(a, h);
-		constant j : std_logic_vector(3 downto 0) := mul_4(d, h);
+--		constant f : std_logic_vector(3 downto 0) := mul_4(b, d);
+--		constant g : std_logic_vector(3 downto 0) := e xor f;
+--		constant h : std_logic_vector(3 downto 0) := inv_4(g);
+--		constant i : std_logic_vector(3 downto 0) := mul_4(a, h);
+--		constant j : std_logic_vector(3 downto 0) := mul_4(d, h);
 
 		variable result: std_logic_vector(7 downto 0);
 	begin
-		result(7 downto 4) := i;
-		result(3 downto 0) := j;
+--		result(7 downto 4) := i;
+--		result(3 downto 0) := j;
 		return result;
 	end function;
 
+/*
+		constant r0: std_logic := a xor b xor                         g      ;
+		constant r1: std_logic :=       b xor             e xor       g      ;
+		constant r2: std_logic :=       b xor c xor d xor e xor             h;
+		constant r3: std_logic :=       b xor c xor                   g xor h;
+		
+		constant r4: std_logic :=       b xor c xor d xor       f xor       h;
+		constant r5: std_logic :=             c xor d xor       f xor       h;
+		constant r6: std_logic :=       b xor c xor d xor e xor       g xor h;
+		constant r7: std_logic :=                               f xor       h;
+*/
 	
-	function mul_delta_8(inp: std_logic_vector) return std_logic_vector is
+	function mul_delta_8a(inp: std_logic_vector) return std_logic_vector is
+		constant a:  std_logic := inp(inp'low + 0);
+		constant b:  std_logic := inp(inp'low + 1);
+		constant c:  std_logic := inp(inp'low + 2);
+		constant d:  std_logic := inp(inp'low + 3);
+		constant e:  std_logic := inp(inp'low + 4);
+		constant f:  std_logic := inp(inp'low + 5);
+		constant g:  std_logic := inp(inp'low + 6);
+		constant h:  std_logic := inp(inp'low + 7);
+		
+		constant cd:   std_logic := c xor d;
+		constant fgh:  std_logic := f xor g xor h;
+		constant bcde: std_logic := b xor c xor d xor e;
+  
+		constant result: std_logic_vector(10 downto 0) := (bcde, fgh, cd, h, g, f, e, d, c, b, a);
+  	begin
+  		return result;
+	end function;
+
+
+	function mul_delta_8b(inp: std_logic_vector) return std_logic_vector is
+		constant a:  std_logic := inp(inp'low + 0);
+		constant b:  std_logic := inp(inp'low + 1);
+		constant c:  std_logic := inp(inp'low + 2);
+		constant d:  std_logic := inp(inp'low + 3);
+		constant e:  std_logic := inp(inp'low + 4);
+		constant f:  std_logic := inp(inp'low + 5);
+		constant g:  std_logic := inp(inp'low + 6);
+		constant h:  std_logic := inp(inp'low + 7);
+  		
+  		constant cd:   std_logic := inp(inp'low + 8);
+		constant fgh:  std_logic := inp(inp'low + 9);
+		constant bcde: std_logic := inp(inp'low + 10);
+		
+		constant r0: std_logic := a xor b xor                         g               ;
+		constant r1: std_logic :=       b xor             e xor       g               ;
+		constant r2: std_logic :=                                           h xor bcde;
+		constant r3: std_logic :=       b xor c xor                   g xor h         ;
+		
+		constant r4: std_logic :=       b xor                   f xor       h xor   cd;
+		constant r5: std_logic :=                               f xor       h xor   cd;
+		constant r6: std_logic :=                                     g xor h xor bcde;
+		constant r7: std_logic :=                               f xor       h         ;
+         
+		constant result: std_logic_vector(7 downto 0) := (r7, r6, r5, r4, r3, r2, r1, r0);
+  	begin
+  		return result;
+	end function;
+
+	function mul_delta_8b_xored(inp: std_logic_vector) return std_logic_vector is
 		constant a:  std_logic := inp(inp'low + 0);
 		constant b:  std_logic := inp(inp'low + 1);
 		constant c:  std_logic := inp(inp'low + 2);
@@ -216,22 +316,71 @@ package body aes_sub_bytes is
 		constant g:  std_logic := inp(inp'low + 6);
 		constant h:  std_logic := inp(inp'low + 7);
   
-		constant r0: std_logic := a xor b xor                         g      ;
-		constant r1: std_logic :=       b xor             e xor       g      ;
-		constant r2: std_logic :=       b xor c xor d xor e xor             h;
-		constant r3: std_logic :=       b xor c xor                   g xor h;
-		constant r4: std_logic :=       b xor c xor d xor       f xor       h;
-		constant r5: std_logic :=             c xor d xor       f xor       h;
-		constant r6: std_logic :=       b xor c xor d xor e xor       g xor h;
-		constant r7: std_logic :=                               f xor       h;
+  		constant cd:   std_logic := inp(inp'low + 8);
+		constant fgh:  std_logic := inp(inp'low + 9);
+		constant bcde: std_logic := inp(inp'low + 10);
 
-		constant result: std_logic_vector(7 downto 0) := (r7, r6, r5, r4, r3, r2, r1, r0);
+		constant r0: std_logic := a xor cd xor fgh;
+		constant r1: std_logic := bcde xor fgh;
+		constant r2: std_logic := g;
+		constant r3: std_logic := b xor c xor f xor g;
+		
+		constant result: std_logic_vector(3 downto 0) := (r3, r2, r1, r0);
   	begin
   		return result;
 	end function;
 
 	
-	function mul_deltainv_affine_8(inp: std_logic_vector) return std_logic_vector is
+	function mul_deltainv_affine_8a(inp: std_logic_vector) return std_logic_vector is
+		constant a: std_logic := inp(inp'low + 0);
+		constant b: std_logic := inp(inp'low + 1);
+		constant c: std_logic := inp(inp'low + 2);
+		constant d: std_logic := inp(inp'low + 3);
+		constant e: std_logic := inp(inp'low + 4);
+		constant f: std_logic := inp(inp'low + 5);
+		constant g: std_logic := inp(inp'low + 6);
+		constant h: std_logic := inp(inp'low + 7);
+
+		constant cd:     std_logic := c xor d;
+		constant abc:    std_logic := a xor b xor c;
+		constant efg:    std_logic := e xor f xor g;
+		constant abeh:   std_logic := a xor b xor e xor h;
+		constant ch_not: std_logic := '1' xor c xor h;
+		constant gh_not: std_logic := '1' xor g xor h;
+
+		constant result: std_logic_vector(7 downto 0) := (a, h, cd, abc, efg, abeh, ch_not, gh_not);
+	begin
+ 		return result;
+	end function;
+
+
+	function mul_deltainv_affine_8b(inp: std_logic_vector) return std_logic_vector is
+		constant a:      std_logic := inp(inp'low + 7);
+		constant h:      std_logic := inp(inp'low + 6);
+		constant cd:     std_logic := inp(inp'low + 5);
+		constant abc:    std_logic := inp(inp'low + 4);
+		constant efg:    std_logic := inp(inp'low + 3);
+		constant abeh:   std_logic := inp(inp'low + 2);
+		constant ch_not: std_logic := inp(inp'low + 1);
+		constant gh_not: std_logic := inp(inp'low + 0);
+		
+		constant r0: std_logic := abc xor gh_not; 
+		constant r1: std_logic := '1' xor a xor h;
+		constant r2: std_logic := a xor cd xor efg;
+		constant r3: std_logic := abc;
+		constant r4: std_logic := abeh;
+		constant r5: std_logic := ch_not;
+		constant r6: std_logic := '1' xor efg xor h;
+		constant r7: std_logic := cd xor h;
+
+		constant result: std_logic_vector(7 downto 0) := (r7, r6, r5, r4, r3, r2, r1, r0);
+	begin
+ 		return result;
+	end function;
+
+
+	/*
+	function mul_deltainv_affine_8a(inp: std_logic_vector) return std_logic_vector is
 		constant a:  std_logic := inp(inp'low + 0);
 		constant b:  std_logic := inp(inp'low + 1);
 		constant c:  std_logic := inp(inp'low + 2);
@@ -240,24 +389,46 @@ package body aes_sub_bytes is
 		constant f:  std_logic := inp(inp'low + 5);
 		constant g:  std_logic := inp(inp'low + 6);
 		constant h:  std_logic := inp(inp'low + 7);
-	
-		constant r0: std_logic := a xor b xor c                   xor g xor h xor '1'; 
-		constant r1: std_logic := a                                     xor h xor '1';
-		constant r2: std_logic := a       xor c xor d xor e xor f xor g              ;
-		constant r3: std_logic := a xor b xor c                                      ;
-		constant r4: std_logic := a xor b             xor e             xor h        ;
-		constant r5: std_logic :=             c                         xor h xor '1';
-		constant r6: std_logic :=                         e xor f xor g xor h xor '1';
-		constant r7: std_logic :=             c xor d                   xor h        ;
 
-		constant result: std_logic_vector(7 downto 0) := (r7, r6, r5, r4, r3, r2, r1, r0);
+		constant abc: std_logic := a xor b xor c;
+		constant efg: std_logic := e xor f xor g;
+	
+		constant result: std_logic_vector(9 downto 0) := (efg, abc, h, g, f, e, d, c, b, a);
 	begin
  		return result;
 	end function;
 
 
+	function mul_deltainv_affine_8b(inp: std_logic_vector) return std_logic_vector is
+		constant a:  std_logic := inp(inp'low + 0);
+		constant b:  std_logic := inp(inp'low + 1);
+		constant c:  std_logic := inp(inp'low + 2);
+		constant d:  std_logic := inp(inp'low + 3);
+		constant e:  std_logic := inp(inp'low + 4);
+		constant f:  std_logic := inp(inp'low + 5);
+		constant g:  std_logic := inp(inp'low + 6);
+		constant h:  std_logic := inp(inp'low + 7);
+		
+		constant abc: std_logic := inp(inp'low + 8);
+		constant efg: std_logic := inp(inp'low + 9);
+
+		constant r0: std_logic := '1' xor abc xor g xor h; 
+		constant r1: std_logic := '1' xor         a xor h;
+		constant r2: std_logic :=         efg xor a xor c xor d;
+		constant r3: std_logic :=         abc;
+		constant r4: std_logic :=                 a xor b xor e xor h;
+		constant r5: std_logic := '1' xor         c xor h;
+		constant r6: std_logic := '1' xor efg xor h;
+		constant r7: std_logic :=                 c xor d xor h;
+
+		constant result: std_logic_vector(7 downto 0) := (r7, r6, r5, r4, r3, r2, r1, r0);
+	begin
+ 		return result;
+	end function;
+*/
+
 	function sub_byte_calc(byte: std_logic_vector) return std_logic_vector is begin
-		return mul_deltainv_affine_8(inv_8(mul_delta_8(byte)));
+		return mul_deltainv_affine_8b(mul_deltainv_affine_8a(inv_8(mul_delta_8b(mul_delta_8a((byte))))));
 	end function;
 
 

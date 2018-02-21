@@ -7,6 +7,9 @@ use work.aes_sub_bytes.all;
 package aes_key_expansion_pipe is
 
 	type ake_halfbytes is array (0 to 3) of std_logic_vector(3 downto 0);
+	type ake_bytes     is array (0 to 3) of std_logic_vector(7 downto 0);
+	type ake_tens      is array (0 to 3) of std_logic_vector(9 downto 0);
+	type ake_elevens   is array (0 to 3) of std_logic_vector(10 downto 0);
 	
 	type ake_pipe_1res is record
 		current_key: std_logic_vector(127 downto 0);
@@ -16,9 +19,7 @@ package aes_key_expansion_pipe is
 		w2: std_logic_vector(31 downto 0);
 		w3: std_logic_vector(31 downto 0);
 		
-		w7_a: ake_halfbytes;
-		w7_b: ake_halfbytes;
-		w7_d: ake_halfbytes;
+		w7_elevens: ake_elevens;
 	end record;
 
 	type ake_pipe_2res is record
@@ -30,8 +31,8 @@ package aes_key_expansion_pipe is
 		w3: std_logic_vector(31 downto 0);
 		
 		w7_a: ake_halfbytes;
+		w7_b: ake_halfbytes;
 		w7_d: ake_halfbytes;
-		w7_g: ake_halfbytes;
 	end record;
 
 	type ake_pipe_3res is record
@@ -43,11 +44,50 @@ package aes_key_expansion_pipe is
 		w3: std_logic_vector(31 downto 0);
 		
 		w7_a: ake_halfbytes;
+		w7_e: ake_halfbytes;
+		w7_d: ake_halfbytes;
+		w7_da: ake_bytes;
+	end record;
+
+	type ake_pipe_4res is record
+		current_key: std_logic_vector(127 downto 0);
+		next_key: std_logic_vector(127 downto 0);
+		w8_init: std_logic_vector(31 downto 0);
+		w9_init: std_logic_vector(31 downto 0);
+		w10_init: std_logic_vector(31 downto 0);
+		w11_init: std_logic_vector(31 downto 0);
+		
+		w7_a: ake_halfbytes;
+		w7_d: ake_halfbytes;
+		w7_g: ake_halfbytes;
+	end record;
+
+	type ake_pipe_5res is record
+		current_key: std_logic_vector(127 downto 0);
+		next_key: std_logic_vector(127 downto 0);
+		w8_init: std_logic_vector(31 downto 0);
+		w9_init: std_logic_vector(31 downto 0);
+		w10_init: std_logic_vector(31 downto 0);
+		w11_init: std_logic_vector(31 downto 0);
+		
+		w7_a: ake_halfbytes;
 		w7_d: ake_halfbytes;
 		w7_h: ake_halfbytes;
 	end record;
 
-	type ake_pipe_4res is record
+	type ake_pipe_6res is record
+		current_key: std_logic_vector(127 downto 0);
+		next_key: std_logic_vector(127 downto 0);
+		w8_init: std_logic_vector(31 downto 0);
+		w9_init: std_logic_vector(31 downto 0);
+		w10_init: std_logic_vector(31 downto 0);
+		w11_init: std_logic_vector(31 downto 0);
+		
+		w7_i: ake_bytes;
+		w7_j: ake_bytes;
+	end record;
+
+	type ake_pipe_7res is record
 		current_key: std_logic_vector(127 downto 0);
 		next_key: std_logic_vector(127 downto 0);
 		w8_init: std_logic_vector(31 downto 0);
@@ -59,7 +99,18 @@ package aes_key_expansion_pipe is
 		w7_j: ake_halfbytes;
 	end record;
 
-	type ake_pipe_5res is record
+	type ake_pipe_8res is record
+		current_key: std_logic_vector(127 downto 0);
+		next_key: std_logic_vector(127 downto 0);
+		w8_init: std_logic_vector(31 downto 0);
+		w9_init: std_logic_vector(31 downto 0);
+		w10_init: std_logic_vector(31 downto 0);
+		w11_init: std_logic_vector(31 downto 0);
+		
+		w7_delta_mul_inter: ake_bytes;
+	end record;
+
+	type ake_pipe_9res is record
 		current_key: std_logic_vector(127 downto 0);
 		next_key: std_logic_vector(127 downto 0);
 		w8_init: std_logic_vector(31 downto 0);
@@ -81,17 +132,17 @@ package aes_key_expansion_pipe is
 		next_key             : std_logic_vector(127 downto 0);
 		next_next_round_numer: Integer range 3 to 15) return ake_pipe_1res;
 
-    function ake_pipe_stage2 (
+	function ake_pipe_stage2 (
     	state_in             : ake_pipe_1res;
     	next_next_round_numer: Integer range 3 to 15) return ake_pipe_2res;
 
-	function ake_pipe_stage3 (
-		state_in             : ake_pipe_2res;    
-		next_next_round_numer: Integer range 3 to 15) return ake_pipe_3res;
+    function ake_pipe_stage3 (
+    	state_in             : ake_pipe_2res;
+    	next_next_round_numer: Integer range 3 to 15) return ake_pipe_3res;
 
 	function ake_pipe_stage4 (
-		state_in             : ake_pipe_3res;    
-		next_next_round_numer: Integer range 3 to 15) return ake_pipe_4res;
+    	state_in             : ake_pipe_3res;
+    	next_next_round_numer: Integer range 3 to 15) return ake_pipe_4res;
 
 	function ake_pipe_stage5 (
 		state_in             : ake_pipe_4res;    
@@ -99,6 +150,22 @@ package aes_key_expansion_pipe is
 
 	function ake_pipe_stage6 (
 		state_in             : ake_pipe_5res;    
+		next_next_round_numer: Integer range 3 to 15) return ake_pipe_6res;
+
+	function ake_pipe_stage7 (
+		state_in             : ake_pipe_6res;    
+		next_next_round_numer: Integer range 3 to 15) return ake_pipe_7res;
+
+	function ake_pipe_stage8 (
+		state_in             : ake_pipe_7res;    
+		next_next_round_numer: Integer range 3 to 15) return ake_pipe_8res;
+
+	function ake_pipe_stage9 (
+		state_in             : ake_pipe_8res;    
+		next_next_round_numer: Integer range 3 to 15) return ake_pipe_9res;
+
+	function ake_pipe_stage10 (
+		state_in             : ake_pipe_9res;    
 		next_next_round_numer: Integer range 3 to 15) return ake_pipe_result;
 
 
@@ -135,26 +202,23 @@ package body aes_key_expansion_pipe is
 		end if;
 
 		for i in 0 to 3 loop
-			inp := mul_delta_8(w7_rot((i + 1) * 8 - 1 downto i * 8));
-			inp_h := inp(7 downto 4);
-			inp_l := inp(3 downto 0);
-			result.w7_a(i) := inp_h;
-			result.w7_b(i) := inp_l;
-			result.w7_d(i) := inp_h xor inp_l;
+			result.w7_elevens(i) := mul_delta_8a(w7_rot((i + 1) * 8 - 1 downto i * 8));
 		end loop;
 		return result;
 	end function;
 
 
-    function ake_pipe_stage2 (
+	function ake_pipe_stage2 (
     	state_in             : ake_pipe_1res;    
-    	next_next_round_numer: Integer range 3 to 15
-    ) return ake_pipe_2res is
-    	variable c: std_logic_vector(3 downto 0);
-		variable e: std_logic_vector(3 downto 0);
-		variable f: std_logic_vector(3 downto 0);
+		next_next_round_numer: Integer range 3 to 15
+	) return ake_pipe_2res is
+		variable w7    : std_logic_vector(31 downto 0);
+		variable w7_rot: std_logic_vector(31 downto 0);
+		variable inp   : std_logic_vector(7 downto 0);
+		variable inp_h : std_logic_vector(3 downto 0);
+		variable inp_l : std_logic_vector(3 downto 0);
 		variable result: ake_pipe_2res;
-    begin
+	begin
 		result.next_key    := state_in.next_key;
 		result.current_key := state_in.current_key;
 
@@ -164,30 +228,81 @@ package body aes_key_expansion_pipe is
 		result.w3      := state_in.w3;
 		
 		for i in 0 to 3 loop
+			inp := mul_delta_8b(state_in.w7_elevens(i));
+			inp_h := inp(7 downto 4);
+			inp_l := inp(3 downto 0);
+			result.w7_a(i) := inp_h;
+			result.w7_b(i) := inp_l;
+			result.w7_d(i) := mul_delta_8b_xored(state_in.w7_elevens(i));
+		end loop;
+		return result;
+	end function;
+
+
+    function ake_pipe_stage3 (
+    	state_in             : ake_pipe_2res;    
+    	next_next_round_numer: Integer range 3 to 15
+    ) return ake_pipe_3res is
+    	variable c: std_logic_vector(3 downto 0);
+		variable result: ake_pipe_3res;
+    begin
+		result.next_key    := state_in.next_key;
+		result.current_key := state_in.current_key;
+
+		result.w8_init  := state_in.w8_init;
+		result.w9_init  := state_in.w9_init;
+		result.w10_init := state_in.w2 xor state_in.w9_init;
+		result.w3       := state_in.w3;
+		
+		for i in 0 to 3 loop
 			c := sq_4(state_in.w7_a(i));
-			e := mul_lam_4(c);
-			f := mul_4(state_in.w7_b(i), state_in.w7_d(i));
 			result.w7_a(i) := state_in.w7_a(i);
 			result.w7_d(i) := state_in.w7_d(i);
-			result.w7_g(i) := e xor f;
+			result.w7_e(i) := mul_lam_4(c);
+			result.w7_da(i) := mul_4a(state_in.w7_b(i), state_in.w7_d(i));
 		end loop;
 		return result;
     end function;
 
 
-	function ake_pipe_stage3 (
-		state_in             : ake_pipe_2res;    
+	function ake_pipe_stage4 (
+    	state_in             : ake_pipe_3res;    
+    	next_next_round_numer: Integer range 3 to 15
+    ) return ake_pipe_4res is
+		variable f: std_logic_vector(3 downto 0);
+		variable result: ake_pipe_4res;
+    begin
+		result.next_key    := state_in.next_key;
+		result.current_key := state_in.current_key;
+
+		result.w8_init  := state_in.w8_init;
+		result.w9_init  := state_in.w9_init;
+		result.w10_init := state_in.w10_init;
+		result.w11_init := state_in.w3 xor state_in.w10_init;
+		
+		for i in 0 to 3 loop
+			f := mul_4b(state_in.w7_da(i));
+			result.w7_a(i) := state_in.w7_a(i);
+			result.w7_d(i) := state_in.w7_d(i);
+			result.w7_g(i) := state_in.w7_e(i) xor f;
+		end loop;
+		return result;
+    end function;
+
+
+	function ake_pipe_stage5 (
+		state_in             : ake_pipe_4res;    
 		next_next_round_numer: Integer range 3 to 15
-	) return ake_pipe_3res is
-		variable result: ake_pipe_3res;
+	) return ake_pipe_5res is
+		variable result: ake_pipe_5res;
 	begin
 		result.next_key    := state_in.next_key;
 		result.current_key := state_in.current_key;
 		
 		result.w8_init  := state_in.w8_init;
 		result.w9_init  := state_in.w9_init;
-		result.w10_init := state_in.w2 xor state_in.w9_init;
-		result.w3       := state_in.w3;
+		result.w10_init := state_in.w10_init;
+		result.w11_init := state_in.w11_init;
 
 		for i in 0 to 3 loop
 			result.w7_a(i) := state_in.w7_a(i);
@@ -198,11 +313,11 @@ package body aes_key_expansion_pipe is
 	end function;
 
 
-	function ake_pipe_stage4 (
-		state_in             : ake_pipe_3res;    
+	function ake_pipe_stage6 (
+		state_in             : ake_pipe_5res;    
 		next_next_round_numer: Integer range 3 to 15
-	) return ake_pipe_4res is
-		variable result: ake_pipe_4res;
+	) return ake_pipe_6res is
+		variable result: ake_pipe_6res;
 	begin
 		result.next_key    := state_in.next_key;
 		result.current_key := state_in.current_key;
@@ -210,24 +325,45 @@ package body aes_key_expansion_pipe is
 		result.w8_init  := state_in.w8_init;
 		result.w9_init  := state_in.w9_init;
 		result.w10_init := state_in.w10_init;
-		result.w11_init := state_in.w3 xor state_in.w10_init;
+		result.w11_init := state_in.w11_init;
 
 		for i in 0 to 3 loop
-			result.w7_i(i) := mul_4(state_in.w7_a(i), state_in.w7_h(i));
-			result.w7_j(i) := mul_4(state_in.w7_d(i), state_in.w7_h(i));
+			result.w7_i(i) := mul_4a(state_in.w7_a(i), state_in.w7_h(i));
+			result.w7_j(i) := mul_4a(state_in.w7_d(i), state_in.w7_h(i));
 		end loop;
 		return result;
 	end function;
 
 
-	function ake_pipe_stage5 (
-		state_in             : ake_pipe_4res;    
+	function ake_pipe_stage7 (
+		state_in             : ake_pipe_6res;    
 		next_next_round_numer: Integer range 3 to 15
-	) return ake_pipe_5res is
+	) return ake_pipe_7res is
+		variable result: ake_pipe_7res;
+	begin
+		result.next_key    := state_in.next_key;
+		result.current_key := state_in.current_key;
+
+		result.w8_init  := state_in.w8_init;
+		result.w9_init  := state_in.w9_init;
+		result.w10_init := state_in.w10_init;
+		result.w11_init := state_in.w11_init;
+
+		for i in 0 to 3 loop
+			result.w7_i(i) := mul_4b(state_in.w7_i(i));
+			result.w7_j(i) := mul_4b(state_in.w7_j(i));
+		end loop;
+		return result;
+	end function;
+
+	function ake_pipe_stage8 (
+		state_in             : ake_pipe_7res;    
+		next_next_round_numer: Integer range 3 to 15
+	) return ake_pipe_8res is
 		variable bte   : std_logic_vector(7 downto 0);
 		variable w7_sub: std_logic_vector(31 downto 0);
 		variable w7_rcon: std_logic_vector(31 downto 0);
-		variable result: ake_pipe_5res;
+		variable result: ake_pipe_8res;
 	begin
 		result.next_key    := state_in.next_key;
 		result.current_key := state_in.current_key;
@@ -240,7 +376,31 @@ package body aes_key_expansion_pipe is
 		for i in 0 to 3 loop
 			bte(7 downto 4) := state_in.w7_i(i);
 			bte(3 downto 0) := state_in.w7_j(i);
-			w7_sub((i + 1) * 8 - 1 downto i * 8) := mul_deltainv_affine_8(bte);
+			result.w7_delta_mul_inter(i) := mul_deltainv_affine_8a(bte);
+		end loop;
+
+		return result;
+	end function;
+
+	function ake_pipe_stage9 (
+		state_in             : ake_pipe_8res;    
+		next_next_round_numer: Integer range 3 to 15
+	) return ake_pipe_9res is
+		variable bte   : std_logic_vector(7 downto 0);
+		variable w7_sub: std_logic_vector(31 downto 0);
+		variable w7_rcon: std_logic_vector(31 downto 0);
+		variable result: ake_pipe_9res;
+	begin
+		result.next_key    := state_in.next_key;
+		result.current_key := state_in.current_key;
+		
+		result.w8_init  := state_in.w8_init;
+		result.w9_init  := state_in.w9_init;
+		result.w10_init := state_in.w10_init;
+		result.w11_init := state_in.w11_init;
+
+		for i in 0 to 3 loop
+			w7_sub((i + 1) * 8 - 1 downto i * 8) := mul_deltainv_affine_8b(state_in.w7_delta_mul_inter(i));
 		end loop;
 
 		w7_rcon := w7_sub;
@@ -254,8 +414,8 @@ package body aes_key_expansion_pipe is
 	end function;
 
 
-	function ake_pipe_stage6 (
-		state_in             : ake_pipe_5res;    
+	function ake_pipe_stage10 (
+		state_in             : ake_pipe_9res;    
 		next_next_round_numer: Integer range 3 to 15
 	) return ake_pipe_result is
 		variable w8: std_logic_vector(31 downto 0);

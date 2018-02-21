@@ -19,7 +19,7 @@ end entity aes_mix_columns_test;
 architecture rtl of aes_mix_columns_test is
 	signal result:   std_logic_vector(127 downto 0);
 begin
-	result <= mix_columns_b(mix_columns_a(inp));
+	result <= mix_columns(inp);
 	outp <= result;
 
 	process (expe, result) begin

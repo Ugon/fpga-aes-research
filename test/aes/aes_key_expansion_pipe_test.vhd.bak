@@ -81,8 +81,8 @@ architecture rtl of aes_key_expansion_pipe_test is
 
 begin
 	
-	r3_key <=  ake_pipe_stage10(ake_pipe_stage9(ake_pipe_stage8(ake_pipe_stage7(ake_pipe_stage6(ake_pipe_stage5(ake_pipe_stage4(ake_pipe_stage3(ake_pipe_stage2(ake_pipe_stage1(inp_key(255 downto 128),  inp_key(127 downto 0),   3),  3),  3),  3),  3),  3),  3),  3),  3),  3);
-	r4_key <=  ake_pipe_stage10(ake_pipe_stage9(ake_pipe_stage8(ake_pipe_stage7(ake_pipe_stage6(ake_pipe_stage5(ake_pipe_stage4(ake_pipe_stage3(ake_pipe_stage2(ake_pipe_stage1(r3_key.next_key, r3_key.next_next_key, 4),  4),  4),  4),  4),  4),  4),  4),  4),  4);
+	r3_key <=  ake_pipe_stage8(ake_pipe_stage7(ake_pipe_stage6(ake_pipe_stage5(ake_pipe_stage4(ake_pipe_stage3(ake_pipe_stage2(ake_pipe_stage1(inp_key(255 downto 128),  inp_key(127 downto 0),   3),  3),  3),  3),  3),  3),  3),  3);
+	r4_key <=  ake_pipe_stage8(ake_pipe_stage7(ake_pipe_stage6(ake_pipe_stage5(ake_pipe_stage4(ake_pipe_stage3(ake_pipe_stage2(ake_pipe_stage1(r3_key.next_key, r3_key.next_next_key, 4),  4),  4),  4),  4),  4),  4),  4);
 /*	r5_key <=  ake_pipe_stage8(ake_pipe_stage7(ake_pipe_stage6(ake_pipe_stage5(ake_pipe_stage4(ake_pipe_stage3(ake_pipe_stage2(ake_pipe_stage1(r3_key_latched_current,  r4_key_latched_next,   5),  5),  5),  5),  5),  5),  5),  5);
 	r6_key <=  ake_pipe_stage8(ake_pipe_stage7(ake_pipe_stage6(ake_pipe_stage5(ake_pipe_stage4(ake_pipe_stage3(ake_pipe_stage2(ake_pipe_stage1(r4_key_latched_current,  r5_key_latched_next,   6),  6),  6),  6),  6),  6),  6),  6);
 	r7_key <=  ake_pipe_stage8(ake_pipe_stage7(ake_pipe_stage6(ake_pipe_stage5(ake_pipe_stage4(ake_pipe_stage3(ake_pipe_stage2(ake_pipe_stage1(r5_key_latched_current,  r6_key_latched_next,   7),  7),  7),  7),  7),  7),  7),  7);

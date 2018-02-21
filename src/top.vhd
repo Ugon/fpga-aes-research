@@ -178,12 +178,12 @@ begin
 
 	main_clk <= CLOCK_50;
 
-	memory_arrangement_inst: entity work.memory_arrangement 
-		generic map (
-			MEM_FOLDER => "identity")
-    	port map (
-    	    main_clk => main_clk,
-    	    data     => rom_data);
+--	memory_arrangement_inst: entity work.memory_arrangement 
+--		generic map (
+--			MEM_FOLDER => "identity")
+--    	port map (
+--    	    main_clk => main_clk,
+--    	    data     => rom_data);
 	
 	transformation_input <= rom_data(255 downto 128);
 	process(main_clk) begin

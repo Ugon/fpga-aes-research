@@ -217,12 +217,12 @@ begin
     	port map (
     		main_clk       => main_clk,
 			started        => started,
-			--data           => not reverse_bit_order(rom_data_in),
+			data           => not reverse_bit_order(rom_data_in),
 			--data           => rom_data_calculated,
 			--data           => rom_data_late,
 			--data           => sub_bytes_lookup(rom_data_in),
 			--data           => sub_bytes_lookup(rom_data_in),
-			data           => mix_columns(rom_data_in),
+--			data           => mix_columns(rom_data_in),
 			expected       => rom_data_out,
 			error_detected => LEDR(9));
 

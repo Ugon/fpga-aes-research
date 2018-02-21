@@ -30,7 +30,7 @@ package aes_sub_bytes_5pipe is
 		i: asb_halfbytes;
 		j: asb_halfbytes;
 	end record;
-
+-------------------------fuckd
 	function asb_5pipe_stage1 (state_in: std_logic_vector) return asb_5pipe_1res;
     function asb_5pipe_stage2 (state_in: asb_5pipe_1res) return asb_5pipe_2res;
 	function asb_5pipe_stage3 (state_in: asb_5pipe_2res) return asb_5pipe_3res;
@@ -48,7 +48,7 @@ package body aes_sub_bytes_5pipe is
 		variable result: asb_5pipe_1res;
 	begin
 		for i in 0 to 15 loop
-			inp := mul_delta_8(state_in((i + 1) * 8 - 1 downto i * 8));
+--			inp := mul_delta_8(state_in((i + 1) * 8 - 1 downto i * 8));
 			inp_h := inp(7 downto 4);
 			inp_l := inp(3 downto 0);
 			result.a(i) := inp_h;
@@ -68,7 +68,8 @@ package body aes_sub_bytes_5pipe is
 		for i in 0 to 15 loop
 			c := sq_4(state_in.a(i));
 			e := mul_lam_4(c);
-			f := mul_4(state_in.b(i), state_in.d(i));
+			-------------------------fuckd
+--			f := mul_4(state_in.b(i), state_in.d(i));
 			result.a(i) := state_in.a(i);
 			result.d(i) := state_in.d(i);
 			result.g(i) := e xor f;
@@ -93,8 +94,8 @@ package body aes_sub_bytes_5pipe is
 		variable result: asb_5pipe_4res;
 	begin
 		for x in 0 to 15 loop
-			result.i(x) := mul_4(state_in.a(x), state_in.h(x));
-			result.j(x) := mul_4(state_in.d(x), state_in.h(x));
+--			result.i(x) := mul_4(state_in.a(x), state_in.h(x));
+--			result.j(x) := mul_4(state_in.d(x), state_in.h(x));
 		end loop;
 		return result;
 	end function;
@@ -107,7 +108,7 @@ package body aes_sub_bytes_5pipe is
 		for x in 0 to 15 loop
 			bte(7 downto 4) := state_in.i(x);
 			bte(3 downto 0) := state_in.j(x);
-			result((x + 1) * 8 - 1 downto x * 8) := mul_deltainv_affine_8(bte);
+--			result((x + 1) * 8 - 1 downto x * 8) := mul_deltainv_affine_8(bte);
 		end loop;
 		return result;
 	end function;
