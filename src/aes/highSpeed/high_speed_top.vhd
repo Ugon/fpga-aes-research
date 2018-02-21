@@ -3,29 +3,15 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_misc.all;
 use ieee.numeric_std.all;
 
-use work.aes_transformations.all;
 use work.aes_mix_columns.all;
 use work.aes_sub_bytes.all;
-use work.aes_sub_bytes_5pipe.all;
 use work.aes_utils.all;
 
 
-entity mem_speed is
+entity high_speed_top is
 generic (
-	--NUMBER_OF_CYCLES: Integer := 89;
-	--MEM_FOLDER:       String  := "enc"
-
-
-	--NUMBER_OF_CYCLES: Integer := 40;
 	NUMBER_OF_CYCLES: Integer := 14 * 11 + 10;
-	--NUMBER_OF_CYCLES: Integer := 55;
 	MEM_FOLDER:       String  := "enc2"
-
-
-	--NUMBER_OF_CYCLES: Integer := 0;
-	--NUMBER_OF_CYCLES: Integer := 0;
-	--MEM_FOLDER: String := "rev_not"
-	--MEM_FOLDER: String := "mix_columns"
 );
 port (
       --------- ADC ---------
@@ -168,32 +154,10 @@ port (
 	VGA_HS:                       out   std_logic;
 	VGA_R:                        out   std_logic_vector(7 downto 0);
 	VGA_SYNC_N:                   out   std_logic;
-	VGA_VS:                       out   std_logic
+	VGA_VS:                       out   std_logic);
+end entity high_speed_top;
 
-		--dbg_block1    : out std_logic_vector(127 downto 0);
-		--dbg_block2    : out std_logic_vector(127 downto 0);
-		--dbg_block3    : out std_logic_vector(127 downto 0);
-		--dbg_block4    : out std_logic_vector(127 downto 0);
-		--dbg_block5    : out std_logic_vector(127 downto 0);
-		--dbg_block6    : out std_logic_vector(127 downto 0);
-
-		--dbg_key1    : out std_logic_vector(127 downto 0);
-		--dbg_key2    : out std_logic_vector(127 downto 0);
-		--dbg_key3    : out std_logic_vector(127 downto 0);
-		--dbg_key4    : out std_logic_vector(127 downto 0);
-		--dbg_key5    : out std_logic_vector(127 downto 0);
-		--dbg_key6    : out std_logic_vector(127 downto 0);
-
-		--dbg_rom_data_in         : out std_logic_vector(127 downto 0);       
-		--dbg_rom_data_out        : out std_logic_vector(127 downto 0);        
-		--dbg_rom_data_key_high   : out std_logic_vector(127 downto 0);             
-		--dbg_rom_data_key_low    : out std_logic_vector(127 downto 0);            
-		--dbg_rom_data_calculated : out std_logic_vector(127 downto 0)
-
-	);
-end entity mem_speed;
-
-architecture rtl of mem_speed is
+architecture rtl of high_speed_top is
 
 	component pll is
 		port (
@@ -211,7 +175,6 @@ architecture rtl of mem_speed is
     signal rom_data_calculated   : std_logic_vector(127 downto 0);
     
     signal rom_data_key          : std_logic_vector(255 downto 0);
-    --signal rom_data_late_late    : std_logic_vector(127 downto 0);
 
 	signal started               : std_logic := '0';
 		
@@ -219,8 +182,6 @@ architecture rtl of mem_speed is
 	signal transformation_output : std_logic_vector(127 downto 0);
 	signal expected              : std_logic_vector(127 downto 0);
 
-	signal div_clk: std_logic := '0';
-	
 begin
 
 	LEDR(8) <= started;
@@ -244,7 +205,6 @@ begin
 			NUMBER_OF_CYCLES => 0)
     	port map (
     	    main_clk         => main_clk,
-    	    div_clk          => div_clk,
     	    data             => rom_data_in);
 
     memory_arrangement_inst1: entity work.memory_arrangement 
@@ -254,7 +214,6 @@ begin
 			NUMBER_OF_CYCLES => NUMBER_OF_CYCLES)
     	port map (
     	    main_clk         => main_clk,
-    	    div_clk          => div_clk,
     	    data             => rom_data_out);
 
     memory_arrangement_inst2: entity work.memory_arrangement 
@@ -264,7 +223,6 @@ begin
 			NUMBER_OF_CYCLES => 0)
     	port map (
     	    main_clk         => main_clk,
-    	    div_clk          => div_clk,
     	    data             => rom_data_key_high);
 
     memory_arrangement_inst3: entity work.memory_arrangement 
@@ -274,7 +232,6 @@ begin
 			NUMBER_OF_CYCLES => 0)
     	port map (
     	    main_clk         => main_clk,
-    	    div_clk          => div_clk,
     	    data             => rom_data_key_low);	
 	
 	error_detector_inst0: entity work.error_detector 
@@ -282,7 +239,6 @@ begin
     		main_clk       => main_clk,
 			started        => started,
 			data           => rom_data_calculated,
-
 			--data           => not reverse_bit_order(rom_data_in),
 			--data           => rom_data_late,
 			--data           => sub_bytes_lookup(rom_data_in),
@@ -296,41 +252,15 @@ begin
 			main_clk => main_clk,
 			key => rom_data_key,
 			plaintext => rom_data_in,
-			cyphertext => rom_data_calculated
+			cyphertext => rom_data_calculated);
 
-			--dbg_block1 => dbg_block1,
-			--dbg_block2 => dbg_block2,
-			--dbg_block3 => dbg_block3,
-			--dbg_block4 => dbg_block4,
-			--dbg_block5 => dbg_block5,
-			--dbg_block6 => dbg_block6,
-
-			--dbg_key1 => dbg_key1,
-			--dbg_key2 => dbg_key2,
-			--dbg_key3 => dbg_key3,
-			--dbg_key4 => dbg_key4,
-			--dbg_key5 => dbg_key5,
-			--dbg_key6 => dbg_key6
-			);
-
-   -- 		dbg_rom_data_in <= rom_data_in;
-			--dbg_rom_data_out <= rom_data_out;
-			--dbg_rom_data_key_high <= rom_data_key_high;
-			--dbg_rom_data_key_low <= rom_data_key_low;
-			--dbg_rom_data_calculated <= rom_data_calculated;
-	
 	process(main_clk, KEY(0)) begin
 		if (rising_edge(main_clk)) then
-			div_clk <= not div_clk;
-			--rom_data_late <= sub_bytes_lookup(rom_data_in);
-			--rom_data_late_late <= rom_data_late;
 			if (KEY(0) = '0') then
 				started <= '1';
 			end if;
 		end if;
 	end process;
-
-
 
 
 end architecture rtl;

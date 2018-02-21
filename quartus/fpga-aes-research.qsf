@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY mem_speed
+set_global_assignment -name TOP_LEVEL_ENTITY high_speed_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:59:17  AUGUST 15, 2017"
 set_global_assignment -name LAST_QUARTUS_VERSION "16.1.2 Standard Edition"
@@ -318,60 +318,7 @@ set_global_assignment -name PRE_MAPPING_RESYNTHESIS ON
 set_global_assignment -name ROUTER_CLOCKING_TOPOLOGY_ANALYSIS ON
 set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC_FOR_AREA ON
 set_global_assignment -name USE_LOGICLOCK_CONSTRAINTS_IN_BALANCING OFF
-set_global_assignment -name VHDL_FILE ../src/aes/aes_round_2_14.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_key_expansion_15.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_key_expansion_14.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/mem_speed_test.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/aes256enc_test.vwf
-set_global_assignment -name VHDL_FILE ../src/aes/aes_key_expansion_1_13.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_round_15.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_round_1.vhd
-set_global_assignment -name VHDL_FILE ../src/test/mem_speed_queue.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/memory_queue_test.vwf
-set_global_assignment -name VHDL_FILE ../src/memory_queue.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/aes_round_test.vwf
-set_global_assignment -name VHDL_FILE ../src/aes/aes_encryption_pipe.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/aes_key_expansion_pipe_test.vwf
-set_global_assignment -name VHDL_FILE ../test/aes/aes_key_expansion_pipe_test.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_key_expansion_pipe.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/aes_key_expansion_test.vwf
-set_global_assignment -name VHDL_FILE ../test/aes/aes_key_expansion_test.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_key_expansion.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_sub_bytes_5pipe.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/memory_arrangement_test.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/aes_shift_rows_test.vwf
-set_global_assignment -name VHDL_FILE ../test/aes/aes_shift_rows_test.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_shift_rows.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/aes_mix_columns_test.vwf
-set_global_assignment -name VHDL_FILE ../test/aes/aes_mix_columns_test.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_mix_columns.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/aes_sub_bytes_test.vwf
-set_global_assignment -name VHDL_FILE ../test/aes/aes_sub_bytes_test.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/aes_sub_byte_test.vwf
-set_global_assignment -name VHDL_FILE ../test/aes/aes_sub_byte_test.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_sub_bytes.vhd
-set_global_assignment -name VHDL_FILE ../src/test/trans_test.vhd
-set_global_assignment -name VHDL_FILE ../src/error_detector.vhd
-set_global_assignment -name VHDL_FILE ../src/single_memory_arrangement.vhd
-set_global_assignment -name SDC_FILE timing_constraints.sdc
-set_global_assignment -name VHDL_FILE ../src/test/mem_speed.vhd
-set_global_assignment -name VHDL_FILE ../src/memory_arrangement.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/shift_rows.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/mix_columns.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/add_round_key.vwf
-set_global_assignment -name VHDL_FILE ../src/aes/aes256enc.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_utils.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_transformations.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/aes_transformation_test.vhd
-set_global_assignment -name CDF_FILE programmer_chain.cdf
-set_global_assignment -name VHDL_FILE ../src/top.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/aes/sub_bytes.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
-set_global_assignment -name QIP_FILE rom256.qip
-set_global_assignment -name QIP_FILE pll.qip
-set_global_assignment -name SIP_FILE pll.sip
-set_global_assignment -name QIP_FILE rom128.qip
-set_global_assignment -name VECTOR_WAVEFORM_FILE ../test/test_byte.vwf
+set_global_assignment -name QII_AUTO_PACKED_REGISTERS "SPARSE AUTO"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -532,5 +479,26 @@ set_instance_assignment -name LL_MEMBER_OF MemKeyLow -to "memory_arrangement:mem
 set_instance_assignment -name LL_MEMBER_OF Key5 -to "aes256enc:aes256enc_inst0|aes_key_expansion_1_13:\\GEN_ROUNDS:5:keyX_inst" -section_id Key5
 set_instance_assignment -name LL_MEMBER_OF Round5 -to "aes256enc:aes256enc_inst0|aes_round_2_13:\\GEN_ROUNDS:5:roundX_inst" -section_id Round5
 set_instance_assignment -name LL_MEMBER_OF Key4 -to "aes256enc:aes256enc_inst0|aes_key_expansion_1_13:\\GEN_ROUNDS:4:keyX_inst" -section_id Key4
-set_global_assignment -name QII_AUTO_PACKED_REGISTERS "SPARSE AUTO"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/aes_key_expansion_1_13.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/aes_key_expansion_14.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/aes_key_expansion_15.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/aes_round_1.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/aes_round_2_14.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/aes_round_15.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/aes_shift_rows.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/aes_sub_bytes.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/aes_mix_columns.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/aes_encryption_pipe.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/aes_key_expansion_pipe.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/aes256enc.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/high_speed_top.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/aes_utils.vhd
+set_global_assignment -name VHDL_FILE ../src/test/error_detector.vhd
+set_global_assignment -name VHDL_FILE ../src/test/memory_queue.vhd
+set_global_assignment -name VHDL_FILE ../src/test/memory_arrangement.vhd
+set_global_assignment -name QIP_FILE pll.qip
+set_global_assignment -name SIP_FILE pll.sip
+set_global_assignment -name QIP_FILE rom128.qip
+set_global_assignment -name SDC_FILE timing_constraints.sdc
+set_global_assignment -name CDF_FILE programmer_chain.cdf

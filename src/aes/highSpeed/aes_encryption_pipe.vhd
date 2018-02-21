@@ -2,9 +2,9 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+use work.aes_shift_rows.all;
 use work.aes_sub_bytes.all;
 use work.aes_mix_columns.all;
-use work.aes_transformations.all;
 
 package aes_encryption_pipe is
 
@@ -64,12 +64,6 @@ package aes_encryption_pipe is
 		mix_inter: mix_colums_intermediate;
 	end record;
 
-
-	--type aenc_pipe_test_res is record
-		--state: std_logic_vector(127 downto 0);
-	--end record;
-
-
 	function aenc_pipe_stage1 (state_in: std_logic_vector) return aenc_pipe_1res;
     function aenc_pipe_stage2 (state_in: aenc_pipe_1res) return aenc_pipe_2res;
     function aenc_pipe_stage3 (state_in: aenc_pipe_2res) return aenc_pipe_3res;
@@ -80,9 +74,6 @@ package aes_encryption_pipe is
 	function aenc_pipe_stage8 (state_in: aenc_pipe_7res) return aenc_pipe_8res;
 	function aenc_pipe_stage9 (state_in: aenc_pipe_8res) return aenc_pipe_9res;
 	function aenc_pipe_stage10 (state_in: aenc_pipe_9res) return aenc_pipe_10res;
-
-	--function aenc_pipe_stage_test (state_in: aenc_pipe_7res) return aenc_pipe_test_res;
-	
 	function aenc_pipe_stage11 (state_in: aenc_pipe_10res; round_key: std_logic_vector) return std_logic_vector;
 	function aenc_pipe_stage10_last (state_in: aenc_pipe_9res; round_key: std_logic_vector) return std_logic_vector;
 
@@ -163,7 +154,6 @@ package body aes_encryption_pipe is
 		return result;
 	end function;
 
-
 	function aenc_pipe_stage6 (state_in: aenc_pipe_5res) return aenc_pipe_6res is
 		variable result: aenc_pipe_6res;
 	begin
@@ -185,6 +175,7 @@ package body aes_encryption_pipe is
 		return result;
 	end function;
 
+
 	function aenc_pipe_stage8 (state_in: aenc_pipe_7res) return aenc_pipe_8res is
 		variable bte   : std_logic_vector(7 downto 0);
 		variable state_buf: std_logic_vector(127 downto 0);
@@ -198,6 +189,7 @@ package body aes_encryption_pipe is
 		return result;
 	end function;
 
+
 	function aenc_pipe_stage9 (state_in: aenc_pipe_8res) return aenc_pipe_9res is
 		variable bte   : std_logic_vector(7 downto 0);
 		variable state_buf: std_logic_vector(127 downto 0);
@@ -207,31 +199,23 @@ package body aes_encryption_pipe is
 			state_buf((x + 1) * 8 - 1 downto x * 8) := mul_deltainv_affine_8b(state_in.delta_mul_inter(x));
 		end loop;
 		result.state := shift_rows(state_buf);
-		--result.state := state_buf;
 		return result;
 	end function;
 
-	--function aenc_pipe_stage_test (state_in: aenc_pipe_7res) return aenc_pipe_test_res is
-		--variable result: aenc_pipe_test_res;
-	--begin
-		--result.state := mix_columns(state_in.state);
-		--result.state := state_in.state;
-		--return result;	
-	--end function;
 
 	function aenc_pipe_stage10 (state_in: aenc_pipe_9res) return aenc_pipe_10res is
 		variable result: aenc_pipe_10res;
 	begin
 		result.mix_inter := mix_columns_a(state_in.state);	
 		return result;
-		--return state_in.state xor round_key;	
 	end function;
+
 
 	function aenc_pipe_stage11 (state_in: aenc_pipe_10res; round_key: std_logic_vector) return std_logic_vector is
 	begin
 		return mix_columns_b(state_in.mix_inter) xor round_key;	
-		--return state_in.state xor round_key;	
 	end function;
+
 
 	function aenc_pipe_stage10_last (state_in: aenc_pipe_9res; round_key: std_logic_vector) return std_logic_vector is
 	begin

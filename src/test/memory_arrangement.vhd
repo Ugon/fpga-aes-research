@@ -16,7 +16,6 @@ entity memory_arrangement is
 		);
 	port (
 		main_clk     : in  std_logic;
-		div_clk      : in  std_logic;
 		data         : out std_logic_vector(ROM_WIDTH - 1 downto 0);
 
 		dbg_address0   : out Integer range 0 to ROM_DEPTH - 1;
@@ -42,7 +41,7 @@ architecture double of memory_arrangement is
 	type address_array      is array (ROM_NUMBER - 1 downto 0) of Integer range 0 to ROM_DEPTH - 1;
 	type data_array         is array (ROM_NUMBER - 1 downto 0) of std_logic_vector(ROM_WIDTH - 1 downto 0);
 	type clken_array        is array (ROM_NUMBER - 1 downto 0) of std_logic;
-
+	
 	component rom128
 	    generic (
     		init_file : string);
@@ -59,8 +58,6 @@ architecture double of memory_arrangement is
 	signal anded           : data_array;
 	
 	signal rom_addresses  : address_array := (-OFFSET / ROM_NUMBER, -OFFSET / ROM_NUMBER);
-	
-	signal clocks : clken_array;
 
 	signal sig_rom_enable : clken_array := ('0', '1');
 	signal sig_mem_enable : clken_array := ('0', '1');
@@ -69,9 +66,6 @@ architecture double of memory_arrangement is
 	signal data_early     : std_logic_vector(ROM_WIDTH - 1 downto 0);
 
 begin
-
-	clocks(0) <= div_clk;
-	clocks(1) <= not div_clk;
 
 	dbg_sig_rom_enable0 <= sig_rom_enable(0);
 	dbg_sig_rom_enable1 <= sig_rom_enable(1);
@@ -92,13 +86,10 @@ begin
     	    address  => std_logic_vector(to_unsigned(rom_addresses(i), 5)),
     	    clock    => main_clk,
     	    clken    => sig_rom_enable(i),
-    	    --clock    => clocks(i),
-    	    --clken    => '1',
     	    q        => rom_datas(i));
 
 		process(main_clk, rom_addresses) begin
 			if (rising_edge(main_clk) and sig_mem_enable(i) = '1') then
-			--if (rising_edge(clocks(i))) then
 				rom_addresses(i) <= rom_addresses(i) + 1;
 				registered(i) <= rom_datas(i);
 			end if;
@@ -109,9 +100,6 @@ begin
 				sig_rom_enable(i) <= not sig_rom_enable(i);
 				sig_mem_enable(i) <= not sig_mem_enable(i);
 				sig_and(i) <= not sig_and(i);
-
-				--registered_fast(i) <= registered(i);
-				--anded(i) <= registered_fast(i) and sig_and(i);
 				anded(i) <= registered(i) and sig_and(i);
 			end if;
 		end process;
