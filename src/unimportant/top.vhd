@@ -3,6 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 use work.aes_transformations.all;
+use work.aes_sub_bytes.all;
 
 
 entity top is
@@ -177,17 +178,17 @@ begin
 
 	main_clk <= CLOCK_50;
 
-	memory_arrangement_inst: entity work.memory_arrangement 
-		generic map (
-			MEM_FOLDER => "identity")
-    	port map (
-    	    main_clk => main_clk,
-    	    data     => rom_data);
+--	memory_arrangement_inst: entity work.memory_arrangement 
+--		generic map (
+--			MEM_FOLDER => "identity")
+--    	port map (
+--    	    main_clk => main_clk,
+--    	    data     => rom_data);
 	
 	transformation_input <= rom_data(255 downto 128);
 	process(main_clk) begin
 		if (falling_edge(main_clk)) then
-			transformation_output <= sub_bytes(transformation_input);
+			transformation_output <= sub_bytes_calc(transformation_input);
 			expected <= rom_data(127 downto 0);
 		end if;
 	end process;

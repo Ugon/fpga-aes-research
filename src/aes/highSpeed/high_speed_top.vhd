@@ -3,13 +3,15 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_misc.all;
 use ieee.numeric_std.all;
 
-use work.aes_transformations.all;
+use work.aes_mix_columns.all;
+use work.aes_sub_bytes.all;
 use work.aes_utils.all;
 
 
-entity mem_speed is
+entity high_speed_top is
 generic (
-	MEM_FOLDER: String := "sub_bytes"
+	NUMBER_OF_CYCLES: Integer := 14 * 11 + 10;
+	MEM_FOLDER:       String  := "enc2"
 );
 port (
       --------- ADC ---------
@@ -153,9 +155,9 @@ port (
 	VGA_R:                        out   std_logic_vector(7 downto 0);
 	VGA_SYNC_N:                   out   std_logic;
 	VGA_VS:                       out   std_logic);
-end entity mem_speed;
+end entity high_speed_top;
 
-architecture rtl of mem_speed is
+architecture rtl of high_speed_top is
 
 	component pll is
 		port (
@@ -168,17 +170,26 @@ architecture rtl of mem_speed is
 	signal main_clk              : std_logic := '0';
     signal rom_data_in           : std_logic_vector(127 downto 0);
     signal rom_data_out          : std_logic_vector(127 downto 0);
+    signal rom_data_key_high     : std_logic_vector(127 downto 0);
+    signal rom_data_key_low      : std_logic_vector(127 downto 0);
+    signal rom_data_calculated   : std_logic_vector(127 downto 0);
+    
+    signal rom_data_key          : std_logic_vector(255 downto 0);
 
 	signal started               : std_logic := '0';
 		
 	signal transformation_input  : std_logic_vector(127 downto 0);
 	signal transformation_output : std_logic_vector(127 downto 0);
 	signal expected              : std_logic_vector(127 downto 0);
-	
+
 begin
 
 	LEDR(8) <= started;
 	LEDR(7) <= KEY(0);
+	LEDR(0) <= '1';
+
+	rom_data_key(255 downto 128) <= rom_data_key_high;
+	rom_data_key(127 downto 0)   <= rom_data_key_low;
 
 	--main_clk <= CLOCK_50;
 	pll_inst: pll
@@ -189,28 +200,59 @@ begin
 
 	memory_arrangement_inst0: entity work.memory_arrangement 
 		generic map (
-			MEM_FOLDER => MEM_FOLDER,
-			MEM_IN_OUT => "in")
+			MEM_FOLDER       => MEM_FOLDER,
+			MEM_IN_OUT       => "in",
+			NUMBER_OF_CYCLES => 0)
     	port map (
-    	    main_clk => main_clk,
-    	    data     => rom_data_in);
+    	    main_clk         => main_clk,
+    	    data             => rom_data_in);
 
     memory_arrangement_inst1: entity work.memory_arrangement 
 		generic map (
-			MEM_FOLDER => MEM_FOLDER,
-			MEM_IN_OUT => "out")
+			MEM_FOLDER       => MEM_FOLDER,
+			MEM_IN_OUT       => "out",
+			NUMBER_OF_CYCLES => NUMBER_OF_CYCLES)
     	port map (
-    	    main_clk => main_clk,
-    	    data     => rom_data_out);
+    	    main_clk         => main_clk,
+    	    data             => rom_data_out);
+
+    memory_arrangement_inst2: entity work.memory_arrangement 
+		generic map (
+			MEM_FOLDER       => MEM_FOLDER,
+			MEM_IN_OUT       => "key_high",
+			NUMBER_OF_CYCLES => 0)
+    	port map (
+    	    main_clk         => main_clk,
+    	    data             => rom_data_key_high);
+
+    memory_arrangement_inst3: entity work.memory_arrangement 
+		generic map (
+			MEM_FOLDER       => MEM_FOLDER,
+			MEM_IN_OUT       => "key_low",
+			NUMBER_OF_CYCLES => 0)
+    	port map (
+    	    main_clk         => main_clk,
+    	    data             => rom_data_key_low);	
 	
 	error_detector_inst0: entity work.error_detector 
     	port map (
     		main_clk       => main_clk,
 			started        => started,
+			data           => rom_data_calculated,
 			--data           => not reverse_bit_order(rom_data_in),
-			data           => sub_bytes(rom_data_in),
+			--data           => rom_data_late,
+			--data           => sub_bytes_lookup(rom_data_in),
+			--data           => sub_bytes_lookup(rom_data_in),
+			--data           => mix_columns(rom_data_in),
 			expected       => rom_data_out,
 			error_detected => LEDR(9));
+
+	aes256enc_inst0: entity work.aes256enc 
+    	port map (
+			main_clk => main_clk,
+			key => rom_data_key,
+			plaintext => rom_data_in,
+			cyphertext => rom_data_calculated);
 
 	process(main_clk, KEY(0)) begin
 		if (rising_edge(main_clk)) then

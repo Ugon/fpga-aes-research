@@ -1,0 +1,100 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_misc.all;
+use ieee.numeric_std.all;
+
+use work.aes_sub_bytes.all;
+use work.aes_utils.all;
+
+
+entity aes_key_expansion_test is
+port (
+	clk:     in  std_logic;
+	inp_key: in  std_logic_vector(255 downto 0);
+	
+	round1_key:  out std_logic_vector(128 downto 0);
+	round2_key:  out std_logic_vector(128 downto 0);
+	round3_key:  out std_logic_vector(128 downto 0);
+	round4_key:  out std_logic_vector(128 downto 0);
+	round5_key:  out std_logic_vector(128 downto 0);
+	round6_key:  out std_logic_vector(128 downto 0);
+	round7_key:  out std_logic_vector(128 downto 0);
+	round8_key:  out std_logic_vector(128 downto 0);
+	round9_key:  out std_logic_vector(128 downto 0);
+	round10_key: out std_logic_vector(128 downto 0);
+	round11_key: out std_logic_vector(128 downto 0);
+	round12_key: out std_logic_vector(128 downto 0);
+	round13_key: out std_logic_vector(128 downto 0);
+	round14_key: out std_logic_vector(128 downto 0);
+	round15_key: out std_logic_vector(128 downto 0);
+
+	round1_key_exp:  in std_logic_vector(128 downto 0);
+	round2_key_exp:  in std_logic_vector(128 downto 0);
+	round3_key_exp:  in std_logic_vector(128 downto 0);
+	round4_key_exp:  in std_logic_vector(128 downto 0);
+	round5_key_exp:  in std_logic_vector(128 downto 0);
+	round6_key_exp:  in std_logic_vector(128 downto 0);
+	round7_key_exp:  in std_logic_vector(128 downto 0);
+	round8_key_exp:  in std_logic_vector(128 downto 0);
+	round9_key_exp:  in std_logic_vector(128 downto 0);
+	round10_key_exp: in std_logic_vector(128 downto 0);
+	round11_key_exp: in std_logic_vector(128 downto 0);
+	round12_key_exp: in std_logic_vector(128 downto 0);
+	round13_key_exp: in std_logic_vector(128 downto 0);
+	round14_key_exp: in std_logic_vector(128 downto 0);
+	round15_key_exp: in std_logic_vector(128 downto 0)
+);
+end entity aes_key_expansion_test;
+
+architecture rtl of aes_key_expansion_test is
+	signal r1_key: std_logic_vector(127 downto 0);
+	signal r2_key: std_logic_vector(127 downto 0);
+	signal r3_key: std_logic_vector(127 downto 0);
+	signal r4_key: std_logic_vector(127 downto 0);
+	signal r5_key: std_logic_vector(127 downto 0);
+	signal r6_key: std_logic_vector(127 downto 0);
+	signal r7_key: std_logic_vector(127 downto 0);
+	signal r8_key: std_logic_vector(127 downto 0);
+	signal r9_key: std_logic_vector(127 downto 0);
+	signal r10_key: std_logic_vector(127 downto 0);
+	signal r11_key: std_logic_vector(127 downto 0);
+	signal r12_key: std_logic_vector(127 downto 0);
+	signal r13_key: std_logic_vector(127 downto 0);
+	signal r14_key: std_logic_vector(127 downto 0);
+	signal r15_key: std_logic_vector(127 downto 0);
+begin
+	r1_key <= inp_key(255 downto 128);
+	r2_key <= inp_key(127 downto   0);
+
+	expand_round_rsr(r1_key,  r2_key,  r3_key,   3);
+	expand_round_s  (r2_key,  r3_key,  r4_key     );
+	expand_round_rsr(r3_key,  r4_key,  r5_key,   5);
+	expand_round_s  (r4_key,  r5_key,  r6_key     );
+	expand_round_rsr(r5_key,  r6_key,  r7_key,   7);
+	expand_round_s  (r6_key,  r7_key,  r8_key     );
+	expand_round_rsr(r7_key,  r8_key,  r9_key,   9);
+	expand_round_s  (r8_key,  r9_key,  r10_key    );
+	expand_round_rsr(r9_key,  r10_key, r11_key, 11);
+	expand_round_s  (r10_key, r11_key, r12_key    );
+	expand_round_rsr(r11_key, r12_key, r13_key, 13);
+	expand_round_s  (r12_key, r13_key, r14_key    );
+	expand_round_rsr(r13_key, r14_key, r15_key, 15);
+
+
+	round1_key <= r1_key;
+	round2_key <= r2_key;
+	round3_key <= r3_key;
+	round4_key <= r4_key;
+	round5_key <= r5_key;
+	round6_key <= r6_key;
+	round7_key <= r7_key;
+	round8_key <= r8_key;
+	round9_key <= r9_key;
+	round10_key <= r10_key;
+	round11_key <= r11_key;
+	round12_key <= r12_key;
+	round13_key <= r13_key;
+	round14_key <= r14_key;
+	round15_key <= r15_key;
+
+end architecture rtl;

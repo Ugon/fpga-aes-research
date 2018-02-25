@@ -3,6 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 use work.aes_utils.all;
+use work.aes_sub_bytes.all;
 
 package aes_transformations is
 
@@ -36,80 +37,22 @@ package aes_transformations is
 	
 	/* | s00 | s10 | s20 | s30 | s01 | s11 | s21 | s31 | s02 | s12 | s22 | s32 | s03 | s13 | s23 | s33 | */
 
-	--indexing
-	function l   (constant row: Integer; constant column: Integer) return Integer;
-	function r   (constant row: Integer; constant column: Integer) return Integer;
-	function idx (constant row: Integer; constant column: Integer) return std_logic_vector;
-
 	--transformations
 	function add_round_key (constant state_in : std_logic_vector; constant key_expansion : std_logic_vector; constant round_number : Integer) return std_logic_vector;
 
-	function sub_bytes (constant state_in : std_logic_vector) return std_logic_vector;
-
 	function shift_rows (constant state_in : std_logic_vector) return std_logic_vector;
 
-	function mix_columns (constant state_in : std_logic_vector) return std_logic_vector;
-
-	function round_0 (constant state_in : std_logic_vector; constant key_expansion : std_logic_vector) return std_logic_vector;
+	/*function round_0 (constant state_in : std_logic_vector; constant key_expansion : std_logic_vector) return std_logic_vector;
 	
 	function round_n (constant state_in : std_logic_vector; constant key_expansion : std_logic_vector; constant n : Integer) return std_logic_vector;
 
 	function round_last (constant state_in : std_logic_vector; constant key_expansion : std_logic_vector) return std_logic_vector;
 	
 	function encode256 (constant plaintext : std_logic_vector; constant key_expansion : std_logic_vector) return std_logic_vector;
-	
-	
-
+*/
 end aes_transformations;
 
 package body aes_transformations is
-
-	function sub_bytes (constant state_in : std_logic_vector) return std_logic_vector is 
-		variable state_out : std_logic_vector(127 downto 0);
-	begin
-		for r in 0 to 3 loop
-			for c in 0 to 3 loop
-				state_out(idx(r, c)'range) := lookup_sub(state_in(idx(r, c)'range));
-			end loop;
-		end loop;
-		
-		return state_out;
-	end function;
-
-
-	function shift_rows (constant state_in : std_logic_vector) return std_logic_vector is
-	 	variable state_out : std_logic_vector(127 downto 0);
-	begin
-		for r in 0 to 3 loop
-			for c in 0 to 3 loop
-				state_out(idx(r, c)'range) := state_in(idx(r, (c + r) mod 4)'range);
-			end loop;
-		end loop;
-		
-		return state_out;
-	end function;
-
-
-	function mix_columns (constant state_in : std_logic_vector) return std_logic_vector is
-	 	variable state_out : std_logic_vector(127 downto 0);
-	begin
-		for c in 0 to 3 loop
-			state_out(idx(0, c)'range) :=     multiply(x"02", state_in(idx(0, c)'range)) xor multiply(x"03", state_in(idx(1, c)'range))
-                                          xor                 state_in(idx(2, c)'range ) xor                 state_in(idx(3, c)'range);
-			
-			state_out(idx(1, c)'range) :=                     state_in(idx(0, c)'range)  xor multiply(x"02", state_in(idx(1, c)'range))
-                                          xor multiply(x"03", state_in(idx(2, c)'range)) xor                 state_in(idx(3, c)'range);
-			
-			state_out(idx(2, c)'range) :=                     state_in(idx(0, c)'range)  xor                 state_in(idx(1, c)'range)
-                                          xor multiply(x"02", state_in(idx(2, c)'range)) xor multiply(x"03", state_in(idx(3, c)'range));
-            			 
-			state_out(idx(3, c)'range) :=     multiply(x"03", state_in(idx(0, c)'range)) xor                 state_in(idx(1, c)'range)
-			                              xor                 state_in(idx(2, c)'range)  xor multiply(x"02", state_in(idx(3, c)'range));
-		end loop;
-
-		return state_out;
-	end;
-
 
 	function add_round_key (constant state_in : std_logic_vector; constant key_expansion : std_logic_vector; constant round_number : Integer) return std_logic_vector is
 		variable key_schedule: std_logic_vector(127 downto 0);
@@ -122,6 +65,20 @@ package body aes_transformations is
 	end function;
 
 
+
+ 	function shift_rows (constant state_in : std_logic_vector) return std_logic_vector is
+ 	 	variable state_out : std_logic_vector(127 downto 0);
+ 	begin
+ 		for r in 0 to 3 loop
+ 			for c in 0 to 3 loop
+ 				state_out(idx(r, c)'range) := state_in(idx(r, (c + r) mod 4)'range);
+ 			end loop;
+ 		end loop;
+ 		
+ 		return state_out;
+ 	end function;
+
+/*
 	function round_0 (constant state_in : std_logic_vector; constant key_expansion : std_logic_vector) return std_logic_vector is begin
 		return add_round_key(state_in, key_expansion, 0);
 	end function;
@@ -131,7 +88,7 @@ package body aes_transformations is
 		variable state : std_logic_vector(127 downto 0);
 	begin
 		state := state_in;
-		state := sub_bytes(state);
+		state := sub_bytes_calc(state);
 		state := shift_rows(state);
 		state := mix_columns(state);
 		state := add_round_key(state, key_expansion, n);
@@ -144,7 +101,7 @@ package body aes_transformations is
 		variable state : std_logic_vector(127 downto 0);
 	begin
 		state := state_in;
-		state := sub_bytes(state);
+		state := sub_bytes_calc(state);
 		state := shift_rows(state);
 		state := add_round_key(state, key_expansion, 14);
 
@@ -166,20 +123,5 @@ package body aes_transformations is
 
 		return state;
 	end function;
-
-	function l (constant row: Integer; constant column: Integer) return Integer is begin
-		return ((3 - row) + 4 * (3 - column) + 1) * 8 - 1;
-	end function;
-	
-	function r (constant row: Integer; constant column: Integer) return Integer is begin
-		return ((3 - row) + 4 * (3 - column)) * 8;
-	end function;
-
-	function idx (constant row: Integer; constant column: Integer)  return std_logic_vector is 
-		variable rang: std_logic_vector(l(row, column) downto r(row, column)) := (others => '0');
-	begin
-		return rang;
-	end function;
-
-
+*/
 end aes_transformations;
