@@ -78,7 +78,7 @@ The conclusions of this research were:
 \item Reducing number of LUTs between registers is critical for high performance.
 \end{itemize}
 
-Analysis of compilation reports showed that paths with longest signal propagation time, which were responsible for limiting maximum achievable frequency, 
+% Analysis of compilation reports showed that paths with longest signal propagation time, which were responsible for limiting maximum achievable frequency, 
 
 
 
@@ -87,3 +87,171 @@ Analysis of compilation reports showed that paths with longest signal propagatio
 % Performance testing indicated that stages with critical paths of 6 gates would be short enough to be able to operate at over 500MHz, which is enough to fully utilize used testing framework. It is also convenient, as such stage length makes it possible to use all operations (\ref{table:sub-bytes-crit-path}) without splitting them. It is worth noting, that given an FPGA chip capable of operating at higher frequencies, pipelining stages could be made shorter than what is considered here (critical path of 6).
 
 % Each AES round is split into 6 pipeline stages as shown in fig. \ref{fig:round-split}.
+
+
+\subsection{Design of optimal pipelining stages}
+\label{sec:pipeline-stages-design}
+
+First approach to optimization was to split pipelining stages so that thay used 4-input as well as 6-input LUTs. This approach resulted in increased performance, but analysis of compilation reports showed that paths with longest signal propagation time typically led through ALMs utilising 6-input operation mode. The circuit was therefore further redesigned to take advantage of only 4-input operation mode. Final design was capable of operating at 388MHz, which is the highest achieved frequency for AES encryption observed in this research. The number of logic elements as reported by compiler for this design was x (not excluding y elements required for testing circuit).
+
+This section will describe in detail how each operation from \ref{sec:opis-dzialan} was split into stages taking advantage of only 4-input LUT operation mode. To utilise this mode each registered output bit needs to depend on no more than 4 inputs.
+
+% \paragraph{Top level design of SubBytes transformation}\mbox{}\\
+
+
+\paragraph{Mapping $f(x)$ from $GF(2^8)$ to $GF((2^4)^2)$}\mbox{}\\
+Output bits of this operation depend on as much as 7 input bits, therefore to make it use only 4-input LUTs it is necessary to split it into two substages $f_a$ and $f_b$.
+\begin{equation}
+f(x) = f_b \circ f_a(x)
+\end{equation}
+
+\begin{equation}
+\label{eq:mul_delta_a}
+\begin{aligned}
+b_{a0}    &= b_0                    \\
+b_{a1}    &= b_1                    \\
+b_{a2}    &= b_2                    \\
+b_{a4}    &= b_4                    \\
+b_{a5}    &= b_5                    \\
+b_{a6}    &= b_6                    \\
+b_{a7}    &= b_7                    \\
+b_{a23}   &= b_2 + b_3              \\
+b_{a567}  &= b_5 + b_6 + b_7        \\
+b_{a1234} &= b_1 + b_2 + b_3 + b_4
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\label{eq:mul_delta_b}
+\begin{aligned}
+b'_0 &= b_{a0} + b_{a1} + b_{a6}           \\
+b'_1 &= b_{a1} + b_{a4} + b_{a6}           \\
+b'_2 &= b_{a7} + b_{a1234}                 \\
+b'_3 &= b_{a1} + b_{a2} + b_{a6} + b_{a7}  \\
+b'_4 &= b_{a1} + b_{a5} + b_{a7} + b_{a23} \\
+b'_5 &= b_{a5} + b_{a7} + b_{a23}          \\
+b'_6 &= b_{a6} + b_{a7} + b_{a1234}        \\
+b'_7 &= b_{a5} + b_{a7}                    
+\end{aligned}
+\end{equation}
+
+In SubBytes transformation after mapping $f(x)$ from $GF(2^8)$ to $GF((2^4)^2)$ high and low halfbytes of the result are xored together. This operation can be performed concurently with $f_b(x)$ mapping to avoid creating a separate stage only for a xor operation.
+
+\begin{equation}
+\begin{aligned}
+f_{xor}(x) &= f(x)_{0123} + f(x)_{4567} \\
+f_{xor}(x) &= f_{xorb} \circ f_a(x)
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\label{eq:mul_delta_xor}
+\begin{aligned}
+b_{xorb0} &= b_{a0} + b_{a23} + b_{a567}       \\
+b_{xorb1} &= b_{a1234} + b_{567}               \\
+b_{xorb2} &= b_{a6}                            \\
+b_{xorb3} &= b_{a1} + b_{a2} + b_{a5} + b_{a6}
+\end{aligned}
+\end{equation}
+
+From equations (\ref{eq:mul_delta_a}), (\ref{eq:mul_delta_b}) and (\ref{eq:mul_delta_xor}) it is apparent that each stage output depends on no more than 4 inputs.
+
+
+\paragraph{Mapping from $GF((2^4)^2)$ to $GF(2^8)$ combined with affine transformation}\mbox{}\\
+Analoguously to mapping $f(x)$ from $GF(2^8)$ to $GF((2^4)^2)$, mapping $f^{-1}(x)$ from $GF((2^4)^2)$ to $GF(2^8)$ combined with affine transformation (\ref{sec:comb-theory}) should be split into two substages.
+
+\begin{equation}
+\begin{aligned}
+f^{-1}(x) &= f_b^{-1}(x) \circ f_a^{-1}(x) \\
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\label{eq:mul_delta_inf_a}
+\begin{aligned}
+b_{a0}    &= b_0                    \\
+b_{a7}    &= b_7                    \\
+b_{a23}   &= b_2 + b_3              \\
+b_{a012}  &= b_0 + b_1 + b_2        \\
+b_{a023}  &= b_0 + b_2 + b_3        \\
+b_{a456}  &= b_4 + b_5 + b_6        \\
+b_{a0147} &= b_0 + b_1 + b_4 + b_7  \\
+b_{a27N}  &= b_2 + b_7 + 1          \\
+b_{a67N}  &= b_6 + b_7 + 1            
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\label{eq:mul_delta_inf_b}
+\begin{aligned}
+b'_0 &= b_{a012} + b_{67N}           \\
+b'_1 &= b_{a0} + b_{a7} + 1          \\
+b'_2 &= b_{a023} + b_{a456}          \\
+b'_3 &= b_{a012}                     \\
+b'_4 &= b_{a0147}                    \\
+b'_5 &= b_{a27N}                     \\
+b'_6 &= b_{a456} + b_{a7} + 1        \\
+b'_7 &= b_{a23} + b_{a7}                    
+\end{aligned}
+\end{equation}
+
+From equations (\ref{eq:mul_delta_a}), (\ref{eq:mul_delta_b}) and (\ref{eq:mul_delta_xor}) it is apparent that each stage output depends on no more than 4 inputs. Note that $xor$ with $1$ value is merely a $not$ operation, and it does not increase input count. It is also true that all outputs of $f_b^{-1}(x)$ stage depend on no more than 2 inputs, so they can be xored with 2 other independent inputs to form a stage, which is important for a stage in key expansion pipeline.
+
+
+
+\paragraph{Multiplicative inversion in $GF(2^4)$}\mbox{}\\
+This operation has only 4 inputs, so it is can already be implemented using a 4-input LUT.
+
+\paragraph{Multiplication by constant $\phi$ in $GF(2^2)$}\mbox{}\\
+This operation has only 2 inputs, so it is can already be implemented using a 4-input LUT. 
+
+\paragraph{Multiplication by constant $\lambda$ in $GF(2^4)$}\mbox{}\\
+This operation has only 4 inputs, so it is can already be implemented using a 4-input LUT. Moreover, it is only used as part of SubBytes transformation directly after squaring in $GF(2^4)$. Because squaring takes only 4 inputs, and multiplication by $\lambda$ operates only on output of squaring, those two operations can be combined into single stage. Such merging only increases length of critical path of the stage (which is irrelevant) but does not increase number of inputs, which is still 4.
+
+
+\paragraph{Multiplication in $GF(2^2)$}\mbox{}\\
+This operation has only 4 inputs, so it is can already be implemented using a 4-input LUT. Every output depends on at most 3 inputs, so it is possible to xor each of them with a signal that does not depend on anything (was just registered).
+
+\paragraph{Multiplication in $GF(2^4)$}\mbox{}\\
+This operation has 8 inputs, so it is necessary to split it into two stages (\ref{fig:mul-two-stage-split}).
+
+This split uses only 4-input LUT operation mode, because:
+\begin{itemize}[nolistsep]
+\item Each bit of signals $a$ and $d$ depends on no more than 3 input signals, because on their paths there are only multiplications in $GF(2^2)$, which have this property. 
+\item Each bit of signals $b$ and $c$ depends only on 2 input signals, because they are xors.
+\item Each bit of signal $e$ depends on no more than 2 input signals, because this is a property of multiplication by $\phi$.
+\item Each bit of signal $f$ depends on no more than 3 input signals, because this is a property of multiplications in $GF(2^2)$.
+\item Each bit of signal $g$ depends on no more than 4 input signals, because signals from $f$ are xored with independent signals.
+\item Each bit of signal $h$ depends on no more than 3 input signals, because signals from $e$ are xored with independent signals.
+\end{itemize}
+
+
+\paragraph{Squaring in $GF(2^4)$}\mbox{}\\
+This operation has only 4 inputs, so it is can already be implemented using a 4-input LUT.
+
+
+\paragraph{ShiftRows transformation}\mbox{}\\
+This transformation does not do combinatorial logic and thus can be joined with any other operation to form a stage.
+
+
+\paragraph{MixColumns transformation}\mbox{}\\
+Lets first notice that some output bits of multiplication by $\{02\}_{16}$ depend on 2 input signals, all of which are already $xors$. This means that outputs of multiplication blocks already depend on $2 * 2 = 4$ signals. Those outputs are than xored again, which results in exceeding 4-input limit. MixColumns transformation needs to be split into two stages. It can be done as shown in figure \ref{fig:mix-columns-split}.
+
+
+Those stages can be implemented using only 4-input LUTs, because:
+\begin{itemize}
+\item Each bit of signals marked $a$ depends on 2 input signals.
+\item Each bit of signals marked $b$ depends on 3 input signals.
+\item Each bit of signals marked $c$ depends on no nore than 2 input signals.
+\item Each bit of signals marked $d$ depends on no nore than 3 input signals.
+\end{itemize}
+
+Note that all output bits depend on no more than 3 input signals, which means that they can be xored with other independent inputs in one stage.
+
+\paragraph{AddRoundKey transformation}\mbox{}\\
+This transformation consists only of a xor gate, which means that it can be combined into one stage with MixColumns.
+
+
+\subsection{Final design of throughput-optimized AES encryption circuit}
+Taking all points presented in section \ref{sec:pipeline-stages-design} it follows that a pipelied circuit using only 4-input LUTs can be implemeted according to diagram in figure \ref{fig:high-speed-final}.
+

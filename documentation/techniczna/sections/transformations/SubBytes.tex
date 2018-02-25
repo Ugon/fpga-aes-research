@@ -1,4 +1,5 @@
 \subsection{SubBytes transformation}
+\label{sec:sub-bytes}
 
 SubBytes transformation can be implemented in two ways
 \begin{itemize}[nolistsep]
@@ -16,6 +17,7 @@ This approach can be considered for resource-optimized hardware implementations 
 
 
 \subsubsection{Combinatorial logic approach}
+\label{sec:comb-theory}
 Alternative approach to implementing SubBytes transformation is to not store any precomputed byte substitutions in on-chip memory and use combinatorial logic to calculate them instead. This method is not limited by frequency of memory and therefore capable of achieving better throughut. It is however significantly more complex and uses more FPGA logic elements. It is therefore suitable for performance optimized AES architectures, but not for resource-optimized ones.
 
 \paragraph{Top level design of SubBytes transformation}\mbox{}\\
@@ -32,12 +34,16 @@ Calculating multiplicative inversion is the most demanding part of this transfor
 \item Apply affine transformation defined in AES standard \cite{aes-standard}
 \end{enumerate}
 
-Steps 3 and 4 can be joined into a single operation.
+
 
 \begin{figure}[!h]
-\missingfigure[figwidth=6cm]{}
-\caption{SubButes transformation decomposition}
+\label{fig:sub-single-byte}
+\centering
+\includegraphics[scale=3]{sub-bytes}
+\caption{SubButes transformation}
 \end{figure}
+
+Steps 3 and 4 can be joined into a single operation. SubBytes transformation for single byte can be implemented as a circuit in figure \ref{fig:sub-single-byte}. SubBytes transformation for entire state requires 16 such blocks. Detailed information about all required operations can be found in following paragraphs.
 
 \paragraph{Composite Galois Fields and mapping between $GF(2^8)$ and $GF((2^4)^2)$}\mbox{}\\
 We call two pairs
@@ -73,7 +79,7 @@ An isomorphic mapping function $f(x)$ (\ref{eq:iso_map}) from $GF(2^8)$ to $GF((
 \begin{gathered}
 \label{eq:iso_map}
 f(x) = \delta * x\\
-x \in GF((2^4)^2), f(x) \in GF(2^8) \\
+x \in GF(2^8), f(x) \in GF((2^4)^2) \\
 \begin{bmatrix}
 b_0'\\b_1'\\b_2'\\b_3'\\b_4'\\b_5'\\b_6'\\b_7'
 \end{bmatrix}
@@ -98,7 +104,7 @@ b_0\\b_1\\b_2\\b_3\\b_4\\b_5\\b_6\\b_7
 \begin{gathered}
 \label{eq:iso_map_rev}
 f^{-1}(x) = \delta^{-1} * x\\
-x \in GF(2^8), f^{-1}(x) \in GF((2^4)^2) \\
+x \in GF((2^4)^2), f^{-1}(x) \in GF(2^8) \\
 \begin{bmatrix}
 b_0'\\b_1'\\b_2'\\b_3'\\b_4'\\b_5'\\b_6'\\b_7'
 \end{bmatrix}
@@ -126,6 +132,68 @@ v = v_hx + v_l
 \end{equation}
 where $v_h = \{b_{2^n-1}...b_{2^{n-1}}\} \in GF(2^n)$ (high bits) and $v_l = \{b_{2^{n-1}-1}...b_0\} \in GF(2^n)$ (low bits). This holds true for decomposing values in $GF((2^n)^2)$ for any $n > 0$.
 
+\paragraph{Affine transformation}\mbox{}\\
+In SubBytes transformation, last step of calculating multiplicative inversion in $GF(2^8)$ is mapping $f^{-1}(x)$ from $GF((2^4)^2)$ to $GF(2^8)$. Immediately after this operation an affine transformation $a(x)$ is applied.
+\begin{equation}
+\begin{gathered}
+\label{eq:affine}
+a(x) = A * x + B\\
+x \in GF(2^8), a(x) \in GF(2^8) \\
+\begin{bmatrix}
+b_0'\\b_1'\\b_2'\\b_3'\\b_4'\\b_5'\\b_6'\\b_7'
+\end{bmatrix}
+=
+\begin{bmatrix}
+    1 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+    1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 \\
+    1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 \\
+    1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 \\
+    1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\
+    0 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 1 & 1 & 1 & 1 & 0 \\
+    0 & 0 & 0 & 1 & 1 & 1 & 1 & 1
+\end{bmatrix}
+\begin{bmatrix}
+b_0\\b_1\\b_2\\b_3\\b_4\\b_5\\b_6\\b_7
+\end{bmatrix}
++
+\begin{bmatrix}
+1\\1\\0\\0\\0\\1\\1\\0
+\end{bmatrix}
+\end{gathered}
+\end{equation}
+
+As mapping $f^{-1}(x)$ from $GF((2^4)^2)$ to $GF(2^8)$ and affine transformation $a(x)$ are matrix multiplications, those two operations can be combined.
+\begin{equation}
+\begin{gathered}
+\label{eq:affine}
+f \circ a(x) = A * \delta * x + B\\
+x \in GF(2^8), f \circ a(x) \in GF(2^8) \\
+\begin{bmatrix}
+b_0'\\b_1'\\b_2'\\b_3'\\b_4'\\b_5'\\b_6'\\b_7'
+\end{bmatrix}
+=
+\begin{bmatrix}
+    1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 \\
+    1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+    1 & 0 & 1 & 1 & 1 & 1 & 1 & 0 \\
+    1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\
+    1 & 1 & 0 & 0 & 1 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+    0 & 0 & 1 & 1 & 0 & 0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+b_0\\b_1\\b_2\\b_3\\b_4\\b_5\\b_6\\b_7
+\end{bmatrix}
++
+\begin{bmatrix}
+1\\1\\0\\0\\0\\1\\1\\0
+\end{bmatrix}
+\end{gathered}
+\end{equation}
+
+
 
 \paragraph{Multiplicative inversion in $GF((2^4)^2)$}\mbox{}\\
 In \cite{vlsi}[APPENDIX] it is proven that multiplicative inversion of $v = v_hx + v_l \in GF((2^4)^2)$ modulo $P_2(x)$ (\ref{eq:comp_fields_and_polys}) can be computed as in (\ref{eq:inv_formula_gf242}):
@@ -133,16 +201,24 @@ In \cite{vlsi}[APPENDIX] it is proven that multiplicative inversion of $v = v_hx
 \begin{gathered}
 \label{eq:inv_formula_gf242}
 (v_hx + v_l)^{-1} = s_h \Theta x + (s_h + s_l) \Theta\\
-\Theta = (s_h^2 \lambda + s_hs_l + s_l^2)^{-1}
+\Theta = (s_h^2 \lambda + s_hs_l + s_l^2)^{-1} = (s_h^2 \lambda + s_l (s_h + s_l))^{-1}
 \end{gathered}
 \end{equation}
 
-This can be implemented according to architecture in fig. \ref{fig:mul_inv_gf242}.
+$\Theta$ and entire inversion can be implemented as circuits in figures \ref{fig:theta_impl} and \ref{fig:mul_inv_gf242}.
+
+\begin{figure}
+\label{fig:theta_impl}
+\centering
+\includegraphics[scale=3]{theta-gf4}
+\caption{Theta calculation circuit}
+\end{figure}
 
 \begin{figure}
 \label{fig:mul_inv_gf242}
-\missingfigure[figwidth=6cm]{}
-\caption{Architecture of multiplicative inversion in $GF((2^4)^2)$}
+\centering
+\includegraphics[scale=3]{inv-gf8}
+\caption{Multiplicative inversion in $GF((2^4)^2)$ circuit}
 \end{figure}
 
 Operations to which multiplicative inversion in $GF((2^4)^2)$ is decomposed to are in $GF(2^4)$ and as a result the complecity of the solution is decreased. Some of those blocks are efficient to implement in hardware directly, and others can be decomposed even further.
@@ -184,6 +260,16 @@ x_0^{-1} &= b + c + d + x_{13} + x_{012} + x_0
 \end{equation}
 
 
+\begin{figure}
+\label{fig:mul_inv_gf4_symbol}
+\centering
+\includegraphics[scale=3]{inv-gf4-symbol}
+\caption{Symbol of multiplicative inversion in $GF(2^4)$}
+\end{figure}
+
+In all diagrams symbol \ref{fig:mul_inv_gf4_symbol} will be used for multiplicative inversion in $GF(2^4)$
+
+
 \paragraph{Multiplication by constant $\phi$ in $GF(2^2)$}\mbox{}\\
 Lets first notice that for any $a \in GF(2^n)$ (\ref{eq:modulo_proof}) it is true. Keep in mind that coefficients of polynomials are in $GF(2^n)$ where addition is $xor$, so $(x + a) + (x + a) = 0$. This will be useful for decomposing operations between fields (\ref{eq:comp_fields_and_polys}) in deriving efficient circuits for them.
 \begin{equation}
@@ -209,7 +295,8 @@ It follows that multiplication by $\phi$ can be implemented as a circuit in fig.
 
 \begin{figure}[!h]
 \label{fig:phi_mul}
-\missingfigure[figwidth=6cm]{}
+\centering
+\includegraphics[scale=3]{mul-phi-gf2}
 \caption{SubButes transformation decomposition}
 \end{figure}
 
@@ -269,7 +356,8 @@ It follows that multiplication by $\lambda$ can be implemented as a circuit in f
 
 \begin{figure}[!h]
 \label{fig:lambda_mul}
-\missingfigure[figwidth=6cm]{}
+\centering
+\includegraphics[scale=3]{mul-lam-gf4}
 \caption{Constant multiplication by $\lambda$ circuit}
 \end{figure}
 
@@ -314,7 +402,8 @@ It follows that multiplication in $GF(2^2)$ (\ref{eq:mul_gf2_final}) can be impl
 
 \begin{figure}[!h]
 \label{fig:mul_gf2}
-\missingfigure[figwidth=6cm]{}
+\centering
+\includegraphics[scale=3]{mul-gf2}
 \caption{Multiplication in $GF(2^2)$ circuit}
 \end{figure}
 
@@ -352,9 +441,8 @@ It follows that multiplication in $GF(2^4)$ can be implemented as a circuit in f
 
 \begin{figure}[!h]
 \label{fig:mul_gf4}
-% \centering
-% \def\svgwidth{\columnwidth}
-% \input{figures/all-sym.pdf_tex}
+\centering
+\includegraphics[scale=3]{mul-gf4}
 \caption{Multiplication in $GF(2^4)$ circuit}
 \end{figure}
 
@@ -417,6 +505,7 @@ k_0 &= v_3 + v_1 + v_0
 
 \begin{figure}[!h]
 \label{fig:mul_sq4}
-\missingfigure[figwidth=6cm]{}
+\centering
+\includegraphics[scale=3]{sq-gf4}
 \caption{Squaring in $GF(2^4)$ circuit}
 \end{figure}

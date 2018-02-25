@@ -14,7 +14,7 @@ A design was considered stable at given frequency when it could operate without 
 
 To make sure that no unrealistic optimizations were made during compilation and placement, input and expected blocks were not hardcoded into the design, but rather placed in on-chip ROM. This approach also resulted in more realistic placement environment for the encryption module - input and output signals had to be routed to ROM blocks. This required additional routing, as would exposing those signals to FPGA pins. 
 
-Using ROM as storage for testing data introduced a limitation of 300MHz frequency, which is the highest frequency at which on-chip ROM can operate. This was a problem, because expected maximum frequency of AES encryption was above 300MHz. This limitation, hovewer, can be overcome. Two different designs were considered, both were capable of testing circuits at very similar maximum frequencies (over 500MHz). Approach based on multiplexing two streams of blocks was capable of operating at slightly higher frequency, and it was chosen to be used in testing.
+Using ROM as storage for testing data introduced a limitation of 300MHz frequency, which is the highest frequency at which on-chip ROM can operate. This was a problem, because expected maximum frequency of AES encryption was above 300MHz. This limitation, hovewer, can be overcome. Two different designs were considered, both were capable of testing circuits at very similar maximum frequencies (over 500MHz). Approach based on multiplexing two streams of blocks was both simpler (required less logic elements) and capable of operating at slightly higher frequency (530MHz), and it was chosen to be used in testing.
 
 
 \subsubsection{Multiplexer based design}
@@ -34,7 +34,7 @@ Logic utilization for each design was calculated based on compiler output - afte
 Correctness of the design was tested in two ways:
 \begin{description}
 \item {\textbf{Wave form simulations}} were used for simulating and testing sections of the design. This kind of testing was performed during development process.
-\item {\textbf{Testing of designs deployed in FPGA}} was always performed along with performance testing. Those tests were performed only after implementation of given part of circuit was completed and wafe form simulation testing showed no issues.
+\item {\textbf{Testing of designs deployed in FPGA}} was always performed along with performance testing. Those tests were performed only after implementation of given part of circuit was completed and wave form simulation testing showed no issues.
 \end{description}
 
 Input data and expected results for testing of transformations, key expansion and entire encryption algorithm were taken from examples in AES encryption standard \cite{aes-standard}. For testing of smaller portions of the design input data was randomly generated and expected results were precalculated either maually or by implementing a utility script in python.
