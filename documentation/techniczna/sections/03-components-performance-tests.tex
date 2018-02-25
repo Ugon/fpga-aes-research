@@ -1,0 +1,89 @@
+\section{Throughput optimized architecture - potencjalnie do zmiany - LUT}
+\label{sec:components-performance-tests}
+
+Throughput of AES encryption module is optimized by utilizing pipelining. To use this technique the design needs to be split into stages. To maximize benefits that pipelining brings signal propagation time through all stages needs to be roughly the same. Authors of \cite{dupa} partitioned their design based on critical path length. My testing shows that this approach is suboptimal, and higher frequencies can be achieved by partitioning the design in a way that combinatorial logic for each output bit of a stage has no more than 4 inputs. This is due to how FPGA technology works and will be explained in more detail this section.
+
+% \begin{table}[!h]
+    % \label{table:sub-bytes-crit-path}
+	% \centering
+	% \begin{tabular}{| l | l |}
+	% \hline
+    % \textbf{Operation} & \textbf{Critical path} \\ \hline
+% 
+    % Multiplication by constant $\phi$ in $GF(2^2)$ & 1 XOR \\ \hline
+% 
+    % Multiplication by constant $\lambda$ in $GF(2^4)$ & 2 XOR \\ \hline
+% 
+    % Multiplication in $GF(2^2)$ & 2 XOR + 1 AND \\ \hline
+% 
+    % Multiplication in $GF(2^4)$ & 4 XOR + 1 AND \\ \hline
+% 
+    % Squaring in $GF(2^4)$ & 2 XOR \\ \hline
+% 
+    % Multiplicative inversion in $GF(2^4)$ & 3 XOR + 2 AND \\ \hline
+% 
+    % Mapping from $GF(2^8)$ to $GF((2^4)^2)$ & 4 XOR \\ \hline
+% 
+    % Mapping from $GF((2^4)^2)$ to $GF(2^8)$ + AES affine transformation & 4 XOR \\ \hline
+% 
+    % \end{tabular}
+    % \caption{Critical path lengths for operations in SubBytes transformation}
+% \end{table}
+% 
+% \begin{table}[!h]
+	% \centering
+	% \begin{tabular}{| l | l |}
+	% \hline
+    % \textbf{Transformation} & \textbf{Critical path} \\ \hline
+	% MixColumns & 3 XOR \\ \hline
+	% AddRoundKey & 1 XOR \\ \hline
+	% ShiftRows & 0 \\ \hline
+    % \end{tabular}
+    % \caption{Critical path lengths for MixColumns, ShiftRows and AddRoundKey transformations}
+% \end{table}
+% 
+
+\subsection{Low level FPGA chip analysis}
+\ref{sec:low-level-fpga}
+To optimize a circuit for high frequency operation it is necessary to understand how FPGA technology works on low level. FPGA chips' archirectures may slightly vary, here we will focus on architecture of the chip that I used for testing - Altera Cyclone V (\cite{handbook-vol1-chaprer1}). For simplicity only elements relevant to this design will be covered here, detailed documentation is available in Cyclone V Handbook \cite{handbook}.
+
+FPGA chips consist of LABs (Logic Array Blocks), each of which contains 10 ALMs (Adaptive Logic Modules). ALMs are elements that make it possible to place arbitrary circuits in FPGA - they can be programmed to implement combinatorial logic functions, arithmetic functions, and registers.
+
+Combinatorial logic is implemented using LUTs (LookUp Tables) which contain high speed ROM memory. This memory is programmed with precomputed outputs for every possible combination of logic levels of input signals. LUTs take combinatorial logic inputs and use them as addresses to corresponding memory bits. Output of LUT is a bit read from memory which corresponds to provided inputs. An important consequence of this design feature is that for a LUT with N inputs it is irrelevant how complex the logic to be implemented is - as long as it has no more than N inputs it will always perform the same. This is because all outputs are precomputed and all it takes to determine the output is to read it from memory. If desired combinatorial logic has more than N inputs multiple LUTs will be required.
+
+In Cyclone V chips each ALM contains two LUTs and four registers (D flip-flops). The registers, however, are wired in such a way that only two are relevant for this design - other two could be utilised if ALMs were used to implement arithmetic logic, which does not happen in AES encryption. LUTs in Cyclone V ALMs are capable of implementing different combinations of combinatorial logic, for this design the relevant combinations are
+\begin{itemize}
+\item one 6-input LUT per ALM - uses up to 1 register, leaves at least one register unused
+\item two 4-input LUTs per ALM - uses up to 2 registers
+\end{itemize}
+Combinatorial logic outputs can either be registered in the ALM they were calculated in or routed to another ALM without registering. For fastest operation in most cases it is desired to register them in the same ALM, because routing inside ALM is a lot faster than between ALMs. Routing outputs without registering is necessary when combinatorial logic has more inputs than a single ALM supports, or to move the register closer to other parts of the design to balance routing delays between different parts of the design.
+
+Conducted tests showed that for AES encryption maximum frequency was higher for designs using only 4-input LUTs. Analysis of compilation reports showed that using 6-input LUTs resulted in overall increased number or resources used, which resulted in longer routing paths between parts of the design, which ultimately slowed it down. This makes sence, because for 4-input LUTs ALMs are used more efficiently - more combinatorial logic could be implemented, and both registers could be used. The leftover register when using 6-input operation mode was observed not to be used often, because other signals were typically registered in same ALMs they were calculated in.
+
+Another important aspect of working with FPGA is that \textit{Place and Route} compilation phase, which is responsible of finding optimal placement of the design in FPGA chip, tackles an NP-hard problem. This phase therefore uses heuristics to produce an approximation of best possible solution. It is possible that final placement of the design will be different for each compilation attempt. This behaviour was observed during testing, but maximum frequency for given design remained stable between compilation attempts. The longest routes for each compilation were different every time, but leading trends were similar (eg. most routes from top 10 failing ones were between pipelined stages X and Y).
+
+
+
+\subsection{Analysis of pipelied stages of equal critical path lengths}
+As an entry point for my research I implemented the circuit proposed in \cite{dupa} (for r=7 pipelie stages). Testing of this design showed that all transformations individualy could run at frequencies exceeding 500MHz (close to or at testing circuits max frequency of 530MHz). One full round could run at this frequency as well, but adding more consecutive rouds resulted in decrease of frequency due to FPGA resource congestion resulting in longer routing paths. Full AES encryption circuits, which consists of 15 rounds, was capable of operating at 381MHz.
+
+Analysis of paths with longest propagation time presented in compilation report showed that typically they consisted of two or more ALMs used for calculating combinatorial logic. This was due to the fact that this design used pipelining stages which for calculating each output bit required more than 6 inputs. This forced utilising multiple ALMs between registers, which resulted in long routing delays.
+
+The conclusions of this research were:
+\begin{itemize}
+\item To achieve higher frequency it was necessary to split the design into shorter pipelining stages.
+\item Critical path length calculated as number of layers of logical gates is irrelevant (\ref{sec:low-level-fpga}).
+\item What is relevant is the number of input signals required for calculating each bit of stage output, which should be no higher than 6.
+\item Routing delays are a significant factor contributing to maximum achievable frequency.
+\item Reducing number of LUTs between registers is critical for high performance.
+\end{itemize}
+
+Analysis of compilation reports showed that paths with longest signal propagation time, which were responsible for limiting maximum achievable frequency, 
+
+
+
+% SubBytes transformation is by far the most complex one and it should be split into multiple pipelined stages. MixColumns and AddRoundKey have short critical paths (3 and 1 respectively) and can be combined into a single stage with critical path of 4. ShiftRows only rearranges order of bits in AES state without using any logic gates, so it can be joined with other operations to form a stage.
+
+% Performance testing indicated that stages with critical paths of 6 gates would be short enough to be able to operate at over 500MHz, which is enough to fully utilize used testing framework. It is also convenient, as such stage length makes it possible to use all operations (\ref{table:sub-bytes-crit-path}) without splitting them. It is worth noting, that given an FPGA chip capable of operating at higher frequencies, pipelining stages could be made shorter than what is considered here (critical path of 6).
+
+% Each AES round is split into 6 pipeline stages as shown in fig. \ref{fig:round-split}.

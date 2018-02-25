@@ -1,0 +1,52 @@
+\subsection{MixColumns transformation}
+
+MixColumns transformation is most efficient to be implemented directly in $GF(2^8)$. Unlike in SubBytes transformation, all attempts to decompose operations lead to increase of overall number of required logic gates. This in because \cite{vlsi}:
+\begin{itemize}[nolistsep]
+\item mapping values to and from composite fields requires additional logic
+\item constants used in MixColumns have less nonzero bits in $GF(2^8)$ ($\{02\}_{16}$, $\{03\}_{16}$) than in $GF(((2^2)^2)^2)$ ($\{5f\}_{16}$, $\{5e\}_{16}$), which results in more logic gates required to perform multiplication by them.
+\end{itemize}
+
+MixColumns transformation can be efficiently implmeneted by taking advantage of substructure sharing. Lets first notice that multiplying any $a \in GF(2^8)$ by $\{03\}_{16}$ can be substututed by multiplication by $\{02\}_{16}$ and one addition:
+
+\begin{equation}
+\label{eq:decomp_mul_3}
+\{03\}_{16}a = (x + 1)a = ax + a = \{02\}_{16}a + a
+\end{equation}
+
+Taking that into consideration we can derive equations for MixColums transformation:
+
+\begin{equation}
+\label{xd}
+\begin{aligned}
+B_0' &= \{02\}_{16}B_0 + \{03\}_{16}B_1 + B_2 + B_3 \\
+&\stackrel{(\ref{eq:decomp_mul_3})}{=}
+\{02\}_{16}B_0 + (\{02\}_{16}B_1 + B_1) + B_2 + B_3 \\
+&= \{02\}_{16}(B_0 + B_1) + (B_2 + B_3) + B_1 \\ \\
+%
+B_1' &= B_0 + \{02\}_{16}B_1 + \{03\}_{16}B_2 +  B_3 \\ 
+&\stackrel{(\ref{eq:decomp_mul_3})}{=}
+B_0 + (\{02\}_{16}B_1 + B_1) + \{02\}_{16}B_2 + B_3 \\ 
+&= \{02\}_{16}(B_1 + B_2) + (B_0 + B_3) + B_2\\ \\
+%
+B_2' &= B_0 + B_1 + \{02\}_{16}B_2 + \{03\}_{16}B_3 \\
+&\stackrel{(\ref{eq:decomp_mul_3})}{=}
+B_0 + B_1 + \{02\}_{16}B_2 + (\{02\}_{16}B_3 + B_3) \\
+&= \{02\}_{16}(B_2 + B_3) + (B_0 + B_1) + B_3 \\ \\
+%
+B_3' &= \{03\}_{16}B_0 + B_1 + B_2 + \{02\}_{16}B_3 \\
+&\stackrel{(\ref{eq:decomp_mul_3})}{=}
+(\{02\}_{16}B_0 + B_0) + B_1 + B_2 + \{02\}_{16}B_3 \\
+&= \{02\}_{16}(B_0 + B_3) + (B_1 + B_2) + B_0
+\end{aligned}
+\end{equation}
+
+where $B_i$ are AES bytes, $[B_0, B_1, B_2, B_3]$ is input column and $[B_0', B_1', B_2', B_3']$ is transformed column. MixColumns can be therefore implemented as shown in fig. \ref{fig:mix_columns}
+
+\begin{figure}[!h]
+\label{fig:missingfigure}
+% \mix_columns[figwidth=6cm]{}
+\caption{MixColumns transformation implementation}
+\end{figure}
+
+
+
