@@ -8,7 +8,7 @@ package aes_key_expansion_pipe is
 
 	type ake_halfbytes is array (0 to 3) of std_logic_vector(3 downto 0);
 	type ake_bytes     is array (0 to 3) of std_logic_vector(7 downto 0);
-	type ake_tens      is array (0 to 3) of std_logic_vector(9 downto 0);
+	type ake_nines     is array (0 to 3) of std_logic_vector(8 downto 0);
 	type ake_elevens   is array (0 to 3) of std_logic_vector(10 downto 0);
 	
 	type ake_pipe_1res is record
@@ -107,18 +107,13 @@ package aes_key_expansion_pipe is
 		w10_init: std_logic_vector(31 downto 0);
 		w11_init: std_logic_vector(31 downto 0);
 		
-		w7_delta_mul_inter: ake_bytes;
+		w7_delta_mul_inter: ake_nines;
 	end record;
 
 	type ake_pipe_9res is record
-		current_key: std_logic_vector(127 downto 0);
-		next_key: std_logic_vector(127 downto 0);
-		w8_init: std_logic_vector(31 downto 0);
-		w9_init: std_logic_vector(31 downto 0);
-		w10_init: std_logic_vector(31 downto 0);
-		w11_init: std_logic_vector(31 downto 0);
-		
-		w7_done: std_logic_vector(31 downto 0);
+		current_key  : std_logic_vector(127 downto 0);
+		next_key     : std_logic_vector(127 downto 0);
+		next_next_key: std_logic_vector(127 downto 0);
 	end record;
 
 	type ake_pipe_result is record
@@ -389,16 +384,17 @@ package body aes_key_expansion_pipe is
 		variable bte   : std_logic_vector(7 downto 0);
 		variable w7_sub: std_logic_vector(31 downto 0);
 		variable w7_rcon: std_logic_vector(31 downto 0);
+
+		variable w8: std_logic_vector(31 downto 0);
+		variable w9: std_logic_vector(31 downto 0);
+		variable w10: std_logic_vector(31 downto 0);
+		variable w11: std_logic_vector(31 downto 0);
+		
 		variable result: ake_pipe_9res;
 	begin
 		result.next_key    := state_in.next_key;
 		result.current_key := state_in.current_key;
 		
-		result.w8_init  := state_in.w8_init;
-		result.w9_init  := state_in.w9_init;
-		result.w10_init := state_in.w10_init;
-		result.w11_init := state_in.w11_init;
-
 		for i in 0 to 3 loop
 			w7_sub((i + 1) * 8 - 1 downto i * 8) := mul_deltainv_affine_8b(state_in.w7_delta_mul_inter(i));
 		end loop;
@@ -408,7 +404,15 @@ package body aes_key_expansion_pipe is
 			w7_rcon(31 downto 24) := w7_rcon(31 downto 24) xor std_logic_vector(to_unsigned(2 ** (next_next_round_numer / 2 - 1), 8));
 		end if;
 
-		result.w7_done := w7_rcon;
+		w8  := state_in.w8_init  xor w7_rcon;
+		w9  := state_in.w9_init  xor w7_rcon;
+		w10 := state_in.w10_init xor w7_rcon;
+		w11 := state_in.w11_init xor w7_rcon;
+
+		result.next_next_key(127 downto 96) := w8;
+		result.next_next_key(95 downto 64)  := w9;
+		result.next_next_key(63 downto 32)  := w10;
+		result.next_next_key(31 downto 0)   := w11;
 
 		return result;
 	end function;
@@ -418,24 +422,11 @@ package body aes_key_expansion_pipe is
 		state_in             : ake_pipe_9res;    
 		next_next_round_numer: Integer range 3 to 15
 	) return ake_pipe_result is
-		variable w8: std_logic_vector(31 downto 0);
-		variable w9: std_logic_vector(31 downto 0);
-		variable w10: std_logic_vector(31 downto 0);
-		variable w11: std_logic_vector(31 downto 0);
 		variable result: ake_pipe_result;
 	begin
-		w8  := state_in.w8_init xor state_in.w7_done;
-		w9  := state_in.w9_init xor state_in.w7_done;
-		w10 := state_in.w10_init xor state_in.w7_done;
-		w11 := state_in.w11_init xor state_in.w7_done;
-
-		result.next_key                     := state_in.next_key;
-		result.current_key                  := state_in.current_key;
-		result.next_next_key(127 downto 96) := w8;
-		result.next_next_key(95 downto 64)  := w9;
-		result.next_next_key(63 downto 32)  := w10;
-		result.next_next_key(31 downto 0)   := w11;
-
+		result.next_key      := state_in.next_key;
+		result.current_key   := state_in.current_key;
+		result.next_next_key := state_in.next_next_key;
 		return result;
 	end function;
 

@@ -278,22 +278,24 @@ package body aes_sub_bytes is
 
 		constant cd:     std_logic := c xor d;
 		constant abc:    std_logic := a xor b xor c;
+		constant acd:    std_logic := a xor c xor d;
 		constant efg:    std_logic := e xor f xor g;
 		constant abeh:   std_logic := a xor b xor e xor h;
 		constant ch_not: std_logic := '1' xor c xor h;
 		constant gh_not: std_logic := '1' xor g xor h;
 
-		constant result: std_logic_vector(7 downto 0) := (a, h, cd, abc, efg, abeh, ch_not, gh_not);
+		constant result: std_logic_vector(8 downto 0) := (a, h, cd, abc, acd, efg, abeh, ch_not, gh_not);
 	begin
  		return result;
 	end function;
 
 
 	function mul_deltainv_affine_8b(inp: std_logic_vector) return std_logic_vector is
-		constant a:      std_logic := inp(inp'low + 7);
-		constant h:      std_logic := inp(inp'low + 6);
-		constant cd:     std_logic := inp(inp'low + 5);
-		constant abc:    std_logic := inp(inp'low + 4);
+		constant a:      std_logic := inp(inp'low + 8);
+		constant h:      std_logic := inp(inp'low + 7);
+		constant cd:     std_logic := inp(inp'low + 6);
+		constant abc:    std_logic := inp(inp'low + 5);
+		constant acd:    std_logic := inp(inp'low + 4);
 		constant efg:    std_logic := inp(inp'low + 3);
 		constant abeh:   std_logic := inp(inp'low + 2);
 		constant ch_not: std_logic := inp(inp'low + 1);
@@ -301,7 +303,7 @@ package body aes_sub_bytes is
 		
 		constant r0: std_logic := abc xor gh_not; 
 		constant r1: std_logic := '1' xor a xor h;
-		constant r2: std_logic := a xor cd xor efg;
+		constant r2: std_logic := acd xor efg;
 		constant r3: std_logic := abc;
 		constant r4: std_logic := abeh;
 		constant r5: std_logic := ch_not;
