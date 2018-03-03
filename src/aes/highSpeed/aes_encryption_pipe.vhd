@@ -10,8 +10,8 @@ package aes_encryption_pipe is
 
 	type asb_halfbytes is array (0 to 15) of std_logic_vector(3 downto 0);
 	type asb_bytes     is array (0 to 15) of std_logic_vector(7 downto 0);
+	type asb_nines     is array (0 to 15) of std_logic_vector(8 downto 0);
 	type asb_elevens   is array (0 to 15) of std_logic_vector(10 downto 0);
-	type asb_tens      is array (0 to 15) of std_logic_vector(9 downto 0);
 	
 	type aenc_pipe_1res is record
 		elevens: asb_elevens;
@@ -53,7 +53,7 @@ package aes_encryption_pipe is
 	end record;
 
 	type aenc_pipe_8res is record
-		delta_mul_inter: asb_bytes;
+		delta_mul_inter: asb_nines;
 	end record;
 
 	type aenc_pipe_9res is record
