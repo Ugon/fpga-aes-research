@@ -1,0 +1,21 @@
+\subsection{AddRoundKey transformation}
+
+AddRoundKey is a transformation that adds (xor) round key to AES state. Round keys are obtained using key expansion routine, is defined in AES enctroption standard \cite{aes-standard}. Expansion algorithm performs byte substitution on some bytes similarly to SubBytes transformation, therefore it can be implemented in two ways as well:
+\begin{itemize}[nolistsep]
+\item As a look-up table of precomputed values stored in on-chip memory
+\item As combinatorial logic circuit.
+\end{itemize}
+Advantages and disadvantages of both appraches are same as for SubBytes transformation. This section will describe KeyExpansion circuit based on operations already defined in section \ref{sec:sub-bytes}.
+
+To calculate round key for round $N$, key for round $N - 2$ is used. Keys for rounds 1 and 2 are obrained from encryption key provided by user. In order to be able to construct efficient pipelie, key expansion for each round needs to be calculated 2 rounds ahead of time. To perform expansion of key for round $N + 2$ circuit in figure \ref{fig:key-expansion} can be used. Such circuit would be placed in final designs pipeline next to round $N$. Note that key for round $N + 1$ is not used in calculation and is forwarded to next pipeline stage unmodified.
+
+\begin{figure}
+\label{fig:key-expansion}
+\centering
+\includegraphics[scale=3]{key-expansion}
+\caption{Key expansion circuit}
+\end{figure}
+
+
+Operation $Rot$ rotates a word (4 bytes) left by one byte, and $Rcon$ xors a byte wiSSth $2^{N + 1}$. Those operation are only applied in rounds $N$, where $N \equiv 1 \pmod{2}$.
+
