@@ -8,9 +8,12 @@ use work.aes_sub_bytes.all;
 use work.aes_utils.all;
 
 
-entity high_speed_top is
+entity hsroll_top is
 generic (
-	NUMBER_OF_CYCLES: Integer := 14 * 11 + 10;
+	--NUMBER_OF_CYCLES: Integer := 14 * 11 + 10;
+	--NUMBER_OF_CYCLES: Integer := 13 * 11;
+	NUMBER_OF_CYCLES: Integer := 13 * 11 + 10;
+	--NUMBER_OF_CYCLES: Integer := 11;
 	MEM_FOLDER:       String  := "enc2"
 );
 port (
@@ -155,9 +158,9 @@ port (
 	VGA_R:                        out   std_logic_vector(7 downto 0);
 	VGA_SYNC_N:                   out   std_logic;
 	VGA_VS:                       out   std_logic);
-end entity high_speed_top;
+end entity hsroll_top;
 
-architecture rtl of high_speed_top is
+architecture rtl of hsroll_top is
 
 	component pll is
 		port (
@@ -248,7 +251,7 @@ begin
 			expected       => rom_data_out,
 			error_detected => LEDR(9));
 
-	aes256enc_inst0: entity work.aes256enc 
+	aes256enc_inst0: entity work.hsroll_aes256enc 
     	port map (
 			main_clk => main_clk,
 			key => rom_data_key,

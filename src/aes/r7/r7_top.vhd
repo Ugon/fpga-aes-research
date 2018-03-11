@@ -44,7 +44,7 @@ port (
 	DRAM_CS_N:                    out   std_logic;
 	DRAM_DQ:                      inout std_logic_vector(15 downto 0);
 	DRAM_LDQM:                    out   std_logic;
-	DRAM_RAS_N:                   out   std_logic;
+	DRAM_RAS_N:                   out   std_logic; 
 	DRAM_UDQM:                    out   std_logic;
 	DRAM_WE_N:                    out   std_logic;
 

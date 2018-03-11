@@ -115,10 +115,11 @@ for i in xrange(NUMBER):
 
 			round_key = flip(createRoundKey(expandedKey, 1))
 			aesRound(state, round_key)
+			# addRoundKey(state, round_key)
 
 			round_key = flip(createRoundKey(expandedKey, 2))
 			aesRound(state, round_key)
-
+			
 			round_key = flip(createRoundKey(expandedKey, 3))
 			aesRound(state, round_key)
 

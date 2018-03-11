@@ -202,10 +202,10 @@ package body aes_sub_bytes is
 		constant h:  std_logic := inp(inp'low + 7);
 		
 		constant cd:   std_logic := c xor d;
-		constant fgh:  std_logic := f xor g xor h;
-		constant bcde: std_logic := b xor c xor d xor e;
+		constant fh:   std_logic := f xor h;
+		constant be:   std_logic := b xor e;
   
-		constant result: std_logic_vector(10 downto 0) := (bcde, fgh, cd, h, g, f, e, d, c, b, a);
+		constant result: std_logic_vector(10 downto 0) := (be, fh, cd, h, g, f, e, d, c, b, a);
   	begin
   		return result;
 	end function;
@@ -221,19 +221,19 @@ package body aes_sub_bytes is
 		constant g:  std_logic := inp(inp'low + 6);
 		constant h:  std_logic := inp(inp'low + 7);
   		
-  		constant cd:   std_logic := inp(inp'low + 8);
-		constant fgh:  std_logic := inp(inp'low + 9);
-		constant bcde: std_logic := inp(inp'low + 10);
+  		constant cd: std_logic := inp(inp'low + 8);
+		constant fh: std_logic := inp(inp'low + 9);
+		constant be: std_logic := inp(inp'low + 10);
 		
-		constant r0: std_logic := a xor b xor                         g               ;
-		constant r1: std_logic :=       b xor             e xor       g               ;
-		constant r2: std_logic :=                                           h xor bcde;
-		constant r3: std_logic :=       b xor c xor                   g xor h         ;
+		constant r0: std_logic := a xor b xor                         g                    ;
+		constant r1: std_logic :=                                     g       xor be       ;
+		constant r2: std_logic :=                                           h xor be xor cd;
+		constant r3: std_logic :=       b xor c xor                   g xor h              ;
 		
-		constant r4: std_logic :=       b xor                   f xor       h xor   cd;
-		constant r5: std_logic :=                               f xor       h xor   cd;
-		constant r6: std_logic :=                                     g xor h xor bcde;
-		constant r7: std_logic :=                               f xor       h         ;
+		constant r4: std_logic :=       b xor                                     fh xor cd;
+		constant r5: std_logic :=                                                 fh xor cd;
+		constant r6: std_logic :=                                     g xor h xor be xor cd;
+		constant r7: std_logic :=                                                 fh       ;
          
 		constant result: std_logic_vector(7 downto 0) := (r7, r6, r5, r4, r3, r2, r1, r0);
   	begin
@@ -251,12 +251,12 @@ package body aes_sub_bytes is
 		constant g:  std_logic := inp(inp'low + 6);
 		constant h:  std_logic := inp(inp'low + 7);
   
-  		constant cd:   std_logic := inp(inp'low + 8);
-		constant fgh:  std_logic := inp(inp'low + 9);
-		constant bcde: std_logic := inp(inp'low + 10);
+  		constant cd: std_logic := inp(inp'low + 8);
+		constant fh: std_logic := inp(inp'low + 9);
+		constant be: std_logic := inp(inp'low + 10);
 
-		constant r0: std_logic := a xor cd xor fgh;
-		constant r1: std_logic := bcde xor fgh;
+		constant r0: std_logic := a xor g xor cd xor fh;
+		constant r1: std_logic := g xor be xor cd xor fh;
 		constant r2: std_logic := g;
 		constant r3: std_logic := b xor c xor f xor g;
 		
