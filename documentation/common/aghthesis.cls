@@ -83,13 +83,15 @@ and that I am aware of the rules of the Penal Code referring to criminal liabili
 
 \includegraphics[width=70pt,viewport=250 350 350 500]{../common/agh.pdf}
 
-\vspace*{1cm}
-{\huge\scshape \@thesistype}\\
-\vspace*{2cm}
-
-\doublespacing
-{\huge{\bfseries\scshape \@title}}\\
 \vspace*{1.5cm}
+{\huge\scshape \@thesistype}\\
+\vspace*{1.5cm}
+
+%\begin{changemargin}{-0.7cm}{-0.7cm} 
+\doublespacing
+{\LARGE{\bfseries\scshape \@title}}\\
+\vspace*{3cm}
+%\end{changemargin}
 
 {\LARGE\scshape \@author}\\
 %\vspace*{5cm}

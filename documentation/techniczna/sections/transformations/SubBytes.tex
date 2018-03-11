@@ -8,42 +8,53 @@ SubBytes transformation can be implemented in two ways
 \end{itemize}
 This section will discuss advantages, disadantages and implementation details of both approaches.
 
+
+
+
+
 \subsubsection{Look-up table approach}
-SubBytes transformation can be implemented as a look-up table of precomputed values (\cite[Fig. 7]{aes-standard}). Implementing it this way is simple and resource efficient, but has a major limitation -- it can operate only as fast as on-chip memory, which in case of DE1-SoC FPGA device is 300MHz. This limits the overall throughput of AES encryption to
+SubBytes transformation can be implemented as a look-up table of precomputed values (\cite[Fig. 7]{aes-standard}). Implementing it this way is simple and resource efficient, but has a major limitation -- it can operate only as fast as on-chip memory, which in case of DE1-SoC FPGA device is 315MHz \cite[Table 2-1]{altera-vol1}. This limits the overall throughput of AES encryption to
 $$
-300MHz * 16B = 4.8GB/s
+315MHz * 16B = 5040MB/s
 $$
 This approach can be considered for resource-optimized hardware implementations of AES algorithm, but its maximum achievable throughput is not high enough for performace-optimized versions.
 
 
+
+
 \subsubsection{Combinatorial logic approach}
 \label{sec:comb-theory}
-Alternative approach to implementing SubBytes transformation is to not store any precomputed byte substitutions in on-chip memory and use combinatorial logic to calculate them instead. This method is not limited by frequency of memory and therefore capable of achieving better throughut. It is however significantly more complex and uses more FPGA logic elements. It is therefore suitable for performance optimized AES architectures, but not for resource-optimized ones.
+Alternative approach to implementing SubBytes transformation is to not store any precomputed byte substitutions in on-chip memory and use combinatorial logic to calculate them instead \cite{practical-sub-bytes}. This method is not limited by frequency of memory and therefore capable of achieving higher throughut. It is however significantly more complex and uses more FPGA logic elements. It is therefore suitable for performance optimized AES architectures, but not for resource-optimized ones.
+
+
+
+
 
 \paragraph{Top level design of SubBytes transformation}\mbox{}\\
-As defined in AES standard \cite{aes-snadard} SubBytes transformation consists of
+As defined in AES standard \cite{aes-standard} SubBytes transformation consists of
 \begin{itemize}[nolistsep]
 \item Multiplicative inversion in $GF(2^8)$
 \item Affine transformation specified in AES standard \cite{aes-standard}
 \end{itemize}
-Calculating multiplicative inversion is the most demanding part of this transformationa and naively implementing it in $GF(2^8)$ would require at least 620 gates (\cite{vlsi}). This number can be gratly reduced by using composite field arithmetic. To achieve this SubBytes transformation can be decomposed into stages (details explained in following paragraphs):
+Calculating multiplicative inversion is the most demanding part of this transformationa and naively implementing it in $GF(2^8)$ would require at least 620 gates \cite{vlsi}. This number can be gratly reduced by using composite field arithmetic. To achieve this SubBytes transformation can be decomposed into stages:
 \begin{enumerate}[nolistsep]
 \item Map input byte from $GF(2^8)$ to $GF((2^4)^2)$ 
-\item calculate multiplicative inverse in $GF((2^4)^2)$
+\item Calculate multiplicative inverse in $GF((2^4)^2)$
 \item Map byte from $GF((2^4)^2)$ back to $GF(2^8)$
 \item Apply affine transformation defined in AES standard \cite{aes-standard}
 \end{enumerate}
 
-
-
 \begin{figure}[!h]
-\label{fig:sub-single-byte}
 \centering
 \includegraphics[scale=3]{sub-bytes}
 \caption{SubButes transformation}
+\label{fig:sub-single-byte}
 \end{figure}
 
 Steps 3 and 4 can be joined into a single operation. SubBytes transformation for single byte can be implemented as a circuit in figure \ref{fig:sub-single-byte}. SubBytes transformation for entire state requires 16 such blocks. Detailed information about all required operations can be found in following paragraphs.
+
+
+
 
 \paragraph{Composite Galois Fields and mapping between $GF(2^8)$ and $GF((2^4)^2)$}\mbox{}\\
 We call two pairs
@@ -132,6 +143,9 @@ v = v_hx + v_l
 \end{equation}
 where $v_h = \{b_{2^n-1}...b_{2^{n-1}}\} \in GF(2^n)$ (high bits) and $v_l = \{b_{2^{n-1}-1}...b_0\} \in GF(2^n)$ (low bits). This holds true for decomposing values in $GF((2^n)^2)$ for any $n > 0$.
 
+
+
+
 \paragraph{Affine transformation}\mbox{}\\
 In SubBytes transformation, last step of calculating multiplicative inversion in $GF(2^8)$ is mapping $f^{-1}(x)$ from $GF((2^4)^2)$ to $GF(2^8)$. Immediately after this operation an affine transformation $a(x)$ is applied.
 \begin{equation}
@@ -207,21 +221,24 @@ In \cite{vlsi}[APPENDIX] it is proven that multiplicative inversion of $v = v_hx
 
 $\Theta$ and entire inversion can be implemented as circuits in figures \ref{fig:theta_impl} and \ref{fig:mul_inv_gf242}.
 
-\begin{figure}
-\label{fig:theta_impl}
+\begin{figure}[!h]
 \centering
 \includegraphics[scale=3]{theta-gf4}
-\caption{Theta calculation circuit}
+\caption{$\Theta$ calculation circuit (part of multiplicative inversion in $GF((2^4)^2)$)}
+\label{fig:theta_impl}
 \end{figure}
 
-\begin{figure}
-\label{fig:mul_inv_gf242}
+\begin{figure}[!h]
 \centering
 \includegraphics[scale=3]{inv-gf8}
 \caption{Multiplicative inversion in $GF((2^4)^2)$ circuit}
+\label{fig:mul_inv_gf242}
 \end{figure}
 
 Operations to which multiplicative inversion in $GF((2^4)^2)$ is decomposed to are in $GF(2^4)$ and as a result the complecity of the solution is decreased. Some of those blocks are efficient to implement in hardware directly, and others can be decomposed even further.
+
+
+
 
 \paragraph{Multiplicative inversion in $GF(2^4)$}\mbox{}\\
 Authors of \cite{vlsi} derived that multiplicative inversion of $\{x_3x_2x_1x_0\} \in GF(2^4)$ can be calculated using formula (\ref{eq:mul_inf_gf24}).
@@ -259,15 +276,15 @@ x_0^{-1} &= b + c + d + x_{13} + x_{012} + x_0
 \end{aligned}
 \end{equation}
 
-
-\begin{figure}
-\label{fig:mul_inv_gf4_symbol}
+\begin{figure}[!h]
 \centering
 \includegraphics[scale=3]{inv-gf4-symbol}
 \caption{Symbol of multiplicative inversion in $GF(2^4)$}
+\label{fig:mul_inv_gf4_symbol}
 \end{figure}
 
-In all diagrams symbol \ref{fig:mul_inv_gf4_symbol} will be used for multiplicative inversion in $GF(2^4)$
+
+
 
 
 \paragraph{Multiplication by constant $\phi$ in $GF(2^2)$}\mbox{}\\
@@ -280,7 +297,7 @@ x^2 &= (x + a)                 &\mod  x^2 + x + a
 \end{aligned}
 \end{equation}
 
-As defined in (\ref{eq:comp_fields_and_polys}) \cite{vlsi} $\phi = \{10\}$. Product $k = \{k_1k_0\} \in GF(2^2)$ of $v = \{v_1v_0\} \in GF(2^2)$ by $\phi$ can be calculated as in \ref{eq:mul_phi}.
+As defined in (\ref{eq:comp_fields_and_polys}) $\phi = \{10\}$. Product $k = \{k_1k_0\} \in GF(2^2)$ of $v = \{v_1v_0\} \in GF(2^2)$ by $\phi$ can be calculated as in (\ref{eq:mul_phi}).
 
 \begin{equation}
 \label{eq:mul_phi}
@@ -294,15 +311,15 @@ k_0 &= v_1
 It follows that multiplication by $\phi$ can be implemented as a circuit in fig. \ref{fig:phi_mul}.
 
 \begin{figure}[!h]
-\label{fig:phi_mul}
 \centering
 \includegraphics[scale=3]{mul-phi-gf2}
-\caption{SubButes transformation decomposition}
+\caption{Multiplication by constant $\phi$ in $GF(2^2)$}
+\label{fig:phi_mul}
 \end{figure}
 
 
 \paragraph{Multiplication by constant $\lambda$ in $GF(2^4)$}\mbox{}\\
-As defined in (\ref{eq:comp_fields_and_polys}) \cite{vlsi} $\lambda = \{1100\} \in GF(2^4)$. Product $k = \{k_3k_2k_1k_0\} \in GF(2^4)$ of $v = \{v_3v_2v_1v_0\} \in GF(2^4)$ by $\lambda$ can be then calculated as in \ref{eq:mul_lambda}.
+As defined in (\ref{eq:comp_fields_and_polys}) $\lambda = \{1100\} \in GF(2^4)$. Product $k = \{k_3k_2k_1k_0\} \in GF(2^4)$ of $v = \{v_3v_2v_1v_0\} \in GF(2^4)$ by $\lambda$ can be then calculated as in \ref{eq:mul_lambda}.
 
 \begin{equation}
 \label{eq:mul_lambda}
@@ -317,7 +334,7 @@ As defined in (\ref{eq:comp_fields_and_polys}) \cite{vlsi} $\lambda = \{1100\} \
 \end{aligned}
 \end{equation}
 
-Multiplications of $\{v_1v_0\}$ and $\{v_3v_2\}$ by constant $\{11\}$ can be calculated similarly to multiplication by $\phi$ above (\ref{eq:mul_phi}).
+Multiplications of $\{v_1v_0\}$ and $\{v_3v_2\}$ by constant $\{11\}$ can be calculated similarly to multiplication by $\phi$ above (\ref{eq:mul_lambda_11}).
 
 \begin{equation}
 \label{eq:mul_lambda_11}
@@ -352,13 +369,13 @@ k_0 &= v_2
 \end{equation}
 
 
-It follows that multiplication by $\lambda$ can be implemented as a circuit in fig. \ref{fig:lambda_mul}.
+It follows that multiplication by $\lambda$ can be implemented as a circuit in figure \ref{fig:lambda_mul}.
 
 \begin{figure}[!h]
-\label{fig:lambda_mul}
 \centering
 \includegraphics[scale=3]{mul-lam-gf4}
 \caption{Constant multiplication by $\lambda$ circuit}
+\label{fig:lambda_mul}
 \end{figure}
 
 
@@ -401,10 +418,10 @@ k_0 &= p_1q_1 + p_0q_0
 It follows that multiplication in $GF(2^2)$ (\ref{eq:mul_gf2_final}) can be implemented as a circuit in fig. \ref{fig:mul_gf2}.
 
 \begin{figure}[!h]
-\label{fig:mul_gf2}
 \centering
 \includegraphics[scale=3]{mul-gf2}
 \caption{Multiplication in $GF(2^2)$ circuit}
+\label{fig:mul_gf2}
 \end{figure}
 
 
@@ -440,16 +457,16 @@ To further reduce complexity of multiplication in $GF(2^4)$ by reducing number o
 It follows that multiplication in $GF(2^4)$ can be implemented as a circuit in fig. \ref{fig:mul_gf4}.
 
 \begin{figure}[!h]
-\label{fig:mul_gf4}
 \centering
 \includegraphics[scale=3]{mul-gf4}
 \caption{Multiplication in $GF(2^4)$ circuit}
+\label{fig:mul_gf4}
 \end{figure}
 
 
 \paragraph{Squaring in $GF(2^4)$}\mbox{}\\
 Lets first establish how squaring in $GF(2^2)$ can be calculated. 
-Square $s = \{s_1s_0\} \in GF(2^2)$ of $d = \{d_1d_0\} \in GF(2^2)$ can be calculated as in \ref{eq:gq_gf2}. Keep in mind that squating in $GF(2)$ is an $and$ operation and thus for any $l \in GF(2)$ it is true that $l^2 = l$.
+Square $s = \{s_1s_0\} \in GF(2^2)$ of $d = \{d_1d_0\} \in GF(2^2)$ can be calculated as in (\ref{eq:sq_gf2}). Keep in mind that squaring in $GF(2)$ is an $and$ operation and thus for any $l \in GF(2)$ it is true that $l^2 = l$.
 
 \begin{equation}
 \label{eq:sq_gf2}
@@ -482,7 +499,7 @@ k^2 &= (\{v_3v_2\}x + \{v_1v_0\})(\{v_3v_2\}x + \{v_1v_0\})\\
 \end{aligned}
 \end{equation}
 
-Applying (\ref{eq:sq_gf2}) to (\ref{eq:sq_gf4}) yields final formula (\ref{eq:sq_gf4_final}), which can be implemented in hardware as a circuit \ref{fig:sq_sq4}.
+Applying (\ref{eq:sq_gf2}) to (\ref{eq:sq_gf4}) yields final formula (\ref{eq:sq_gf4_final}), which can be implemented in hardware as a circuit (\ref{fig:sq_gf4}).
 \begin{equation}
 \label{eq:sq_gf4_final}
 \begin{aligned}
@@ -504,8 +521,8 @@ k_0 &= v_3 + v_1 + v_0
 \end{equation}
 
 \begin{figure}[!h]
-\label{fig:mul_sq4}
 \centering
 \includegraphics[scale=3]{sq-gf4}
 \caption{Squaring in $GF(2^4)$ circuit}
+\label{fig:sq_gf4}
 \end{figure}

@@ -1,9 +1,10 @@
 \subsection{MixColumns transformation}
 
-MixColumns transformation is most efficient to be implemented directly in $GF(2^8)$. Unlike in SubBytes transformation, all attempts to decompose operations lead to increase of overall number of required logic gates. This in because \cite{vlsi}:
+MixColumns transformation is most efficient to be implemented directly in $GF(2^8)$. Unlike in SubBytes transformation, all attempts to decompose operations lead to increase of overall number of required logic gates. This is because \cite{vlsi}:
+
 \begin{itemize}[nolistsep]
 \item mapping values to and from composite fields requires additional logic
-\item constants used in MixColumns have less nonzero bits in $GF(2^8)$ ($\{02\}_{16}$, $\{03\}_{16}$) than in $GF(((2^2)^2)^2)$ ($\{5f\}_{16}$, $\{5e\}_{16}$), which results in more logic gates required to perform multiplication by them.
+\item constants used in MixColumns have less nonzero bits in $GF(2^8)$ ($\{02\}_{16}$, $\{03\}_{16}$) than in $GF((2^2)^4)$ ($\{5f\}_{16}$, $\{5e\}_{16}$), which results in more logic gates required to perform multiplication by them.
 \end{itemize}
 
 MixColumns transformation can be efficiently implmeneted by taking advantage of substructure sharing. Lets first notice that multiplying any $a \in GF(2^8)$ by $\{03\}_{16}$ can be substututed by multiplication by $\{02\}_{16}$ and one addition:
