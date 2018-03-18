@@ -125,43 +125,34 @@ package hsroll_aes_key_expansion_pipe is
 	function hsroll_ake_pipe_stage1 (
 		current_key          : std_logic_vector(127 downto 0);
 		next_key             : std_logic_vector(127 downto 0);
-		next_next_round_numer: Integer range 3 to 15) return hsroll_ake_pipe_1res;
+		rot_word             : std_logic) return hsroll_ake_pipe_1res;
 
 	function hsroll_ake_pipe_stage2 (
-    	state_in             : hsroll_ake_pipe_1res;
-    	next_next_round_numer: Integer range 3 to 15) return hsroll_ake_pipe_2res;
+		state_in : hsroll_ake_pipe_1res) return hsroll_ake_pipe_2res;
 
     function hsroll_ake_pipe_stage3 (
-    	state_in             : hsroll_ake_pipe_2res;
-    	next_next_round_numer: Integer range 3 to 15) return hsroll_ake_pipe_3res;
+    	state_in : hsroll_ake_pipe_2res) return hsroll_ake_pipe_3res;
 
 	function hsroll_ake_pipe_stage4 (
-    	state_in             : hsroll_ake_pipe_3res;
-    	next_next_round_numer: Integer range 3 to 15) return hsroll_ake_pipe_4res;
+		state_in : hsroll_ake_pipe_3res) return hsroll_ake_pipe_4res;
 
 	function hsroll_ake_pipe_stage5 (
-		state_in             : hsroll_ake_pipe_4res;    
-		next_next_round_numer: Integer range 3 to 15) return hsroll_ake_pipe_5res;
+		state_in : hsroll_ake_pipe_4res) return hsroll_ake_pipe_5res;
 
 	function hsroll_ake_pipe_stage6 (
-		state_in             : hsroll_ake_pipe_5res;    
-		next_next_round_numer: Integer range 3 to 15) return hsroll_ake_pipe_6res;
+		state_in : hsroll_ake_pipe_5res) return hsroll_ake_pipe_6res;
 
 	function hsroll_ake_pipe_stage7 (
-		state_in             : hsroll_ake_pipe_6res;    
-		next_next_round_numer: Integer range 3 to 15) return hsroll_ake_pipe_7res;
+		state_in : hsroll_ake_pipe_6res) return hsroll_ake_pipe_7res;
 
 	function hsroll_ake_pipe_stage8 (
-		state_in             : hsroll_ake_pipe_7res;    
-		next_next_round_numer: Integer range 3 to 15) return hsroll_ake_pipe_8res;
+		state_in : hsroll_ake_pipe_7res) return hsroll_ake_pipe_8res;
 
 	function hsroll_ake_pipe_stage9 (
-		state_in             : hsroll_ake_pipe_8res;    
-		next_next_round_numer: Integer range 3 to 15) return hsroll_ake_pipe_9res;
+		state_in : hsroll_ake_pipe_8res; 
+		rcon     : std_logic_vector) return hsroll_ake_pipe_9res;
 
-	function hsroll_ake_pipe_stage10 (
-		state_in             : hsroll_ake_pipe_9res;    
-		next_next_round_numer: Integer range 3 to 15) return hsroll_ake_pipe_result;
+	function hsroll_ake_pipe_stage10 (state_in : hsroll_ake_pipe_9res) return hsroll_ake_pipe_result;
 
 
 end hsroll_aes_key_expansion_pipe;
@@ -171,7 +162,7 @@ package body hsroll_aes_key_expansion_pipe is
 	function hsroll_ake_pipe_stage1 (
 		current_key          : std_logic_vector(127 downto 0);
 		next_key             : std_logic_vector(127 downto 0);
-		next_next_round_numer: Integer range 3 to 15
+		rot_word             : std_logic
 	) return hsroll_ake_pipe_1res is
 		variable w7    : std_logic_vector(31 downto 0);
 		variable w7_rot: std_logic_vector(31 downto 0);
@@ -189,7 +180,9 @@ package body hsroll_aes_key_expansion_pipe is
 		result.w3      := current_key(31 downto 0);
 		
 		w7 := next_key(31 downto 0);
-		if (next_next_round_numer mod 2 = 1) then
+
+		--if (next_next_round_numer mod 2 = 1) then
+		if (rot_word = '1') then
 			w7_rot(31 downto 8) := w7(23 downto 0);
 			w7_rot(7 downto 0) := w7(31 downto 24);
 		else 
@@ -204,8 +197,7 @@ package body hsroll_aes_key_expansion_pipe is
 
 
 	function hsroll_ake_pipe_stage2 (
-    	state_in             : hsroll_ake_pipe_1res;    
-		next_next_round_numer: Integer range 3 to 15
+    	state_in             : hsroll_ake_pipe_1res
 	) return hsroll_ake_pipe_2res is
 		variable w7    : std_logic_vector(31 downto 0);
 		variable w7_rot: std_logic_vector(31 downto 0);
@@ -235,8 +227,7 @@ package body hsroll_aes_key_expansion_pipe is
 
 
     function hsroll_ake_pipe_stage3 (
-    	state_in             : hsroll_ake_pipe_2res;    
-    	next_next_round_numer: Integer range 3 to 15
+    	state_in             : hsroll_ake_pipe_2res
     ) return hsroll_ake_pipe_3res is
     	variable c: std_logic_vector(3 downto 0);
 		variable result: hsroll_ake_pipe_3res;
@@ -261,8 +252,7 @@ package body hsroll_aes_key_expansion_pipe is
 
 
 	function hsroll_ake_pipe_stage4 (
-    	state_in             : hsroll_ake_pipe_3res;    
-    	next_next_round_numer: Integer range 3 to 15
+    	state_in             : hsroll_ake_pipe_3res
     ) return hsroll_ake_pipe_4res is
 		variable f: std_logic_vector(3 downto 0);
 		variable result: hsroll_ake_pipe_4res;
@@ -286,8 +276,7 @@ package body hsroll_aes_key_expansion_pipe is
 
 
 	function hsroll_ake_pipe_stage5 (
-		state_in             : hsroll_ake_pipe_4res;    
-		next_next_round_numer: Integer range 3 to 15
+		state_in             : hsroll_ake_pipe_4res
 	) return hsroll_ake_pipe_5res is
 		variable result: hsroll_ake_pipe_5res;
 	begin
@@ -309,8 +298,7 @@ package body hsroll_aes_key_expansion_pipe is
 
 
 	function hsroll_ake_pipe_stage6 (
-		state_in             : hsroll_ake_pipe_5res;    
-		next_next_round_numer: Integer range 3 to 15
+		state_in             : hsroll_ake_pipe_5res
 	) return hsroll_ake_pipe_6res is
 		variable result: hsroll_ake_pipe_6res;
 	begin
@@ -331,8 +319,7 @@ package body hsroll_aes_key_expansion_pipe is
 
 
 	function hsroll_ake_pipe_stage7 (
-		state_in             : hsroll_ake_pipe_6res;    
-		next_next_round_numer: Integer range 3 to 15
+		state_in             : hsroll_ake_pipe_6res
 	) return hsroll_ake_pipe_7res is
 		variable result: hsroll_ake_pipe_7res;
 	begin
@@ -352,12 +339,9 @@ package body hsroll_aes_key_expansion_pipe is
 	end function;
 
 	function hsroll_ake_pipe_stage8 (
-		state_in             : hsroll_ake_pipe_7res;    
-		next_next_round_numer: Integer range 3 to 15
+		state_in             : hsroll_ake_pipe_7res
 	) return hsroll_ake_pipe_8res is
 		variable bte   : std_logic_vector(7 downto 0);
-		variable w7_sub: std_logic_vector(31 downto 0);
-		variable w7_rcon: std_logic_vector(31 downto 0);
 		variable result: hsroll_ake_pipe_8res;
 	begin
 		result.next_key    := state_in.next_key;
@@ -378,8 +362,8 @@ package body hsroll_aes_key_expansion_pipe is
 	end function;
 
 	function hsroll_ake_pipe_stage9 (
-		state_in             : hsroll_ake_pipe_8res;    
-		next_next_round_numer: Integer range 3 to 15
+		state_in             : hsroll_ake_pipe_8res;
+		rcon                 : std_logic_vector
 	) return hsroll_ake_pipe_9res is
 		variable bte   : std_logic_vector(7 downto 0);
 		variable w7_sub: std_logic_vector(31 downto 0);
@@ -400,9 +384,10 @@ package body hsroll_aes_key_expansion_pipe is
 		end loop;
 
 		w7_rcon := w7_sub;
-		if (next_next_round_numer mod 2 = 1) then
-			w7_rcon(31 downto 24) := w7_rcon(31 downto 24) xor std_logic_vector(to_unsigned(2 ** (next_next_round_numer / 2 - 1), 8));
-		end if;
+		w7_rcon(31 downto 24) := w7_rcon(31 downto 24) xor rcon;
+		--if (next_next_round_numer mod 2 = 1) then
+			--w7_rcon(31 downto 24) := w7_rcon(31 downto 24) xor std_logic_vector(to_unsigned(2 ** (next_next_round_numer / 2 - 1), 8));
+		--end if;
 
 		w8  := state_in.w8_init  xor w7_rcon;
 		w9  := state_in.w9_init  xor w7_rcon;
@@ -418,8 +403,7 @@ package body hsroll_aes_key_expansion_pipe is
 	end function;
 
 	function hsroll_ake_pipe_stage10 (
-		state_in             : hsroll_ake_pipe_9res;    
-		next_next_round_numer: Integer range 3 to 15
+		state_in             : hsroll_ake_pipe_9res
 	) return hsroll_ake_pipe_result is
 		variable result: hsroll_ake_pipe_result;
 	begin
