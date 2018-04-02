@@ -1,0 +1,86 @@
+\section{Introduction}
+This Chapter lays out the main idea of the thesis and provides motivation, state of the art and goals of this research.
+
+This Chapter is structured as follows: in Section \ref{sec:motivation} the motivation of implementing AES encryption in hardware on FPGA platform is discussed, followed by presentation of the state of the art (Section \ref{sec:state-of-the-art}), statement of goals of this research (Section \ref{sec:goals}) and the layout of the thesis (Section \ref{sec:layout}).
+
+\subsection{Motivation}
+\label{sec:motivation}
+In the era of the Internet security of information is paramount. The volume of data that is collected and processed nowadays is huge, especially now that the popularity of Big Data solutions is increasing. Also, with the raise of adoption rate of IoT technology, number of devices producing sensitive information is increasing as well. This calls for development of cryptography solutions that can provide protection at various scale - from high throughput systems suitable for datacenters, capable of encrypting gigabytes of data per second, to small low-power chips adequate for IoT devices.
+
+To ensure that unauthorized parties do not access sensitive digital data encryption is used. For encrypting large amounts of data symmetric cryptography is usually used. One of the most frequently used algorithms is AES (Advanced Encryption Standard). One of the properties of AES (and symmetric cryptography in general) is that it can be efficiently implemented in hardware, which makes it a good candidate for a range of cryptography solutions.
+
+FPGA (Field Programmable Gate Array) is an integrated circuit designed to be configured by a customer or designer after manufacturing. This makes this technology perfect for prototyping and comparing different circuit designs. FPGA will be used in the research as a platform for evaluation and efficiency comparison of different hardware AES implementations.
+
+To the best knowledge of the Author of this thesis, there are no up-to-date publications that compare performance and efficiency of different approaches to implementing AES encryption on FPGA platform. The main motivation of this thesis is to provide such a comparison that would reflect current state of the art.
+
+Another factor that drives Author's motivation is his curiosity in optimizing performance of algorithms by implementing them in hardware, particularly using FPGA technology. This technology provides the possibility to design and inexpensively prototype highly specialized circuits, which can be aggressively optimized. This combined with the fact that FPGA chips can be quickly reprogrammed with a completely different circuit, in the opinion of the Author, makes for a very versatile and powerful technology. The Author would like to explore that technology.
+
+This thesis is a continuation of Author's research on hardware implementation of AES encryption algorithm on FPGA platform, which he started in his BSc thesis \cite{inzynierka}. Upon completion of his previous work Author saw a great potential of improving his solution by optimizing AES encryption module that he implemented. Continuing this research is yet another motivation for this thesis.
+
+\subsection{State of the art}
+\label{sec:state-of-the-art} 
+AES encryption is a well researched and widely used technology. AES specification was proposed by J. Daemen and V. Rijmen \cite{daemen1999aes}, and chosen by NIST to establish a standard \cite{aes-standard, elbirt2001fpga} in 2001. Since then numerous publications on this topic were made. Among those there are some addressing implementing this algorithm on FPGA platform, but performance figures presented in those publications were achieved on different FPGA chips and using versions of the algorithm with different key sizes (128b or 256b), which makes them incomparable. Moreover, since publishing those articles FPGA technology has also been greatly improved. As a result past publications contain research that is relevant in terms of FPGA AES circuit design, but all the figures they contain do not reflect current state of the art.
+
+\subsubsection{SubBytes implementation approaches}
+Different approaches to implementing AES SubBytes transformation have been subject to research and have been shown to have great impact on overall circuit resource consumption and performance. One of the possibilities is to use on-chip memory to create a look-up table of precomputed values. This technique was utilized by the Authors of \cite{hoang2012efficient}, who in their publication argue that \textit{this is a more efficient method than directly implementing the multiplicative inverse operation followed by affine transformation}. They state that this method avoids complexity of implementing this transformation in hardware and it reduces latency. 
+% The results presented in this publication were obtained using 128b key length, Altera APEX20KC FPGA chip and for encryption they are: 40960 bits of memory used, $1188Mb/sec$ throughput and 895LC FPGA resources consumed.
+
+Another approach to implementing SubBytes transformation is to not use precomputed look-up tables and to utilize combinatorial logic only to compute substitution bytes in runtime. Research has been made to optimize this approach and it has been shown that composite field arithmetic can be utilized to greatly reduce the design complexity of SubBytes transformation \cite{morioka2002optimized, rudra2001efficient, canright2005very, satoh2001compact, wong2018circuit}. V. Rijmen, one of the authors of Rijndael algorithm (AES standard) \cite{daemen1999aes}, was the first to point it out in a brief note \cite{rijmen2000efficient}. An example of implementing this technique can be found in \cite{vlsi}. In this research multiplicative inversion was performed in $GF(2^4)$ and AES rounds were split into 7 pipeline stages each. This approach results in circuits of higher complexity and resource usage, but uses no on-chip memory, which as Authors point out results in \textit{eliminating the unbreakable delay incurred by look-up tables in the conventional approaches} allowing for achieving higher throughput and further exploration of optimization techniques.
+
+% where it is shown that this approach deployed on Xilinx XCV1000e-8bg560 FPGA chip leads to performance of $21.56Gb/sec$, operating with $168.1MHz$ frequency and using 11022 slices (Xilinx FPGA resources).
+
+
+\subsubsection{Looped and loop unrolled circuits}
+Another aspect of hardware AES implementation is utilisation of loop unrolling. This topic is discussed in detail in \cite[Chapters 1.1, 2.1]{kilts2007advanced}, where the Author points out that unrolled loops provide better performance at the cost of higher consumption of FPGA resources. To achieve opposite properties (low area at the cost of lower throughput) designs can be \textit{rolled up} to introduce loops.
+
+Both approaches have been used in designs in scientific publications. They are compared for example in \cite{good2005aes} where Authors propose three circuit designs. One of them takes advantage of \textit{Fully Parallel Loop Unrolled Architecture} \cite[Section 2.1]{good2005aes}, which means that there are no loops in the circuit. Such approach makes it possible to input new data to the pipeline in every clock cycle. For this circuits Authors used memory-free approach to implementing SubBytes transformation and 7 pipeline stages for each round. Pipeline cuts were placed so that critical paths of each pipeline stage consisted of 3 levels of LUTs to balance the amount of FPGA LUT and routing resources.
+
+Two other architectures presented in the same publication \textit{Round Based Architecture Using 32-Bit Datapath} and \textit{Application Specific Processor Architecture Using 8-Bit Datapath} \cite[Sections 2.2, 2.3]{good2005aes} both take advantage of loops in circuits. They are based around an in-memory store for AES state and contain an elaborate control circuit that executes a program which orchestrates the encryption process. SubBytes and MixColumns transformations are combined and implemented as one \textit{T-box} look-up table. The most compact version of their algorithm uses 8bit datapaths.
+
+
+
+% Some of them use in-memory look-up tables to facilitate low complexity and resource requirements \cite{hoang2012efficient}, while others avoid them and implement entire algorithm as combinatorial logic to achieve maximum performance \cite{vlsi}. 
+
+
+
+
+% Many designs use iterative loop approach to computing AES rounds \cite{hoang2012efficient, good2005aes}, and others take advantage of fully unrolled pipelines \cite{good2005aes}. All of those research results present multiple trade-offs to consider while designing AES circuits  and result in a great variety of ways AES can be implemented in hardware.
+
+
+
+\subsubsection{Using ASIC technology}
+For improving AES throughput beyond what is possible on FPGA platform ASIC (Application-Specific Integrated Circuit) technology can be used \cite{kuon2007measuring, gaj2009fpga}. Because of the differences between FPGA and ASIC technologies, however, for maximum efficiency AES designs need to be tailored and optimized for each of those platforms differently \cite{pramstaller2004efficient, gaj2009fpga}.
+
+When designing AES circuits for FPGA or ASIC platforms there are multiple trade-offs to be considered. Those choices result in a great variety of ways AES can be implemented in hardware, but also can greatly impact performance and area consumption of final products. Authors of \cite{standaert2003efficient} provide an insightful summary of those trade-offs.
+
+
+% can be divided into those that use in-memory look up tables for parts of the algorithm, and those that do not. Former approaches require less FPGA LUT resources, but they do need on-chip memory. Such designs are limited in terms of maximum frequency they can achieve, because using memory introduces an unbreakable delay. This makes them unsuitable for applications where high throughput is required, but they might be a good choice for low-area designs.Solutions that do not use in-memory look-up tables do not suffer from such limitation, but they require more FPGA resources. They are more suitable for high throughput solutions.
+
+
+ % used in many areas and there already exist solutions that provide good performance. 
+
+
+% One of them are regular CPUs, which can be equipped with AES-NI instruction set dedicated for AES encryption. Such chips, however, are not always suitable due to high cost and high power usage.
+
+% Another type of devices capable of AES encryption are chips designed specifically for that purpose, which can be based on eg. ASIC or FPGA platform. A considerable ammount of research has already been dedicated to that topic. 
+
+
+\subsection{Goals}
+\label{sec:goals}
+The goal of this thesis is to perform evaluation and efficiency comparison of different hardware AES implementations and propose optimal solutions for different use cases of encryption. Two routes of optimization will be considered:
+\begin{description}
+\item[Maximum throughput] -- circuits optimized to provide maximum possible encryption speed, suitable for use is large scale systems which can utilize encryption speed of gigabytes of data per second (eg. datacenters).
+\item[Minimum size] -- designs which require small amount of logic elements and would be suitable for manufacturing low-cost, low-energy chips, suitable for use in IoT solutions.
+\end{description}
+
+\subsection{Thesis layout}
+\label{sec:layout}
+The thesis is structured as follows:
+\begin{description}
+\item[Chapter 1] describes the main idea of the thesis.
+\item[Chapter 2] contains information on AES encryption algorithm and discussion of implementation approaches.
+\item[Chapter 3] provides thorough discussion of proposed circuit designs.
+\item[Chapter 4] describes implementation details of proposed circuits, provides performance test results, analysis of compilation reports and conclusions important for optimization of subsequent architectures.
+\item[Chapter 5] showcases the circuit and methodology which were developed and used for performance testing of proposed encryption circuits.
+\item[Chapter 6] summarizes conducted research and provides conclusions.
+\end{description}

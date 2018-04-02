@@ -8,41 +8,13 @@
 \tableofcontents
 \newpage
 
-\section{Introduction}
-\subsection{Summary}
-TBD
-Brief description of goals of this thesis and results
-\subsection{AES encryption}
-What is AES, what is it used for, etc. no technical details yet. eg of \cite{saleae-fpga} \cite{netezza-fpga} \cite{nasa-fpga}
-\subsection{State of the art}
-Known approaches to AES encryption (eg. CPU). Known articles that tacked this issue(\cite{vlsi})
-\subsection{Motivation and goals}
-Goals of this thesis
 
-
+\include{sections/01-introduction}
 \include{sections/02-aes-algorithm}
-\include{sections/03-testing-methodology}
-\include{sections/04-throughput-optimized-architecture}
-% \include{sections/04-szczegoly-implementacyjne}
-% \include{sections/05-szczegoly-implementacyjne-aes}
-% \include{sections/06-szczegoly-implementacyjne-uart}
-% \include{sections/07-pomiary-wydajnosci-modulu-szyfrujacego}
-% \include{sections/08-mozliwosci-rozwoju}
-	
-
-
-\section{Balanced architecture}
-Pipelined, unrolled, using on chip memory, as few stages as possible while not reducing performance below limits of memory (315MHz)
-
-
-\section{Area optimized architecture}
-Reusing parts of circuit to calculate rounds in loop. Encrypting one block at a time.
-
-
-\section{Ending}
-To be determined
-
-
+\include{sections/03-system-project}
+\include{sections/04-system-implementation}
+\include{sections/05-testing-methodology}
+\include{sections/06-summary}
 
 
 \listoffigures
