@@ -12,6 +12,7 @@ entity error_detector is
 		main_clk       : in  std_logic;
 		started        : in  std_logic;
 		
+		detect         : in  std_logic := '1';
 		data           : in  std_logic_vector(ROM_WIDTH - 1 downto 0);
 		expected       : in  std_logic_vector(ROM_WIDTH - 1 downto 0);
 		
@@ -22,6 +23,7 @@ architecture error_detector_impl of error_detector is
 	signal xored       : std_logic_vector(ROM_WIDTH - 1 downto 0) := (others => '0');
 	signal data_reg    : std_logic_vector(ROM_WIDTH - 1 downto 0) := (others => '0');
 	signal expected_reg: std_logic_vector(ROM_WIDTH - 1 downto 0) := (others => '0');
+	signal detect_reg  : std_logic                                := '1';
 begin
 
 	error_detected <= or_reduce(xored);
@@ -30,6 +32,7 @@ begin
 		if (rising_edge(main_clk)) then
 			data_reg <= data;
 			expected_reg <= expected;
+			detect_reg <= detect;
 		end if;
 	end process;
 
@@ -38,8 +41,8 @@ begin
 			if (started = '0') then
 				xored(i) <= '0';
 			elsif (rising_edge(main_clk)) then
-				if (data_reg(i) xor expected_reg(i)) then 
-					xored(i) <= '1';
+				if ((data_reg(i) xor expected_reg(i))) then 
+					xored(i) <= detect_reg;
 				end if;
 			end if;
 		end process;

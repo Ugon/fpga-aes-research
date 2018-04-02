@@ -8,9 +8,9 @@ use work.aes_sub_bytes.all;
 use work.aes_utils.all;
 
 
-entity high_speed_top is
+entity async_top is
 generic (
-	NUMBER_OF_CYCLES: Integer := 14 * 11 + 10;
+	NUMBER_OF_CYCLES: Integer := 1;
 	MEM_FOLDER:       String  := "enc2"
 );
 port (
@@ -43,7 +43,7 @@ port (
 	DRAM_CS_N:                    out   std_logic;
 	DRAM_DQ:                      inout std_logic_vector(15 downto 0);
 	DRAM_LDQM:                    out   std_logic;
-	DRAM_RAS_N:                   out   std_logic;
+	DRAM_RAS_N:                   out   std_logic; 
 	DRAM_UDQM:                    out   std_logic;
 	DRAM_WE_N:                    out   std_logic;
 
@@ -155,9 +155,9 @@ port (
 	VGA_R:                        out   std_logic_vector(7 downto 0);
 	VGA_SYNC_N:                   out   std_logic;
 	VGA_VS:                       out   std_logic);
-end entity high_speed_top;
+end entity async_top;
 
-architecture rtl of high_speed_top is
+architecture rtl of async_top is
 
 	component pll is
 		port (
@@ -197,6 +197,18 @@ begin
 			refclk   => CLOCK_50,
 			rst      => '0',
 			outclk_0 => main_clk);
+
+	--process (main_clk, CLOCK_50) 
+		--variable counter: integer range 0 to 2500;
+	--begin
+		--if(rising_edge(CLOCK_50)) then
+			--counter := counter + 1;
+			--if (counter = 5) then --5MHz
+				--main_clk <= not main_clk;
+				--counter := 0;
+			--end if;
+		--end if;
+	--end process;
 
 	memory_arrangement_inst0: entity work.memory_arrangement 
 		generic map (
@@ -239,7 +251,6 @@ begin
     		main_clk       => main_clk,
 			started        => started,
 			data           => rom_data_calculated,
-			--data           => rom_data_in or rom_data_key_high or rom_data_key_low,
 			--data           => not reverse_bit_order(rom_data_in),
 			--data           => rom_data_late,
 			--data           => sub_bytes_lookup(rom_data_in),
@@ -248,7 +259,7 @@ begin
 			expected       => rom_data_out,
 			error_detected => LEDR(9));
 
-	aes256enc_inst0: entity work.aes256enc 
+	aes256enc_inst0: entity work.async_aes256enc 
     	port map (
 			main_clk => main_clk,
 			key => rom_data_key,

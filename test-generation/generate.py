@@ -90,8 +90,11 @@ for i in xrange(NUMBER):
 			
 			# state = string_to_state("00112233445566778899aabbccddeeff")
 			# key_high = string_to_key("000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f")[0:16]
-			# key_low = string_to_key("000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f")[16:32]
+			# key_low =  string_to_key("000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f")[16:32]
 
+			# state = string_to_state("3412de9229d267e3281b2061870cc765")
+			# key_high = string_to_key("0a7231c16d3d70e98212daf874a814d438e63ca52a0bdf7246d74726448d9e66")[0:16]
+			# key_low =  string_to_key("0a7231c16d3d70e98212daf874a814d438e63ca52a0bdf7246d74726448d9e66")[16:32]
 			
 			f_high.write('{0:02X}: '.format(j))
 			f_high.write(key_as_string(key_high))
@@ -111,54 +114,84 @@ for i in xrange(NUMBER):
 			
 			expandedKey = expandKey(key_high + key_low)
 			round_key = flip(createRoundKey(expandedKey, 0))
+			print(as_string(round_key))
 			addRoundKey(state, round_key)
 
 			round_key = flip(createRoundKey(expandedKey, 1))
 			aesRound(state, round_key)
+			print(as_string(round_key))
+
 
 			round_key = flip(createRoundKey(expandedKey, 2))
 			aesRound(state, round_key)
+			print(as_string(round_key))
 
+			
 			round_key = flip(createRoundKey(expandedKey, 3))
 			aesRound(state, round_key)
+			print(as_string(round_key))
+
 
 			round_key = flip(createRoundKey(expandedKey, 4))
 			aesRound(state, round_key)
+			print(as_string(round_key))
+
 
 			round_key = flip(createRoundKey(expandedKey, 5))
 			aesRound(state, round_key)
+			print(as_string(round_key))
+
 
 			round_key = flip(createRoundKey(expandedKey, 6))
 			aesRound(state, round_key)
+			print(as_string(round_key))
+
 
 			round_key = flip(createRoundKey(expandedKey, 7))
 			aesRound(state, round_key)
+			print(as_string(round_key))
+
 
 			round_key = flip(createRoundKey(expandedKey, 8))
 			aesRound(state, round_key)
+			print(as_string(round_key))
+
 
 			round_key = flip(createRoundKey(expandedKey, 9))
 			aesRound(state, round_key)
+			print(as_string(round_key))
+
 
 			round_key = flip(createRoundKey(expandedKey, 10))
 			aesRound(state, round_key)
+			print(as_string(round_key))
+
 
 			round_key = flip(createRoundKey(expandedKey, 11))
 			aesRound(state, round_key)
+			print(as_string(round_key))
+
 
 			round_key = flip(createRoundKey(expandedKey, 12))
 			aesRound(state, round_key)
+			print(as_string(round_key))
+
 
 			round_key = flip(createRoundKey(expandedKey, 13))
 			aesRound(state, round_key)
+			print(as_string(round_key))
+
 
 			round_key = flip(createRoundKey(expandedKey, 14))
 			subBytes(state)
 			shiftRows(state)
 			addRoundKey(state, round_key)
+			print(as_string(round_key))
+
 
 			f_out.write('{0:02X}: '.format(j))
 			f_out.write(as_string(state))
+			print("XXXXXXXXXXXXXXXXXX:  " + as_string(state))
 			f_out.write(';\n')
 
 		f_high.write(postamble)

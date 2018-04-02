@@ -8,9 +8,13 @@ use work.aes_sub_bytes.all;
 use work.aes_utils.all;
 
 
-entity high_speed_top is
+entity hsroll_top is
 generic (
-	NUMBER_OF_CYCLES: Integer := 14 * 11 + 10;
+	--NUMBER_OF_CYCLES: Integer := 14 * 11 + 10;
+	--NUMBER_OF_CYCLES: Integer := 13 * 11;
+	--NUMBER_OF_CYCLES: Integer := 13 * 11 + 10;
+	NUMBER_OF_CYCLES: Integer := 14 * 11;
+	--NUMBER_OF_CYCLES: Integer := 11;
 	MEM_FOLDER:       String  := "enc2"
 );
 port (
@@ -155,9 +159,9 @@ port (
 	VGA_R:                        out   std_logic_vector(7 downto 0);
 	VGA_SYNC_N:                   out   std_logic;
 	VGA_VS:                       out   std_logic);
-end entity high_speed_top;
+end entity hsroll_top;
 
-architecture rtl of high_speed_top is
+architecture rtl of hsroll_top is
 
 	component pll is
 		port (
@@ -177,6 +181,7 @@ architecture rtl of high_speed_top is
     signal rom_data_key          : std_logic_vector(255 downto 0);
 
 	signal started               : std_logic := '0';
+	signal exchange              : std_logic := '0';
 		
 	signal transformation_input  : std_logic_vector(127 downto 0);
 	signal transformation_output : std_logic_vector(127 downto 0);
@@ -239,6 +244,7 @@ begin
     		main_clk       => main_clk,
 			started        => started,
 			data           => rom_data_calculated,
+			detect         => exchange,
 			--data           => rom_data_in or rom_data_key_high or rom_data_key_low,
 			--data           => not reverse_bit_order(rom_data_in),
 			--data           => rom_data_late,
@@ -248,12 +254,13 @@ begin
 			expected       => rom_data_out,
 			error_detected => LEDR(9));
 
-	aes256enc_inst0: entity work.aes256enc 
+	aes256enc_inst0: entity work.hsroll_aes256enc 
     	port map (
-			main_clk => main_clk,
-			key => rom_data_key,
-			plaintext => rom_data_in,
-			cyphertext => rom_data_calculated);
+			main_clk   => main_clk,
+			key        => rom_data_key,
+			plaintext  => rom_data_in,
+			cyphertext => rom_data_calculated,
+			exchange   => exchange);
 
 	process(main_clk, KEY(0)) begin
 		if (rising_edge(main_clk)) then
