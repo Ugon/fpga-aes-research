@@ -1,6 +1,6 @@
 \section{AES algorithm}
 \label{sec:aes-algorithm}
-Advanced Encryption Standard (AES) is a specification for the encryption of electronic data establiched by NIST in 2001 as FIPS-197 standard \cite{aes-standard}. It is based on Rijandae's algorithm and comes in three variations of different key lengths (128b, 192b, 256b). This thesis will focus on the most secure version -- 256b.
+Advanced Encryption Standard (AES) is a specification for the encryption of electronic data establiched by NIST in 2001 as FIPS-197 standard \cite{aes-standard}. It is based on Rijndael's algorithm and comes in three variations of different key lengths (128b, 192b, 256b). This thesis will focus on the most secure version -- 256b.
 
 The algorithm operates on 128b blocks of data, also known as AES state. They are interpreted as a 4x4 matrix of bytes.
 
@@ -20,7 +20,7 @@ AES algorithm encrypts blocks of data by applying 4 transformations to the state
 
 \begin{description}
 \item[AddRoundKey] -- AES state is xored with Round Key, which is based on supplied by user Encryption Key and calculated using Key Expansion routine \cite[Fig. 10, 11]{aes-standard}.
-\item[SubBytes] -- each byte in AES state is substituted with corresponding byte from \textit{Rijandail's S-box} \cite[Fig. 7]{aes-standard}.
+\item[SubBytes] -- each byte in AES state is substituted with corresponding byte from \textit{Rijndael's S-box} \cite[Fig. 7]{aes-standard}.
 \item[ShiftRows] -- each row of AES state is shifted left by 1, 2 or 3 positions \cite[Fig. 8]{aes-standard}.
 \item[MixColumns] -- each column is interpreted as a polynomial and multiplied by a polynomial defined in AES standard \cite[Fig. 9]{aes-standard}.
 \end{description}
@@ -30,10 +30,10 @@ Transformations are organised into rounds. AES encryption for 256b keys consists
 \begin{description}
 \item[Round 1] -- AddRoundKey transformation is applied to the state.
 \item[Rounds 2 to 14] -- Each round consists of 4 transformations: SubBytes, ShiftRows, MixColumns, AddRoundKey.
-\item[round 15] -- Consists of 3 transformations: SubBytes, ShiftRows, AddRoundKey.
+\item[Round 15] -- Consists of 3 transformations: SubBytes, ShiftRows, AddRoundKey.
 \end{description}
 
-This Chapter discusses details of AES encryption relevant to implementation of circuits proposed in Chapter \ref{sec:system-project}.Detailed description of AES encryption, transformations and theoretical basis of the algorithm can be found in AES standard \cite{aes-standard}.
+This Chapter discusses details of AES encryption relevant to implementation of circuits proposed in Chapter \ref{sec:system-project}. Detailed description of AES encryption, transformations and theoretical background of the algorithm can be found in AES standard \cite{aes-standard}.
 
 \input{sections/transformations/SubBytes}
 \input{sections/transformations/MixColumns}
