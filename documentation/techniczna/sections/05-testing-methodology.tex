@@ -1,5 +1,7 @@
 \section{Testing methodology}
 \label{sec:testing-methodology}
+As part of this research all proposed design circuits were thoroughly tested for maximum throughput, logic utilisation and correctness. This chapter describes testing methodology for those criteria.
+
 
 \subsection{Throughput}
 To determine throughput of design components a testing circuit was developed and implemented in FPGA. This approach was the only feasible way to perform this measurement as FPGA chip on the Altera DE1 SoC Developement Board is not connected to any interfaces that are fast enough to keep up with the speed of implemented encryption module. This is only a limitation of the development board that was used and not FPGA technology itself. It could be overcome by choosing or designing a circuit board that provides sufficiently fast interfaces, for example PCI Express 3.0 16x.
@@ -30,7 +32,7 @@ This approach uses two alternating banks of ROM (fig. \ref{fig:memory-arrangemen
 Using more banks of ROM was tesed, but adding more resulted in decreased performance due to lack of enough routing resources in FPGA. This testing design was capable of operating at highest frequency and it was chosen to be used for making all frequency measurements.
 
 \subsubsection{Queue based memory solution}
-Second testing design (fig. \ref{fig:memory-queue}) that was considered is based on a looped queue of D flip-flops and uses only one bank of ROM - 128 bits wide, 32 blocks deep. Every 33 clock cycles a new block of data is fed to queue at position 0. This results in filling entire queue with test data after $32 * 32 + 1$ clock cycles. After this time stream of testing data is derived from output of one flip-flop in the queue. This approach results in ROM having to operate at only $\frac{1}{33}$ of main clock frequency. This design for delivering data blocks to test module allows for operation at 520MHz. 
+Second testing design (fig. \ref{fig:memory-queue}) that was considered is based on a looped queue of D flip-flops and uses only one bank of ROM - 128 bits wide, 32 blocks deep. Every 33 clock cycles a new block of data is fed to queue at position 0. This results in filling entire queue with test data after $31 * 33 + 1$ clock cycles. After this time stream of testing data is derived from output of one flip-flop in the queue. This approach results in ROM having to operate at only $\frac{1}{33}$ of main clock frequency. This design for delivering data blocks to test module allows for operation at 520MHz. 
 
 \begin{figure}[!h]
 \centering
