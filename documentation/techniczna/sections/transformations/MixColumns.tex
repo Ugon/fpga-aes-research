@@ -44,12 +44,11 @@ B_3' &= \{03\}_{16}B_0 + B_1 + B_2 + \{02\}_{16}B_3 \\
 where $B_i$ are AES bytes, $[B_0, B_1, B_2, B_3]$ is input column and $[B_0', B_1', B_2', B_3']$ is transformed column. MixColumns transformation for a single column can be therefore implemented as shown in figure \ref{fig:mix_columns}. MixColumns transformation on entire AES state consists of 4 such circuits.
 
 \begin{figure}[!h]
-\label{fig:mix_columns}
-
 \centering
 \includegraphics[scale=2.5]{mix-columns}
 
 \caption{MixColumns transformation circuit}
+\label{fig:mix_columns}
 \end{figure}
 
 Multiplication by $\{02\}_{16}$ can be calculated according to formula (\ref{eq:mul2}) \cite{vlsi}: 

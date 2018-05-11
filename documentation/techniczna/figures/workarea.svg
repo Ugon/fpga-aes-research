@@ -20,6 +20,48 @@
   <defs
      id="defs2">
     <marker
+       inkscape:stockid="DotS"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="marker8011"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path8009"
+         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.2) translate(7.4, 1)" />
+    </marker>
+    <marker
+       inkscape:stockid="DotS"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="marker8007"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path7808"
+         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.2) translate(7.4, 1)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="marker8004"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path7741"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.8) translate(12.5,0)" />
+    </marker>
+    <marker
        inkscape:stockid="TriangleOutS"
        orient="auto"
        refY="0.0"
@@ -5928,9 +5970,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="13.408329"
-     inkscape:cy="-1329.8112"
+     inkscape:zoom="4.0000001"
+     inkscape:cx="74.402909"
+     inkscape:cy="-1056.0987"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -5957,7 +5999,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -14484,7 +14526,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 124.08958,65.489585 -2.11666,-1e-6"
+       d="m 125.4125,65.489584 -3.43958,0"
        id="path18466-2-2-5-5-8-8"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14545,7 +14587,7 @@
    id="tspan5113">a</tspan></tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 129.91041,65.489581 h -2.64583"
+       d="M 131.23333,65.489581 H 128.5875"
        id="path18466-2-2-5-5-8-85"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14553,7 +14595,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 128.05833,66.018748 1.05833,-1.05833"
+       d="m 129.38125,66.018748 1.05833,-1.05833"
        id="path12202-6-3-7-7-8-4-74-6-6-5-0-06"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14562,7 +14604,7 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="130.74657"
+       x="132.09554"
        y="63.916016"
        id="text12206-6-2-1-76-2-8-7-8-1-2-4-2-4"
        transform="scale(0.98069291,1.0196872)"
@@ -14571,17 +14613,17 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-5-4-9-7-1-6"
-         x="130.74657"
+         x="132.09554"
          y="63.916016"
          style="line-height:0;stroke-width:0.01738254">8</tspan><tspan
          sodipodi:role="line"
-         x="130.74657"
+         x="132.09554"
          y="64.785141"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-8-03-1-6-0-25" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 124.08958,63.902081 v 3.175004 h 3.175 v -3.175004 z"
+       d="m 125.4125,63.902081 v 3.175004 h 3.175 v -3.175004 z"
        id="path1411-6-3-5-6-1-9-3-7-8-24"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14590,7 +14632,7 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:2.04678345px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.05116957"
-       x="124.97853"
+       x="126.30145"
        y="66.137894"
        id="text1471-5-7-8-2-7-6-4-5-0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14598,14 +14640,14 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan1469-5-4-7-1-6-1-7-06-6"
-         x="124.97853"
+         x="126.30145"
          y="66.137894"
          style="stroke-width:0.05116957">f<tspan
    style="font-size:64.99999762%;baseline-shift:sub"
    id="tspan5115">b</tspan></tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 108.21459,76.072917 h -2.64584"
+       d="m 108.21459,80.041667 h -2.64584"
        id="path18466-50-6-3-1-62-2"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14613,7 +14655,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 114.03542,76.072917 h -2.64583"
+       d="m 114.03542,80.041667 h -2.64583"
        id="path18466-2-2-5-5-5-9"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14621,7 +14663,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 112.18333,76.602084 1.05834,-1.05833"
+       d="m 112.18333,80.570834 1.05834,-1.05833"
        id="path12202-6-3-7-7-8-4-74-6-6-5-8-9"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14631,7 +14673,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="114.55904"
-       y="74.295013"
+       y="78.187141"
        id="text12206-6-2-1-76-2-8-7-8-1-2-4-6-0"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14640,16 +14682,16 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-5-4-9-7-2-8"
          x="114.55904"
-         y="74.295013"
+         y="78.187141"
          style="line-height:0;stroke-width:0.01738254">8</tspan><tspan
          sodipodi:role="line"
          x="114.55904"
-         y="75.164139"
+         y="79.056267"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-8-03-1-6-8-1" /></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 106.3625,76.602084 1.05834,-1.05833"
+       d="m 106.3625,80.570834 1.05834,-1.05833"
        id="path12202-6-3-7-7-8-4-26-1-2-5-4-3"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14659,7 +14701,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="108.62362"
-       y="74.295013"
+       y="78.187141"
        id="text12206-6-2-1-76-2-8-7-0-2-7-6-7-1"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14668,16 +14710,16 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-6-7-0-9-2-1"
          x="108.62362"
-         y="74.295013"
+         y="78.187141"
          style="line-height:0;stroke-width:0.01738254">8</tspan><tspan
          sodipodi:role="line"
          x="108.62362"
-         y="75.164139"
+         y="79.056267"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-64-7-9-3-4-0" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 108.21458,74.485417 v 3.175004 h 3.175 v -3.175004 z"
+       d="m 108.21458,78.454167 v 3.175004 h 3.175 v -3.175004 z"
        id="path1411-6-3-5-6-1-9-3-7-0-3"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14687,7 +14729,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.17368853px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0293422"
        x="108.47733"
-       y="76.499374"
+       y="80.468124"
        id="text1471-5-7-8-2-7-6-4-6-4"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
        inkscape:export-xdpi="2400"
@@ -14695,13 +14737,13 @@
          sodipodi:role="line"
          id="tspan1469-5-4-7-1-6-1-7-2-03"
          x="108.47733"
-         y="76.499374"
+         y="80.468124"
          style="stroke-width:0.0293422">A∘f<tspan
    style="font-size:0.76289749px;baseline-shift:super;stroke-width:0.0293422"
    id="tspan122350-9">-1</tspan></tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 118.79793,76.072917 h -2.64584"
+       d="m 118.79793,80.041667 h -2.64584"
        id="path18466-50-6-3-1-62-1"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14709,7 +14751,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 124.08958,76.072917 -2.11666,0"
+       d="m 124.08958,80.041667 h -2.11666"
        id="path18466-2-2-5-5-5-96"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14718,7 +14760,7 @@
        sodipodi:nodetypes="cc" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 116.94584,76.602084 1.05834,-1.05833"
+       d="m 116.94584,80.570834 1.05834,-1.05833"
        id="path12202-6-3-7-7-8-4-26-1-2-5-4-6"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14728,7 +14770,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="119.41531"
-       y="74.295013"
+       y="78.187141"
        id="text12206-6-2-1-76-2-8-7-0-2-7-6-7-4"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14737,16 +14779,16 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-6-7-0-9-2-0"
          x="119.41531"
-         y="74.295013"
+         y="78.187141"
          style="line-height:0;stroke-width:0.01738254">8</tspan><tspan
          sodipodi:role="line"
          x="119.41531"
-         y="75.164139"
+         y="79.056267"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-64-7-9-3-4-04" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 118.79792,74.485417 v 3.175004 h 3.175 v -3.175004 z"
+       d="m 118.79792,78.454167 v 3.175004 h 3.175 v -3.175004 z"
        id="path1411-6-3-5-6-1-9-3-7-0-6"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14756,7 +14798,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.17368853px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0293422"
        x="119.06067"
-       y="75.90406"
+       y="79.87281"
        id="text1471-5-7-8-2-7-6-4-6-2"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
        inkscape:export-xdpi="2400"
@@ -14764,13 +14806,13 @@
          sodipodi:role="line"
          id="tspan1469-5-4-7-1-6-1-7-2-6"
          x="119.06067"
-         y="75.90406"
+         y="79.87281"
          style="stroke-width:0.0293422">A∘f<tspan
    style="font-size:0.76289749px;baseline-shift:super;stroke-width:0.0293422"
    id="tspan122350-75">-1</tspan></tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 129.91042,76.072913 h -2.64584"
+       d="m 129.91042,80.041663 h -2.64584"
        id="path18466-2-2-5-5-5-98"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14778,7 +14820,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 128.05833,76.60208 1.05834,-1.05833"
+       d="m 128.05833,80.57083 1.05834,-1.05833"
        id="path12202-6-3-7-7-8-4-74-6-6-5-8-7"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14788,7 +14830,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="130.74657"
-       y="74.295013"
+       y="78.187141"
        id="text12206-6-2-1-76-2-8-7-8-1-2-4-6-28"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14797,16 +14839,16 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-5-4-9-7-2-2"
          x="130.74657"
-         y="74.295013"
+         y="78.187141"
          style="line-height:0;stroke-width:0.01738254">8</tspan><tspan
          sodipodi:role="line"
          x="130.74657"
-         y="75.164139"
+         y="79.056267"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-8-03-1-6-8-9" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 124.08958,74.485413 v 3.175004 h 3.175 v -3.175004 z"
+       d="m 124.08958,78.454163 v 3.175004 h 3.175 v -3.175004 z"
        id="path1411-6-3-5-6-1-9-3-7-0-61"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14816,7 +14858,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.17368853px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0293422"
        x="124.35233"
-       y="75.894951"
+       y="79.863701"
        id="text1471-5-7-8-2-7-6-4-6-3"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
        inkscape:export-xdpi="2400"
@@ -14824,7 +14866,7 @@
          sodipodi:role="line"
          id="tspan1469-5-4-7-1-6-1-7-2-2"
          x="124.35233"
-         y="75.894951"
+         y="79.863701"
          style="stroke-width:0.0293422">A∘f<tspan
    style="font-size:0.76289749px;baseline-shift:super;stroke-width:0.0293422"
    id="tspan122350-1">-1</tspan></tspan></text>
@@ -14832,31 +14874,31 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.53826737px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.03845668"
        x="119.89111"
-       y="77.310593"
+       y="81.279343"
        id="text5237"
        inkscape:export-xdpi="2400"
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan5235"
          x="119.89111"
-         y="77.310593"
+         y="81.279343"
          style="stroke-width:0.03845668">a</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.53826737px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.03845668"
        x="125.19402"
-       y="77.310593"
+       y="81.279343"
        id="text5237-9"
        inkscape:export-xdpi="2400"
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan5235-6"
          x="125.19402"
-         y="77.310593"
+         y="81.279343"
          style="stroke-width:0.03845668">b</tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 108.21459,80.041667 h -2.64584"
+       d="m 108.21459,87.979164 h -2.64584"
        id="path18466-59-1"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14864,7 +14906,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 108.21459,82.6875 h -2.64584"
+       d="m 108.21459,90.624997 h -2.64584"
        id="path18466-63-0"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14872,7 +14914,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 114.03542,81.364584 h -2.64583"
+       d="m 114.03542,89.302081 h -2.64583"
        id="path18466-90-4"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14880,7 +14922,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 106.3625,80.570834 1.05834,-1.05833"
+       d="m 106.3625,88.508331 1.05834,-1.05833"
        id="path12202-6-3-7-7-8-4-2-2"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14890,7 +14932,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="108.62363"
-       y="78.187126"
+       y="85.971375"
        id="text12206-6-2-1-76-2-8-7-12-2"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14899,16 +14941,16 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-07-2"
          x="108.62363"
-         y="78.187126"
+         y="85.971375"
          style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
          sodipodi:role="line"
          x="108.62363"
-         y="79.056252"
+         y="86.8405"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-3-0" /></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 106.3625,83.216667 1.05834,-1.058331"
+       d="m 106.3625,91.154164 1.05834,-1.058331"
        id="path12202-6-3-7-7-8-4-1-5"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14918,7 +14960,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="108.62363"
-       y="80.781876"
+       y="88.566124"
        id="text12206-6-2-1-76-2-8-7-19-5"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14927,16 +14969,16 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-05-2"
          x="108.62363"
-         y="80.781876"
+         y="88.566124"
          style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
          sodipodi:role="line"
          x="108.62363"
-         y="81.651001"
+         y="89.435249"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-67-9" /></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 112.18334,81.893749 1.05833,-1.058329"
+       d="m 112.18334,89.831246 1.05833,-1.058329"
        id="path12202-6-3-7-7-8-4-7-0"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14946,7 +14988,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="114.55906"
-       y="79.484505"
+       y="87.268753"
        id="text12206-6-2-1-76-2-8-7-4-2"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14955,16 +14997,16 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-06-83"
          x="114.55906"
-         y="79.484505"
+         y="87.268753"
          style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
          sodipodi:role="line"
          x="114.55906"
-         y="80.35363"
+         y="88.137878"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-4-8" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 108.21458,79.777084 v 3.174997 h 3.175 v -3.174997 z"
+       d="m 108.21458,87.714581 v 3.174997 h 3.175 v -3.174997 z"
        id="path1411-3-7-3-6-5-04"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14972,7 +15014,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 109.14841,80.150613 1.30735,1.307352"
+       d="m 109.14841,88.08811 1.30735,1.307352"
        id="path1413-6-6-0-0-1-0"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14980,7 +15022,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 110.45576,80.150613 -1.30735,1.307352"
+       d="m 110.45576,88.08811 -1.30735,1.307352"
        id="path1415-7-5-7-4-7-9"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -14990,7 +15032,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.80959123px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02023978"
        x="108.52617"
-       y="82.546867"
+       y="90.484367"
        id="text1419-5-6-8-1-4-1"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
        inkscape:export-xdpi="2400"
@@ -14998,13 +15040,13 @@
          sodipodi:role="line"
          id="tspan1417-3-9-6-0-1-9"
          x="108.52617"
-         y="82.546867"
+         y="90.484367"
          style="line-height:1.25;stroke-width:0.02023978">GF(2<tspan
    style="font-size:0.52623427px;baseline-shift:super;stroke-width:0.02023978"
    id="tspan24934-7-6">4</tspan>)</tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 118.79792,80.04167 h -2.64583"
+       d="m 118.79792,87.979167 h -2.64583"
        id="path18466-59-2"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15012,7 +15054,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 118.79792,82.687503 h -2.64583"
+       d="m 118.79792,90.625 h -2.64583"
        id="path18466-63-5"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15020,7 +15062,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 124.08958,81.364584 -2.11666,0"
+       d="m 124.08958,89.302081 h -2.11666"
        id="path18466-90-44"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15029,7 +15071,7 @@
        sodipodi:nodetypes="cc" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 116.94584,80.570837 1.05834,-1.05833"
+       d="m 116.94584,88.508334 1.05834,-1.05833"
        id="path12202-6-3-7-7-8-4-2-9"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15039,7 +15081,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="119.41532"
-       y="78.187134"
+       y="85.971382"
        id="text12206-6-2-1-76-2-8-7-12-9"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15048,16 +15090,16 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-07-3"
          x="119.41532"
-         y="78.187134"
+         y="85.971382"
          style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
          sodipodi:role="line"
          x="119.41532"
-         y="79.056259"
+         y="86.840508"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-3-6" /></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 116.94584,83.21667 1.05834,-1.058331"
+       d="m 116.94584,91.154167 1.05834,-1.058331"
        id="path12202-6-3-7-7-8-4-1-0"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15067,7 +15109,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="119.41532"
-       y="80.781883"
+       y="88.566132"
        id="text12206-6-2-1-76-2-8-7-19-50"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15076,16 +15118,16 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-05-29"
          x="119.41532"
-         y="80.781883"
+         y="88.566132"
          style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
          sodipodi:role="line"
          x="119.41532"
-         y="81.651009"
+         y="89.435257"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-67-43" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 118.79792,79.777087 v 3.174997 h 3.175 v -3.174997 z"
+       d="m 118.79792,87.714584 v 3.174997 h 3.175 v -3.174997 z"
        id="path1411-3-7-3-6-5-3"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15093,7 +15135,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 119.07806,80.057231 1.30736,1.307352"
+       d="m 119.07806,87.994728 1.30736,1.307352"
        id="path1413-6-6-0-0-1-1"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15101,7 +15143,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 120.38542,80.057231 -1.30736,1.307352"
+       d="m 120.38542,87.994728 -1.30736,1.307352"
        id="path1415-7-5-7-4-7-4"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15111,7 +15153,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.80959123px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02023978"
        x="119.1095"
-       y="82.546875"
+       y="90.484375"
        id="text1419-5-6-8-1-4-6"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
        inkscape:export-xdpi="2400"
@@ -15119,13 +15161,13 @@
          sodipodi:role="line"
          id="tspan1417-3-9-6-0-1-94"
          x="119.1095"
-         y="82.546875"
+         y="90.484375"
          style="line-height:1.25;stroke-width:0.02023978">GF(2<tspan
    style="font-size:0.52623427px;baseline-shift:super;stroke-width:0.02023978"
    id="tspan24934-7-2">4</tspan>)</tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 129.91041,81.364587 h -2.64583"
+       d="m 129.91041,89.302084 h -2.64583"
        id="path18466-90-1"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15133,7 +15175,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 128.05833,81.893752 1.05834,-1.058329"
+       d="m 128.05833,89.831249 1.05834,-1.058329"
        id="path12202-6-3-7-7-8-4-7-83"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15143,7 +15185,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="130.74658"
-       y="79.484512"
+       y="87.268761"
        id="text12206-6-2-1-76-2-8-7-4-3"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15152,16 +15194,16 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-06-3"
          x="130.74658"
-         y="79.484512"
+         y="87.268761"
          style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
          sodipodi:role="line"
          x="130.74658"
-         y="80.353638"
+         y="88.137886"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-4-80" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 124.08958,79.777087 v 3.174997 h 3.17499 v -3.174997 z"
+       d="m 124.08958,87.714584 v 3.174997 h 3.17499 v -3.174997 z"
        id="path1411-3-7-3-6-5-4"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15169,7 +15211,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 124.36973,80.057232 1.30735,1.307352"
+       d="m 124.36973,87.994729 1.30735,1.307352"
        id="path1413-6-6-0-0-1-7"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15177,7 +15219,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 125.67708,80.057232 -1.30735,1.307352"
+       d="m 125.67708,87.994729 -1.30735,1.307352"
        id="path1415-7-5-7-4-7-6"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15187,7 +15229,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.80959123px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02023978"
        x="124.40116"
-       y="82.546867"
+       y="90.484367"
        id="text1419-5-6-8-1-4-8"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
        inkscape:export-xdpi="2400"
@@ -15195,7 +15237,7 @@
          sodipodi:role="line"
          id="tspan1417-3-9-6-0-1-90"
          x="124.40116"
-         y="82.546867"
+         y="90.484367"
          style="line-height:1.25;stroke-width:0.02023978">GF(2<tspan
    style="font-size:0.52623427px;baseline-shift:super;stroke-width:0.02023978"
    id="tspan24934-7-68">4</tspan>)</tspan></text>
@@ -15203,32 +15245,32 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.53826737px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.03845668"
        x="120.79236"
-       y="81.180122"
+       y="89.117622"
        id="text5237-7"
        inkscape:export-xdpi="2400"
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan5235-9"
          x="120.79236"
-         y="81.180122"
+         y="89.117622"
          style="stroke-width:0.03845668">a</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.53826737px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.03845668"
        x="125.99361"
-       y="81.279343"
+       y="89.216843"
        id="text5237-9-0"
        inkscape:export-xdpi="2400"
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan5235-6-3"
          x="125.99361"
-         y="81.279343"
+         y="89.216843"
          style="stroke-width:0.03845668">b</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.52117896px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.03802946"
-       x="124.30419"
+       x="125.62711"
        y="71.207489"
        id="text1471-5-7-8-2-7-6-4-5-7-7"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15236,83 +15278,23 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan1469-5-4-7-1-6-1-7-06-5-9"
-         x="124.30419"
+         x="125.62711"
          y="71.207489"
          style="stroke-width:0.03802946">f<tspan
    style="font-size:0.98876625px;baseline-shift:sub;stroke-width:0.03802946"
    id="tspan5543">xorb</tspan></tspan></text>
     <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 118.79792,70.781251 h -2.64584"
-       id="path18466-50-6-3-1-6-4-6"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 124.08958,70.781252 -2.11666,-10e-7"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker8011)"
+       d="m 125.4125,70.781251 h -1.05833 v -5.291667"
        id="path18466-2-2-5-5-8-8-0"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
        inkscape:export-xdpi="2400"
        inkscape:export-ydpi="2400"
-       sodipodi:nodetypes="cc" />
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 116.94583,71.310418 1.05834,-1.05833"
-       id="path12202-6-3-7-7-8-4-26-1-2-5-5-8-4"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="119.41531"
-       y="69.105515"
-       id="text12206-6-2-1-76-2-8-7-0-2-7-6-1-02-1"
-       transform="scale(0.98069291,1.0196872)"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400"><tspan
-         sodipodi:role="line"
-         id="tspan12204-0-6-9-73-4-9-9-6-7-0-9-1-1-0"
-         x="119.41531"
-         y="69.105515"
-         style="line-height:0;stroke-width:0.01738254">8</tspan><tspan
-         sodipodi:role="line"
-         x="119.41531"
-         y="69.97464"
-         style="line-height:0;stroke-width:0.01738254"
-         id="tspan18491-65-0-2-3-64-7-9-3-0-0-4" /></text>
-    <path
-       style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 118.79792,69.193751 v 3.175004 h 3.175 v -3.175004 z"
-       id="path1411-6-3-5-6-1-9-3-7-8-5-8"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.04678345px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.05116957"
-       x="119.65763"
-       y="71.380951"
-       id="text1471-5-7-8-2-7-6-4-5-1-7"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400"><tspan
-         sodipodi:role="line"
-         id="tspan1469-5-4-7-1-6-1-7-06-1-0"
-         x="119.65763"
-         y="71.380951"
-         style="stroke-width:0.05116957">f<tspan
-   style="font-size:1.33040929px;baseline-shift:sub;stroke-width:0.05116957"
-   id="tspan5113-8">a</tspan></tspan></text>
+       sodipodi:nodetypes="ccc" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 129.91041,70.781248 h -2.64583"
+       d="M 131.23333,70.781248 H 128.5875"
        id="path18466-2-2-5-5-8-85-6"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15320,7 +15302,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 128.05833,71.310415 1.05833,-1.05833"
+       d="m 129.38125,71.310415 1.05833,-1.05833"
        id="path12202-6-3-7-7-8-4-74-6-6-5-0-06-2"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15329,7 +15311,7 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="130.74657"
+       x="132.09554"
        y="69.105515"
        id="text12206-6-2-1-76-2-8-7-8-1-2-4-2-4-4"
        transform="scale(0.98069291,1.0196872)"
@@ -15338,17 +15320,17 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-5-4-9-7-1-6-7"
-         x="130.74657"
+         x="132.09554"
          y="69.105515"
          style="line-height:0;stroke-width:0.01738254">8</tspan><tspan
          sodipodi:role="line"
-         x="130.74657"
+         x="132.09554"
          y="69.97464"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-8-03-1-6-0-25-9" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 124.08958,69.193748 v 3.175004 h 3.175 v -3.175004 z"
+       d="m 125.4125,69.193748 v 3.175004 h 3.175 v -3.175004 z"
        id="path1411-6-3-5-6-1-9-3-7-8-24-3"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15356,7 +15338,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 108.21458,89.302084 h -2.64583"
+       d="m 108.21458,99.885397 h -2.64583"
        id="path18466-50-6-3-2-0-3"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15364,7 +15346,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 114.03542,89.302084 h -2.64584"
+       d="m 114.03542,99.885397 h -2.64584"
        id="path18466-2-2-5-93-9-01"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15372,7 +15354,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 106.3625,89.831254 1.05833,-1.05833"
+       d="m 106.3625,100.41457 1.05833,-1.058333"
        id="path12202-6-3-7-7-8-4-26-1-2-8-5-78"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15382,7 +15364,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="108.36225"
-       y="87.268768"
+       y="97.647751"
        id="text12206-6-2-1-76-2-8-7-0-2-7-4-94-91"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15391,16 +15373,16 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-6-7-0-5-6-5"
          x="108.36225"
-         y="87.268768"
+         y="97.647751"
          style="line-height:0;stroke-width:0.01738254">32</tspan><tspan
          sodipodi:role="line"
          x="108.36225"
-         y="88.137894"
+         y="98.516876"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-64-7-9-0-92-4" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 108.21458,85.333324 v 7.93753 h 3.175 v -7.93753 z"
+       d="m 108.21458,95.916637 v 7.937533 h 3.175 v -7.937533 z"
        id="path1411-6-3-5-6-1-9-3-3-2-9"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15408,7 +15390,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 112.18333,89.831244 1.05834,-1.05833"
+       d="m 112.18333,100.41456 1.05834,-1.058333"
        id="path12202-6-3-7-7-8-4-26-1-2-8-5-2-2"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15418,7 +15400,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="114.29768"
-       y="87.268753"
+       y="97.647736"
        id="text12206-6-2-1-76-2-8-7-0-2-7-4-94-8-5"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15427,17 +15409,17 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-6-7-0-5-6-9-7"
          x="114.29768"
-         y="87.268753"
+         y="97.647736"
          style="line-height:0;stroke-width:0.01738254">32</tspan><tspan
          sodipodi:role="line"
          x="114.29768"
-         y="88.137878"
+         y="98.516861"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-64-7-9-0-92-3-4" /></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.16537714px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02913444"
-       x="86.108665"
+       x="96.691978"
        y="-109.41612"
        id="text122262-9"
        transform="rotate(90)"
@@ -15445,12 +15427,12 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan122260-94"
-         x="86.108665"
+         x="96.691978"
          y="-109.41612"
          style="stroke-width:0.02913444">MixColumn</tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 118.79791,89.302084 h -2.64583"
+       d="m 118.79791,99.885397 h -2.64583"
        id="path18466-50-6-3-2-0-3-5"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15458,7 +15440,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 124.08958,89.302084 -2.11667,0"
+       d="m 124.08958,99.885397 h -2.11667"
        id="path18466-2-2-5-93-9-01-9"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15467,7 +15449,7 @@
        sodipodi:nodetypes="cc" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 116.94583,89.831254 1.05833,-1.05833"
+       d="m 116.94583,100.41457 1.05833,-1.058333"
        id="path12202-6-3-7-7-8-4-26-1-2-8-5-78-3"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15477,7 +15459,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="119.15394"
-       y="87.268768"
+       y="97.647751"
        id="text12206-6-2-1-76-2-8-7-0-2-7-4-94-91-5"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15486,16 +15468,16 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-6-7-0-5-6-5-7"
          x="119.15394"
-         y="87.268768"
+         y="97.647751"
          style="line-height:0;stroke-width:0.01738254">32</tspan><tspan
          sodipodi:role="line"
          x="119.15394"
-         y="88.137894"
+         y="98.516876"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-64-7-9-0-92-4-0" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 118.79791,85.333324 v 7.93753 h 3.175 v -7.93753 z"
+       d="m 118.79791,95.916637 v 7.937533 h 3.175 v -7.937533 z"
        id="path1411-6-3-5-6-1-9-3-3-2-9-8"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15504,7 +15486,7 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.16537714px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02913444"
-       x="85.847404"
+       x="96.430717"
        y="-119.99946"
        id="text122262-9-8"
        transform="rotate(90)"
@@ -15512,14 +15494,14 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan122260-94-2"
-         x="85.847404"
+         x="96.430717"
          y="-119.99946"
          style="stroke-width:0.02913444">MixColumn<tspan
    style="font-size:64.99999762%;baseline-shift:sub"
    id="tspan5748">a</tspan></tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 129.91042,89.302084 h -2.64584"
+       d="m 129.91042,99.885397 h -2.64584"
        id="path18466-2-2-5-93-9-01-4"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15527,7 +15509,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 124.08958,85.333324 v 7.93753 h 3.175 v -7.93753 z"
+       d="m 124.08958,95.916637 v 7.937533 h 3.175 v -7.937533 z"
        id="path1411-6-3-5-6-1-9-3-3-2-9-9"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15535,7 +15517,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 128.05833,89.831244 1.05834,-1.05833"
+       d="m 128.05833,100.41456 1.05834,-1.058333"
        id="path12202-6-3-7-7-8-4-26-1-2-8-5-2-2-6"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15545,7 +15527,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
        x="130.48523"
-       y="87.268753"
+       y="97.647736"
        id="text12206-6-2-1-76-2-8-7-0-2-7-4-94-8-5-2"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
@@ -15554,17 +15536,17 @@
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-6-7-0-5-6-9-7-1"
          x="130.48523"
-         y="87.268753"
+         y="97.647736"
          style="line-height:0;stroke-width:0.01738254">32</tspan><tspan
          sodipodi:role="line"
          x="130.48523"
-         y="88.137878"
+         y="98.516861"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-64-7-9-0-92-3-4-2" /></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.16537714px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02913444"
-       x="85.851418"
+       x="96.434731"
        y="-125.29113"
        id="text122262-9-0"
        transform="rotate(90)"
@@ -15572,14 +15554,14 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan122260-94-7"
-         x="85.851418"
+         x="96.434731"
          y="-125.29113"
          style="stroke-width:0.02913444">MixColumn<tspan
    style="font-size:64.99999762%;baseline-shift:sub"
    id="tspan5746">b</tspan></tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 83.079174,113.11459 h -2.64584"
+       d="m 135.73125,121.05209 h -2.64584"
        id="path18466-59-1-3"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15587,7 +15569,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 83.079174,115.76042 h -2.64584"
+       d="m 135.73125,123.69792 h -2.64584"
        id="path18466-63-0-1"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15595,7 +15577,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 88.900005,114.4375 H 86.254174"
+       d="m 141.55208,122.375 h -2.64583"
        id="path18466-90-4-1"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15603,7 +15585,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 81.227084,113.64375 1.05834,-1.05833"
+       d="m 133.87916,121.58125 1.05834,-1.05833"
        id="path12202-6-3-7-7-8-4-2-2-9"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15612,8 +15594,8 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="82.993362"
-       y="110.6215"
+       x="136.68201"
+       y="118.40575"
        id="text12206-6-2-1-76-2-8-7-12-2-0"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15621,17 +15603,17 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-07-2-5"
-         x="82.993362"
-         y="110.6215"
+         x="136.68201"
+         y="118.40575"
          style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
          sodipodi:role="line"
-         x="82.993362"
-         y="111.49062"
+         x="136.68201"
+         y="119.27487"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-3-0-6" /></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 81.227084,116.28959 1.05834,-1.05833"
+       d="m 133.87916,124.22709 1.05834,-1.05833"
        id="path12202-6-3-7-7-8-4-1-5-7"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15640,8 +15622,8 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="82.993362"
-       y="113.21625"
+       x="136.68201"
+       y="121.0005"
        id="text12206-6-2-1-76-2-8-7-19-5-7"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15649,17 +15631,17 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-05-2-4"
-         x="82.993362"
-         y="113.21625"
+         x="136.68201"
+         y="121.0005"
          style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
          sodipodi:role="line"
-         x="82.993362"
-         y="114.08537"
+         x="136.68201"
+         y="121.86962"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-67-9-0" /></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 87.047924,114.96667 1.058331,-1.05833"
+       d="m 139.7,122.90417 1.05833,-1.05833"
        id="path12202-6-3-7-7-8-4-7-0-6"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15668,8 +15650,8 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="88.928795"
-       y="111.91888"
+       x="142.61745"
+       y="119.70312"
        id="text12206-6-2-1-76-2-8-7-4-2-4"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15677,17 +15659,17 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-06-83-7"
-         x="88.928795"
-         y="111.91888"
+         x="142.61745"
+         y="119.70312"
          style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
          sodipodi:role="line"
-         x="88.928795"
-         y="112.788"
+         x="142.61745"
+         y="120.57225"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-4-8-4" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 83.079164,112.85 v 3.175 h 3.175001 v -3.175 z"
+       d="m 135.73124,120.7875 v 3.175 h 3.175 v -3.175 z"
        id="path1411-3-7-3-6-5-04-8"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15695,7 +15677,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 84.012994,113.22353 1.30735,1.30735"
+       d="m 136.66507,121.16103 1.30735,1.30735"
        id="path1413-6-6-0-0-1-0-5"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15703,7 +15685,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 85.320344,113.22353 -1.30735,1.30735"
+       d="m 137.97242,121.16103 -1.30735,1.30735"
        id="path1415-7-5-7-4-7-9-8"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15712,22 +15694,22 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.80959123px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02023978"
-       x="83.390755"
-       y="115.61979"
+       x="136.04283"
+       y="123.55729"
        id="text1419-5-6-8-1-4-1-2"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
        inkscape:export-xdpi="2400"
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan1417-3-9-6-0-1-9-6"
-         x="83.390755"
-         y="115.61979"
+         x="136.04283"
+         y="123.55729"
          style="line-height:1.25;stroke-width:0.02023978">GF(2<tspan
    style="font-size:0.52623427px;baseline-shift:super;stroke-width:0.02023978"
    id="tspan24934-7-6-0">4</tspan>)</tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 93.662505,113.11459 h -2.64583"
+       d="m 146.31458,121.05209 h -2.64583"
        id="path18466-59-2-6"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15735,7 +15717,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 93.662505,115.76042 h -2.64583"
+       d="m 146.31458,123.69792 h -2.64583"
        id="path18466-63-5-6"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15743,7 +15725,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 98.954165,114.4375 h -2.11666"
+       d="m 151.60624,122.375 h -2.11666"
        id="path18466-90-44-4"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15752,7 +15734,7 @@
        sodipodi:nodetypes="cc" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 91.810425,113.64376 1.05834,-1.05833"
+       d="m 144.4625,121.58126 1.05834,-1.05833"
        id="path12202-6-3-7-7-8-4-2-9-6"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15761,8 +15743,8 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="93.785057"
-       y="110.62151"
+       x="147.47371"
+       y="118.40576"
        id="text12206-6-2-1-76-2-8-7-12-9-2"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15770,17 +15752,17 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-07-3-8"
-         x="93.785057"
-         y="110.62151"
+         x="147.47371"
+         y="118.40576"
          style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
          sodipodi:role="line"
-         x="93.785057"
-         y="111.49063"
+         x="147.47371"
+         y="119.27489"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-3-6-9" /></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 91.810425,116.28959 1.05834,-1.05833"
+       d="m 144.4625,124.22709 1.05834,-1.05833"
        id="path12202-6-3-7-7-8-4-1-0-6"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15789,8 +15771,8 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="93.785057"
-       y="113.21626"
+       x="147.47371"
+       y="121.00051"
        id="text12206-6-2-1-76-2-8-7-19-50-0"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15798,17 +15780,17 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-05-29-7"
-         x="93.785057"
-         y="113.21626"
+         x="147.47371"
+         y="121.00051"
          style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
          sodipodi:role="line"
-         x="93.785057"
-         y="114.08538"
+         x="147.47371"
+         y="121.86964"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-67-43-0" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 93.662505,112.85001 v 3.17499 h 3.175 v -3.17499 z"
+       d="m 146.31458,120.78751 v 3.17499 h 3.175 v -3.17499 z"
        id="path1411-3-7-3-6-5-3-1"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15816,7 +15798,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 93.942645,113.13015 1.30736,1.30735"
+       d="m 146.59472,121.06765 1.30736,1.30735"
        id="path1413-6-6-0-0-1-1-0"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15824,7 +15806,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 95.250005,113.13015 -1.30736,1.30735"
+       d="m 147.90208,121.06765 -1.30736,1.30735"
        id="path1415-7-5-7-4-7-4-1"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15833,22 +15815,22 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.80959123px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02023978"
-       x="93.974083"
-       y="115.6198"
+       x="146.62616"
+       y="123.5573"
        id="text1419-5-6-8-1-4-6-3"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
        inkscape:export-xdpi="2400"
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan1417-3-9-6-0-1-94-7"
-         x="93.974083"
-         y="115.6198"
+         x="146.62616"
+         y="123.5573"
          style="line-height:1.25;stroke-width:0.02023978">GF(2<tspan
    style="font-size:0.52623427px;baseline-shift:super;stroke-width:0.02023978"
    id="tspan24934-7-2-7">4</tspan>)</tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 104.77499,114.43751 h -2.64583"
+       d="m 157.42707,122.37501 h -2.64583"
        id="path18466-90-1-2"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15856,7 +15838,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 102.92291,114.96667 1.05834,-1.05833"
+       d="m 155.57499,122.90417 1.05834,-1.05833"
        id="path12202-6-3-7-7-8-4-7-83-6"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15865,8 +15847,8 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="105.11633"
-       y="111.91888"
+       x="158.80498"
+       y="119.70312"
        id="text12206-6-2-1-76-2-8-7-4-3-4"
        transform="scale(0.98069291,1.0196872)"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15874,17 +15856,17 @@
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan12204-0-6-9-73-4-9-9-06-3-5"
-         x="105.11633"
-         y="111.91888"
+         x="158.80498"
+         y="119.70312"
          style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
          sodipodi:role="line"
-         x="105.11633"
-         y="112.78801"
+         x="158.80498"
+         y="120.57225"
          style="line-height:0;stroke-width:0.01738254"
          id="tspan18491-65-0-2-3-4-80-2" /></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 98.954165,112.85001 v 3.17499 h 3.174985 v -3.17499 z"
+       d="m 151.60624,120.78751 v 3.17499 h 3.17499 v -3.17499 z"
        id="path1411-3-7-3-6-5-4-0"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15892,7 +15874,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 99.234315,113.13015 1.307345,1.30735"
+       d="m 151.88639,121.06765 1.30735,1.30735"
        id="path1413-6-6-0-0-1-7-2"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15900,7 +15882,7 @@
        inkscape:export-ydpi="2400" />
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 100.54166,113.13015 -1.307345,1.30735"
+       d="m 153.19374,121.06765 -1.30735,1.30735"
        id="path1415-7-5-7-4-7-6-9"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
@@ -15909,44 +15891,44 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:0.80959123px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02023978"
-       x="99.265747"
-       y="115.61979"
+       x="151.91783"
+       y="123.55729"
        id="text1419-5-6-8-1-4-8-0"
        inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
        inkscape:export-xdpi="2400"
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan1417-3-9-6-0-1-90-9"
-         x="99.265747"
-         y="115.61979"
+         x="151.91783"
+         y="123.55729"
          style="line-height:1.25;stroke-width:0.02023978">GF(2<tspan
    style="font-size:0.52623427px;baseline-shift:super;stroke-width:0.02023978"
    id="tspan24934-7-68-9">4</tspan>)</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.53826737px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.03845668"
-       x="95.656944"
-       y="114.25304"
+       x="148.30902"
+       y="122.19054"
        id="text5237-7-4"
        inkscape:export-xdpi="2400"
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan5235-9-5"
-         x="95.656944"
-         y="114.25304"
+         x="148.30902"
+         y="122.19054"
          style="stroke-width:0.03845668">a</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.53826737px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.03845668"
-       x="100.85819"
-       y="114.35226"
+       x="153.51027"
+       y="122.28976"
        id="text5237-9-0-1"
        inkscape:export-xdpi="2400"
        inkscape:export-ydpi="2400"><tspan
          sodipodi:role="line"
          id="tspan5235-6-3-0"
-         x="100.85819"
-         y="114.35226"
+         x="153.51027"
+         y="122.28976"
          style="stroke-width:0.03845668">b</tspan></text>
     <circle
        style="display:inline;opacity:1;fill:none;stroke:#000000;stroke-width:0.11758864;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -16749,229 +16731,6 @@
          x="105.86467"
          y="133.10449"
          style="stroke-width:0.03928585">h</tspan></text>
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 91.016664,173.96875 h -2.64583"
-       id="path18466-50-6-3-2-0-3-2"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 96.837505,173.96875 h -2.64584"
-       id="path18466-2-2-5-93-9-01-8"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 89.164584,174.49792 1.05833,-1.05833"
-       id="path12202-6-3-7-7-8-4-26-1-2-8-5-78-4"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="90.82576"
-       y="170.30077"
-       id="text12206-6-2-1-76-2-8-7-0-2-7-4-94-91-7"
-       transform="scale(0.98069291,1.0196872)"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400"><tspan
-         sodipodi:role="line"
-         id="tspan12204-0-6-9-73-4-9-9-6-7-0-5-6-5-2"
-         x="90.82576"
-         y="170.30077"
-         style="line-height:0;stroke-width:0.01738254">32</tspan><tspan
-         sodipodi:role="line"
-         x="90.82576"
-         y="171.16989"
-         style="line-height:0;stroke-width:0.01738254"
-         id="tspan18491-65-0-2-3-64-7-9-0-92-4-4" /></text>
-    <path
-       style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 91.016664,169.99999 v 7.93753 h 3.175001 v -7.93753 z"
-       id="path1411-6-3-5-6-1-9-3-3-2-9-0"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 94.985415,174.49791 1.05834,-1.05833"
-       id="path12202-6-3-7-7-8-4-26-1-2-8-5-2-2-62"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="96.761192"
-       y="170.30075"
-       id="text12206-6-2-1-76-2-8-7-0-2-7-4-94-8-5-9"
-       transform="scale(0.98069291,1.0196872)"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400"><tspan
-         sodipodi:role="line"
-         id="tspan12204-0-6-9-73-4-9-9-6-7-0-5-6-9-7-9"
-         x="96.761192"
-         y="170.30075"
-         style="line-height:0;stroke-width:0.01738254">32</tspan><tspan
-         sodipodi:role="line"
-         x="96.761192"
-         y="171.16988"
-         style="line-height:0;stroke-width:0.01738254"
-         id="tspan18491-65-0-2-3-64-7-9-0-92-3-4-0" /></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.16537714px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02913444"
-       x="170.77533"
-       y="-92.218208"
-       id="text122262-9-81"
-       transform="rotate(90)"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400"><tspan
-         sodipodi:role="line"
-         id="tspan122260-94-3"
-         x="170.77533"
-         y="-92.218208"
-         style="stroke-width:0.02913444">MixColumn</tspan></text>
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 101.59999,173.96875 H 98.954165"
-       id="path18466-50-6-3-2-0-3-5-1"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 106.89166,173.96875 h -2.11667"
-       id="path18466-2-2-5-93-9-01-9-1"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400"
-       sodipodi:nodetypes="cc" />
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 99.747915,174.49792 1.058325,-1.05833"
-       id="path12202-6-3-7-7-8-4-26-1-2-8-5-78-3-0"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="101.61745"
-       y="170.30077"
-       id="text12206-6-2-1-76-2-8-7-0-2-7-4-94-91-5-3"
-       transform="scale(0.98069291,1.0196872)"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400"><tspan
-         sodipodi:role="line"
-         id="tspan12204-0-6-9-73-4-9-9-6-7-0-5-6-5-7-4"
-         x="101.61745"
-         y="170.30077"
-         style="line-height:0;stroke-width:0.01738254">32</tspan><tspan
-         sodipodi:role="line"
-         x="101.61745"
-         y="171.16989"
-         style="line-height:0;stroke-width:0.01738254"
-         id="tspan18491-65-0-2-3-64-7-9-0-92-4-0-0" /></text>
-    <path
-       style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 101.59999,169.99999 v 7.93753 h 3.175 v -7.93753 z"
-       id="path1411-6-3-5-6-1-9-3-3-2-9-8-3"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.16537714px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02913444"
-       x="170.51407"
-       y="-102.80154"
-       id="text122262-9-8-9"
-       transform="rotate(90)"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400"><tspan
-         sodipodi:role="line"
-         id="tspan122260-94-2-1"
-         x="170.51407"
-         y="-102.80154"
-         style="stroke-width:0.02913444">MixColumn<tspan
-   style="font-size:0.75749511px;baseline-shift:sub;stroke-width:0.02913444"
-   id="tspan5748-9">a</tspan></tspan></text>
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 112.7125,173.96875 h -2.64584"
-       id="path18466-2-2-5-93-9-01-4-6"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <path
-       style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 106.89166,169.99999 v 7.93753 h 3.175 v -7.93753 z"
-       id="path1411-6-3-5-6-1-9-3-3-2-9-9-9"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 110.86041,174.49791 1.05834,-1.05833"
-       id="path12202-6-3-7-7-8-4-26-1-2-8-5-2-2-6-3"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="112.94874"
-       y="170.30075"
-       id="text12206-6-2-1-76-2-8-7-0-2-7-4-94-8-5-2-3"
-       transform="scale(0.98069291,1.0196872)"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400"><tspan
-         sodipodi:role="line"
-         id="tspan12204-0-6-9-73-4-9-9-6-7-0-5-6-9-7-1-8"
-         x="112.94874"
-         y="170.30075"
-         style="line-height:0;stroke-width:0.01738254">32</tspan><tspan
-         sodipodi:role="line"
-         x="112.94874"
-         y="171.16988"
-         style="line-height:0;stroke-width:0.01738254"
-         id="tspan18491-65-0-2-3-64-7-9-0-92-3-4-2-0" /></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.16537714px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02913444"
-       x="170.51808"
-       y="-108.09322"
-       id="text122262-9-0-5"
-       transform="rotate(90)"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400"><tspan
-         sodipodi:role="line"
-         id="tspan122260-94-7-6"
-         x="170.51808"
-         y="-108.09322"
-         style="stroke-width:0.02913444">MixColumn<tspan
-   style="font-size:0.75749511px;baseline-shift:sub;stroke-width:0.02913444"
-   id="tspan5746-6">b</tspan></tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5125-6-9)"
        d="m 80.697917,183.22917 h 3.704166"
@@ -21082,7 +20841,7 @@
          id="tspan122260-9-0-5"
          x="353.95825"
          y="-16.614645"
-         style="stroke-width:0.0404144">ROM 1</tspan></text>
+         style="stroke-width:0.0404144">MEM 1</tspan></text>
     <path
        style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 15.610417,363.14583 v 7.93753 h 3.174999 v -7.93753 z"
@@ -21104,7 +20863,7 @@
          id="tspan122260-9-0-5-6"
          x="364.53333"
          y="-16.606377"
-         style="stroke-width:0.0404144">ROM 2</tspan></text>
+         style="stroke-width:0.0404144">MEM 2</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 21.43125,359.97083 v 3.70418 l 2.116666,-0.52917 v -2.64583 z"
@@ -21370,7 +21129,7 @@
          id="tspan122260-9-0-5-6-0"
          x="378.457"
          y="-15.28346"
-         style="stroke-width:0.0404144">ROM</tspan></text>
+         style="stroke-width:0.0404144">MEM</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        d="M 21.43125,380.34376 H 17.4625"
@@ -21412,64 +21171,6 @@
          x="21.251642"
          y="359.0018"
          style="stroke-width:0.02078953">select</tspan></text>
-    <path
-       style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 5.0270834,357.85414 v 7.93753 h 3.1749989 v -7.93753 z"
-       id="path1411-6-3-5-6-1-9-3-3-2-1-3-6-5"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.61657548px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0404144"
-       x="359.8783"
-       y="-6.0313106"
-       id="text122262-3-9-7-9"
-       transform="rotate(90)"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400"><tspan
-         sodipodi:role="line"
-         id="tspan122260-9-0-5-2"
-         x="359.8783"
-         y="-6.0313106"
-         style="stroke-width:0.0404144">MEM</tspan></text>
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.44336018;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 8.2020823,361.82292 H 10.847915"
-       id="path7019-3-2"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 9.2604153,362.35208 1.0583357,-1.05833"
-       id="path12202-6-3-7-7-8-4-74-6-6-1-9-4-9-97-8"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
-       x="8.8944654"
-       y="354.52802"
-       id="text12206-6-2-1-76-2-8-7-8-1-2-9-3-80-9-5-9"
-       transform="scale(0.98069291,1.0196872)"
-       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
-       inkscape:export-xdpi="2400"
-       inkscape:export-ydpi="2400"><tspan
-         sodipodi:role="line"
-         id="tspan12204-0-6-9-73-4-9-9-5-4-9-4-3-4-4-38-7"
-         x="8.8944654"
-         y="354.52802"
-         style="line-height:0;stroke-width:0.01738254">128</tspan><tspan
-         sodipodi:role="line"
-         x="8.8944654"
-         y="355.39716"
-         style="line-height:0;stroke-width:0.01738254"
-         id="tspan18491-65-0-2-3-8-03-1-7-8-2-5-83-3" /></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 30.1625,362.35208 1.058335,-1.05833"
@@ -24356,6 +24057,648 @@
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker144319-4-4);marker-end:url(#marker123165-2-7-4-7)"
        d="m 37.041667,189.84375 0,-8.99583"
        id="path122812-5-1-1-5-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.53000002, 0.53000002;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 123.03125,62.843751 0,10.583333"
+       id="path8244-2-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.53000002, 0.53000002;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 123.03125,77.660417 0,4.7625"
+       id="path8244-2-3-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.53000002, 0.53000002;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 123.03125,86.920834 0,4.7625"
+       id="path8244-2-3-6-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.53000002, 0.53000002;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 123.03125,94.858334 V 104.9125"
+       id="path8244-2-3-6-3-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 84.40209,111.79166 H 81.75625"
+       id="path18466-59-1-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 84.40209,114.4375 H 81.75625"
+       id="path18466-63-0-5"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 90.222921,113.11458 H 87.57709"
+       id="path18466-90-4-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 82.55,112.32083 1.05834,-1.05833"
+       id="path12202-6-3-7-7-8-4-2-2-5"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
+       x="84.342323"
+       y="109.32412"
+       id="text12206-6-2-1-76-2-8-7-12-2-6"
+       transform="scale(0.98069291,1.0196872)"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan12204-0-6-9-73-4-9-9-07-2-2"
+         x="84.342323"
+         y="109.32412"
+         style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
+         sodipodi:role="line"
+         x="84.342323"
+         y="110.19324"
+         style="line-height:0;stroke-width:0.01738254"
+         id="tspan18491-65-0-2-3-3-0-9" /></text>
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 82.55,114.96666 1.05834,-1.05833"
+       id="path12202-6-3-7-7-8-4-1-5-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
+       x="84.342323"
+       y="111.91887"
+       id="text12206-6-2-1-76-2-8-7-19-5-2"
+       transform="scale(0.98069291,1.0196872)"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan12204-0-6-9-73-4-9-9-05-2-7"
+         x="84.342323"
+         y="111.91887"
+         style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
+         sodipodi:role="line"
+         x="84.342323"
+         y="112.78799"
+         style="line-height:0;stroke-width:0.01738254"
+         id="tspan18491-65-0-2-3-67-9-09" /></text>
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 88.37084,113.64375 1.058331,-1.05833"
+       id="path12202-6-3-7-7-8-4-7-0-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
+       x="90.277756"
+       y="110.6215"
+       id="text12206-6-2-1-76-2-8-7-4-2-6"
+       transform="scale(0.98069291,1.0196872)"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan12204-0-6-9-73-4-9-9-06-83-0"
+         x="90.277756"
+         y="110.6215"
+         style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
+         sodipodi:role="line"
+         x="90.277756"
+         y="111.49062"
+         style="line-height:0;stroke-width:0.01738254"
+         id="tspan18491-65-0-2-3-4-8-6" /></text>
+    <path
+       style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 84.40208,111.52708 v 3.175 h 3.175 v -3.175 z"
+       id="path1411-3-7-3-6-5-04-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 85.33591,111.90061 1.30735,1.30735"
+       id="path1413-6-6-0-0-1-0-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 86.64326,111.90061 -1.30735,1.30735"
+       id="path1415-7-5-7-4-7-9-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.80959123px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02023978"
+       x="84.713676"
+       y="114.29684"
+       id="text1419-5-6-8-1-4-1-8"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan1417-3-9-6-0-1-9-7"
+         x="84.713676"
+         y="114.29684"
+         style="line-height:1.25;stroke-width:0.02023978">GF(2<tspan
+   style="font-size:0.52623427px;baseline-shift:super;stroke-width:0.02023978"
+   id="tspan24934-7-6-9">4</tspan>)</tspan></text>
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 94.985421,111.79167 h -2.64583"
+       id="path18466-59-2-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 94.985421,114.4375 h -2.64583"
+       id="path18466-63-5-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 100.27708,113.11458 H 98.160421"
+       id="path18466-90-44-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 93.133341,112.32083 1.05834,-1.05833"
+       id="path12202-6-3-7-7-8-4-2-9-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
+       x="95.134018"
+       y="109.32412"
+       id="text12206-6-2-1-76-2-8-7-12-9-7"
+       transform="scale(0.98069291,1.0196872)"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan12204-0-6-9-73-4-9-9-07-3-5"
+         x="95.134018"
+         y="109.32412"
+         style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
+         sodipodi:role="line"
+         x="95.134018"
+         y="110.19324"
+         style="line-height:0;stroke-width:0.01738254"
+         id="tspan18491-65-0-2-3-3-6-92" /></text>
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 93.133341,114.96667 1.05834,-1.05833"
+       id="path12202-6-3-7-7-8-4-1-0-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
+       x="95.134018"
+       y="111.91887"
+       id="text12206-6-2-1-76-2-8-7-19-50-8"
+       transform="scale(0.98069291,1.0196872)"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan12204-0-6-9-73-4-9-9-05-29-9"
+         x="95.134018"
+         y="111.91887"
+         style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
+         sodipodi:role="line"
+         x="95.134018"
+         y="112.78799"
+         style="line-height:0;stroke-width:0.01738254"
+         id="tspan18491-65-0-2-3-67-43-7" /></text>
+    <path
+       style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 94.985421,111.52708 v 3.175 h 3.175 v -3.175 z"
+       id="path1411-3-7-3-6-5-3-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 95.265561,111.80723 1.30736,1.30735"
+       id="path1413-6-6-0-0-1-1-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 96.572921,111.80723 -1.30736,1.30735"
+       id="path1415-7-5-7-4-7-4-12"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.80959123px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02023978"
+       x="95.297005"
+       y="114.29688"
+       id="text1419-5-6-8-1-4-6-9"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan1417-3-9-6-0-1-94-3"
+         x="95.297005"
+         y="114.29688"
+         style="line-height:1.25;stroke-width:0.02023978">GF(2<tspan
+   style="font-size:0.52623427px;baseline-shift:super;stroke-width:0.02023978"
+   id="tspan24934-7-2-1">4</tspan>)</tspan></text>
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 106.09791,113.11458 h -2.64583"
+       id="path18466-90-1-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 104.24583,113.64375 1.05834,-1.05833"
+       id="path12202-6-3-7-7-8-4-7-83-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
+       x="106.4653"
+       y="110.6215"
+       id="text12206-6-2-1-76-2-8-7-4-3-7"
+       transform="scale(0.98069291,1.0196872)"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan12204-0-6-9-73-4-9-9-06-3-8"
+         x="106.4653"
+         y="110.6215"
+         style="line-height:0;stroke-width:0.01738254">4</tspan><tspan
+         sodipodi:role="line"
+         x="106.4653"
+         y="111.49062"
+         style="line-height:0;stroke-width:0.01738254"
+         id="tspan18491-65-0-2-3-4-80-4" /></text>
+    <path
+       style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 100.27708,111.52708 v 3.175 h 3.17499 v -3.175 z"
+       id="path1411-3-7-3-6-5-4-5"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 100.55723,111.80723 1.30735,1.30735"
+       id="path1413-6-6-0-0-1-7-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.14117633;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 101.86458,111.80723 -1.30735,1.30735"
+       id="path1415-7-5-7-4-7-6-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.80959123px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02023978"
+       x="100.58867"
+       y="114.29684"
+       id="text1419-5-6-8-1-4-8-6"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/text1419-2-9-8-7.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan1417-3-9-6-0-1-90-1"
+         x="100.58867"
+         y="114.29684"
+         style="line-height:1.25;stroke-width:0.02023978">GF(2<tspan
+   style="font-size:0.52623427px;baseline-shift:super;stroke-width:0.02023978"
+   id="tspan24934-7-68-0">4</tspan>)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:1.53826737px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.03845668"
+       x="96.979866"
+       y="112.93011"
+       id="text5237-7-6"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan5235-9-3"
+         x="96.979866"
+         y="112.93011"
+         style="stroke-width:0.03845668">a</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:1.53826737px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.03845668"
+       x="102.1811"
+       y="113.02934"
+       id="text5237-9-0-2"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan5235-6-3-06"
+         x="102.1811"
+         y="113.02934"
+         style="stroke-width:0.03845668">b</tspan></text>
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.53000002, 0.53000002;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 99.218751,110.73333 v 4.7625"
+       id="path8244-2-3-6-3-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 91.016663,172.64583 h -2.64583"
+       id="path18466-50-6-3-2-0-3-55"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 96.837503,172.64583 h -2.64584"
+       id="path18466-2-2-5-93-9-01-47"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 89.164583,173.17501 1.05833,-1.05834"
+       id="path12202-6-3-7-7-8-4-26-1-2-8-5-78-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
+       x="90.82576"
+       y="169.0034"
+       id="text12206-6-2-1-76-2-8-7-0-2-7-4-94-91-56"
+       transform="scale(0.98069291,1.0196872)"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan12204-0-6-9-73-4-9-9-6-7-0-5-6-5-9"
+         x="90.82576"
+         y="169.0034"
+         style="line-height:0;stroke-width:0.01738254">32</tspan><tspan
+         sodipodi:role="line"
+         x="90.82576"
+         y="169.87253"
+         style="line-height:0;stroke-width:0.01738254"
+         id="tspan18491-65-0-2-3-64-7-9-0-92-4-3" /></text>
+    <path
+       style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 91.016663,168.67707 v 7.93754 h 3.175 v -7.93754 z"
+       id="path1411-6-3-5-6-1-9-3-3-2-9-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 94.985413,173.175 1.05834,-1.05834"
+       id="path12202-6-3-7-7-8-4-26-1-2-8-5-2-2-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
+       x="96.761192"
+       y="169.00339"
+       id="text12206-6-2-1-76-2-8-7-0-2-7-4-94-8-5-5"
+       transform="scale(0.98069291,1.0196872)"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan12204-0-6-9-73-4-9-9-6-7-0-5-6-9-7-2"
+         x="96.761192"
+         y="169.00339"
+         style="line-height:0;stroke-width:0.01738254">32</tspan><tspan
+         sodipodi:role="line"
+         x="96.761192"
+         y="169.87251"
+         style="line-height:0;stroke-width:0.01738254"
+         id="tspan18491-65-0-2-3-64-7-9-0-92-3-4-5" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:1.16537714px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02913444"
+       x="169.45242"
+       y="-92.218208"
+       id="text122262-9-4"
+       transform="rotate(90)"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan122260-94-74"
+         x="169.45242"
+         y="-92.218208"
+         style="stroke-width:0.02913444">MixColumn</tspan></text>
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 101.6,172.64583 H 98.954163"
+       id="path18466-50-6-3-2-0-3-5-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 106.89167,172.64583 H 104.775"
+       id="path18466-2-2-5-93-9-01-9-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 99.747916,173.17501 1.058334,-1.05834"
+       id="path12202-6-3-7-7-8-4-26-1-2-8-5-78-3-07"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
+       x="101.61746"
+       y="169.0034"
+       id="text12206-6-2-1-76-2-8-7-0-2-7-4-94-91-5-8"
+       transform="scale(0.98069291,1.0196872)"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan12204-0-6-9-73-4-9-9-6-7-0-5-6-5-7-6"
+         x="101.61746"
+         y="169.0034"
+         style="line-height:0;stroke-width:0.01738254">32</tspan><tspan
+         sodipodi:role="line"
+         x="101.61746"
+         y="169.87253"
+         style="line-height:0;stroke-width:0.01738254"
+         id="tspan18491-65-0-2-3-64-7-9-0-92-4-0-8" /></text>
+    <path
+       style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 101.6,168.67707 v 7.93754 h 3.175 v -7.93754 z"
+       id="path1411-6-3-5-6-1-9-3-3-2-9-8-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:1.16537714px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02913444"
+       x="169.19116"
+       y="-102.80154"
+       id="text122262-9-8-4"
+       transform="rotate(90)"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan122260-94-2-3"
+         x="169.19116"
+         y="-102.80154"
+         style="stroke-width:0.02913444">MixColumn<tspan
+   style="font-size:0.75749511px;baseline-shift:sub;stroke-width:0.02913444"
+   id="tspan5748-1">a</tspan></tspan></text>
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 112.71251,172.64583 h -2.64584"
+       id="path18466-2-2-5-93-9-01-4-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.16500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 106.89167,168.67707 v 7.93754 h 3.175 v -7.93754 z"
+       id="path1411-6-3-5-6-1-9-3-3-2-9-9-92"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.125;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 110.86042,173.175 1.05834,-1.05834"
+       id="path12202-6-3-7-7-8-4-26-1-2-8-5-2-2-6-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:0.69530183px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01738254"
+       x="112.94873"
+       y="169.00339"
+       id="text12206-6-2-1-76-2-8-7-0-2-7-4-94-8-5-2-6"
+       transform="scale(0.98069291,1.0196872)"
+       inkscape:export-filename="/home/ugon/development/projects/magisterka/fpga-aes-research/documentation/techniczna/figures/inv-gf8.png"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan12204-0-6-9-73-4-9-9-6-7-0-5-6-9-7-1-89"
+         x="112.94873"
+         y="169.00339"
+         style="line-height:0;stroke-width:0.01738254">32</tspan><tspan
+         sodipodi:role="line"
+         x="112.94873"
+         y="169.87251"
+         style="line-height:0;stroke-width:0.01738254"
+         id="tspan18491-65-0-2-3-64-7-9-0-92-3-4-2-2" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:1.16537714px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02913444"
+       x="169.19518"
+       y="-108.09322"
+       id="text122262-9-0-6"
+       transform="rotate(90)"
+       inkscape:export-xdpi="2400"
+       inkscape:export-ydpi="2400"><tspan
+         sodipodi:role="line"
+         id="tspan122260-94-7-64"
+         x="169.19518"
+         y="-108.09322"
+         style="stroke-width:0.02913444">MixColumn<tspan
+   style="font-size:0.75749511px;baseline-shift:sub;stroke-width:0.02913444"
+   id="tspan5746-9">b</tspan></tspan></text>
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.53000002, 0.53000002;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 105.83334,167.61877 v 10.05417"
+       id="path8244-2-3-6-3-6-5"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc"
        inkscape:export-xdpi="2400"

@@ -1,107 +1,52 @@
 \section{System project}
 \label{sec:system-project}
-The research of this thesis is focused on evaluation and efficiency comparison of different approaches to implementing AES encryption. This chapter describes  proposed AES circuits, provides test results and discusses conclusions important for optimization of
-subsequent architectures.
+The research of this thesis is focused on evaluation and efficiency comparison of different approaches to implementing AES encryption. This chapter describes proposed AES circuits.
 
 Proposed designs are:
-\begin{enumerate}
+\begin{enumerate}[noitemsep]
 \item Simple asynchronous architecture
 \item Pipelined unrolled architecture with stages of equal critical path
 \item Pipelined unrolled architecture with stages containing one ALM
 \item Pipelined rolled up architecture with stages containing one ALM
 \item Pipelined rolled up architecture using on-chip memory
-
-
 \end{enumerate}
 
 \subsection{Simple asynchronous architecture}
-The most basic approach to implementing AES encryption module is to utilize only combinatorial logic without any optimizations. Such approach was used in Author's BsC thesis \cite{inzynierka} and is a good baseline for this research.
+The most basic approach to implementing AES encryption module is to utilize only combinatorial logic without any optimizations. Such approach was used in Author's BsC thesis \cite{inzynierka} and provides a good baseline for this research.
 
-Asynchronous AES encryption circuit is not clocked and does not use pipelining. Encryption is done at the speed of signal propagation. As Author showed in his BsC thesis \cite{inzynierka}, this design is capable of encrypting 20M blocks per second. Compilation report shows that it uses 27462 (excluding 806 elements required for testing circuit) FPGA ALMs.
+Asynchronous AES encryption circuit is not clocked and does not use pipelining. Encryption is done at the speed of signal propagation. As Author showed in his BsC thesis \cite{inzynierka}, this design is capable of encrypting \textbf{20M blocks per second}. Compilation report shows that it uses \textbf{27462} (excluding 806 elements required for testing circuit - section \ref{sec:testing-methodology}) FPGA ALMs.
+
+This design is described in detail in Author's past research - his BSc thesis \cite{inzynierka}.
 
 % To test this design for maximum speed of operation it was placed into testing framework described in Chapter \ref{sec:testing-methodology} and clocked. Because this AES circuit is asynchronous, entire enryption algorithm was executen in a single clock cycle of the testing framework. 
 
 % Testing simple asynchronous AES encryption module showed that it is capable of encryptiong only 20M blocks per second and uses 123421????????????? FPGA ALMs. 
 % Analysis of compilation reports showed that when increasing frequency, in order to meet timing constraints logic duplication was performed during compilation.
 
-The conclusion of analysing this approach is that implementing AES encryption in FPGA as an asynchronous circuit is possible, but there is room for optimizations.
-
+% The conclusion of analysing this approach is that implementing AES encryption in FPGA as an asynchronous circuit is possible, but there is room for optimizations.
 
 \subsection{Pipelined unrolled architecture with stages of equal critical path length}
-To achieve high throughput in FPGA designs pipelining is often used \cite[Chapter 1]{kilts2007advanced}. AES encryption algorithm consists of 15 rounds, 13 of which are exactly the same, which means that it can be implemented in two ways:
+To achieve high throughput in FPGA designs pipelining is often used \cite[Chapter 1]{kilts2007advanced}. AES encryption algorithm consists of 14 rounds, 13 of which are exactly the same, which means that it can be implemented in two ways:
 \begin{description}
 \item[Unrolled pipeline] -- there are no loops in the design, parts of the design are not reused. This approach is good for achieving high throughput at the cost of high usage of FPGA resources.
 \item[Rolled up pipeline] -- the design contains loops, AES round implementation is reused. This approach is not capable of achieving throughput as high as unrolled pipeline, but its usage of FPGA resources is considerably lower.
 \end{description}
 
-This section focuses on implementing AES as an unrolled pipeline. Authors of \cite{vlsi} proposed such an architecture divided into pipelined stages of equal critical path length. The fastest of the designs they proposed \cite[Fig. 11]{vlsi} (for r=7 pipeline stages in each round) was implemented as an entry point to research of throughput-optimized designs.
-
-Testing of this design showed that all transformations individually could run at frequencies exceeding 500MHz (close to or at testing circuits max frequency of 530MHz). One full round could run at this frequency as well, but adding more consecutive rounds resulted in decrease of frequency due to FPGA resource congestion resulting in longer routing paths. Full AES encryption circuit, which consists of 15 rounds, was capable of operating at \textbf{375MHz} and consumes 15123 ALM resources.
-
-Analysis of paths with longest propagation time presented in compilation report showed that typically they consisted of two or more ALMs used for calculating combinatorial logic. This was due to the fact that this design used pipelining stages which for calculating each output bit required more than 6 inputs. This forced utilising multiple ALMs between registers, which resulted in long routing delays.
-
-The conclusions of this research were:
-\begin{itemize}
-\item To achieve higher frequency it was necessary to split the design into shorter pipelining stages.
-\item Critical path length calculated as number of layers of logical gates is irrelevant (sec. \ref{sec:low-level-fpga}).
-\item What is relevant is the number of input signals required for calculating each bit of stage output, which should be no higher than 6.
-\item Routing delays are a significant factor contributing to maximum achievable frequency.
-\item Reducing number of LUTs between registers is critical for high performance.
-\end{itemize}
+This design proposal is based on utilising an unrolled pipeline. Authors of \cite{vlsi} proposed such an architecture divided into pipelined stages of equal critical path length. The fastest of the designs they proposed \cite[Fig. 11]{vlsi} used $r=7$ pipeline stages in each round. This design will be implemented as an entry point to this research of throughput-optimized designs as proposed in \cite{vlsi}.
 
 
 \subsection{Pipelined unrolled architecture with stages containing one ALM}
-Testing of design proposed in \cite{vlsi} shows that this approach is suboptimal, and higher frequencies can be achieved by partitioning the design in a way that combinatorial logic for each output bit of a stage has no more than 4 inputs. This is due to how FPGA technology works. 
+Next AES circuit proposal is an attempt to improve the design proposed in \cite{vlsi}. Author suspects that partitioning design into pipelining stages based on critical path length may not be an optimal solution for FPGA platform, because of FPGA's low level properties - utilisation of look-up tables for implementing combinatorial logic in particular.
 
-This section contains discussion of relevant nuances of FPGA technology and optimizations to pipelined unrolled AES encryption circuit.
+This design proposal is a modification of the one described in \cite{vlsi}. AES rounds will be partitioned into pipeline stages so that combinatorial logic in each stage can be fit into only one FPGA LUT. The reasoning behind this approach is that higher frequencies could be achieved by avoiding pipeline stages which consist of more than one FPGA LUT, which introduces extra delay caused by additional routing.
 
-\subsubsection{Low level FPGA chip analysis}
-\label{sec:low-level-fpga}
-To optimize a circuit for high frequency operation it is necessary to understand how FPGA technology works on low level. FPGA chips' architectures may slightly vary, here we will focus on architecture of the chip that I used for testing - Altera Cyclone V \cite[Chapter 1]{altera-vol1}. For simplicity only elements relevant to this design will be covered here, detailed documentation is available in Cyclone V Handbook \cite{altera-vol1}.
-
-FPGA chips consist of LABs (Logic Array Blocks), each of which contains 10 ALMs (Adaptive Logic Modules). ALMs are elements that make it possible to place arbitrary circuits in FPGA - they can be programmed to implement combinatorial logic functions, arithmetic functions, and registers.
-
-Combinatorial logic is implemented in ALMS using LUTs (LookUp Tables) which contain high speed ROM memory. This memory is programmed with precomputed outputs for every possible combination of logic levels of input signals. LUTs take combinatorial logic inputs and use them as addresses to corresponding memory bits. Output of LUT is a bit read from memory which corresponds to provided inputs. An important consequence of this design feature is that for a LUT with N inputs it is irrelevant how complex the logic to be implemented is - as long as it has no more than N inputs it will always perform the same. This is because all outputs are precomputed and all it takes to determine the output is to read it from memory. If desired combinatorial logic has more than N inputs multiple LUTs will be required.
-
-In Cyclone V chips each ALM contains two LUTs and four registers (D flip-flops). The registers, however, are wired in such a way that only two are relevant for this design - other two could be utilised if ALMs were used to implement arithmetic logic, which does not happen in AES encryption. LUTs in Cyclone V ALMs are capable of implementing different combinations of combinatorial logic, for this design the relevant combinations are:
-\begin{itemize}
-\item one 6-input LUT per ALM - uses up to 1 register, leaves at least one register unused
-\item two 4-input LUTs per ALM - uses up to 2 registers
-\end{itemize}
-Combinatorial logic outputs can either be registered in the ALM they were calculated in or routed to another ALM without registering. For fastest operation in most cases it is desired to register them in the same ALM, because routing inside ALM is a lot faster than between ALMs. Routing outputs without registering is necessary when combinatorial logic has more inputs than a single ALM supports, or to move the register closer to other parts of the design to balance routing delays between different parts of the design.
-
-% Conducted tests showed that for AES encryption maximum frequency was higher for designs using only 4-input LUTs. Analysis of compilation reports showed that using 6-input LUTs resulted in overall increased number or resources used, which resulted in longer routing paths between parts of the design, which ultimately slowed it down. This makes sence, because for 4-input LUTs ALMs are used more efficiently - more combinatorial logic could be implemented, and both registers could be used. The leftover register when using 6-input operation mode was observed not to be used often, because other signals were typically registered in same ALMs they were calculated in.
-Conducted tests showed that for AES encryption maximum frequency was higher for designs using only 4-input LUTs. Analysis of compilation reports showed that using 6-input LUTs resulted in paths with longer signal propagation time, which slowed the design it down. This makes sense, because for 4-input LUTs ALMs are used more efficiently - more combinatorial logic could be implemented, and both registers could be used. The leftover register when using 6-input operation mode was observed not to be used often, because other signals were typically registered in same ALMs they were calculated in.
-
-Another important aspect of working with FPGA is that \textit{Place and Route} compilation phase, which is responsible of finding optimal placement of the design in FPGA chip, tackles an NP-hard problem. This phase therefore uses heuristics to produce an approximation of best possible solution. It is possible that final placement of the design will be different for each compilation attempt. This behaviour was observed during testing, but maximum frequency for given design remained stable between compilation attempts. The longest routes for each compilation were different every time, but leading trends were similar (eg. most routes from top 10 failing ones were between pipelined stages X and Y).
-
-
-
-
-\subsubsection{Design of optimal pipelining stages}
-\label{sec:pipeline-stages-design}
-
-First approach to optimization was to split pipelining stages so that they used 4-input as well as 6-input LUTs. This approach resulted in increased performance, but analysis of compilation reports showed that paths with longest signal propagation time typically led through ALMs utilising 6-input operation mode. The circuit was therefore further redesigned to take advantage of only 4-input operation mode. Final design was capable of operating at \textbf{406MHz}, which is the highest achieved frequency for AES encryption observed in this research. The number of logic elements as reported by compiler for this design was \textbf{22411} (excluding 806 elements required for testing circuit).
-
-This section will describe in detail how each operation in AES algorithm (sec. \ref{sec:aes-algorithm}) can be split into stages taking advantage of only 4-input LUT operation mode. To utilise this mode each registered output bit needs to depend on no more than 4 inputs.
-
-
-\input{sections/subsections/pipeline-details}
-
+FPGA technology details relevant to this approach will be discussed in detail in section \ref{sec:low-level-fpga} and implementation details in \ref{sec:implementation-pipe-unrolled-one-alm}. 
 
 
 \subsection{Pipelined looped architecture with stages containing one ALM}
 
-speed: 467MHz
+speed: 467MHz\\
 LE: 2234
-
-
-\begin{sidewaysfigure}[!h]
-\label{fig:rolled-high-speed-pipe-full}
-\centering
-\includegraphics[scale=2]{rolled-high-speed-pipe-full}
-\caption{Modified pipeline for pipelined rolled up architecture}
-\end{sidewaysfigure}
 
 
 \subsection{Pipelined rolled up architecture using on-chip memory}

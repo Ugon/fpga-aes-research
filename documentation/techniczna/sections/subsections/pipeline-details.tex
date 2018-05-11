@@ -13,41 +13,51 @@ f(x) = f_b \circ f_a(x)
 \label{fig:f-split}
 \end{figure}
 
+\begin{figure}[!h]
+\begin{multicols}{2}
+
 \begin{equation}
 \label{eq:mul_delta_a}
 \begin{aligned}
 b_{a0}    &= b_0                    \\
 b_{a1}    &= b_1                    \\
 b_{a2}    &= b_2                    \\
+b_{a3}    &= b_3                    \\
 b_{a4}    &= b_4                    \\
 b_{a5}    &= b_5                    \\
 b_{a6}    &= b_6                    \\
 b_{a7}    &= b_7                    \\
 b_{a23}   &= b_2 + b_3              \\
-b_{a567}  &= b_5 + b_6 + b_7        \\
-b_{a1234} &= b_1 + b_2 + b_3 + b_4
+b_{a57}   &= b_5 + b_7              \\
+b_{a14}   &= b_1 + b_4                
 \end{aligned}
 \end{equation}
 
+\break
+ 
 \begin{equation}
 \label{eq:mul_delta_b}
 \begin{aligned}
 b'_0 &= b_{a0} + b_{a1} + b_{a6}           \\
-b'_1 &= b_{a1} + b_{a4} + b_{a6}           \\
-b'_2 &= b_{a7} + b_{a1234}                 \\
+b'_1 &= b_{a6} + b_{a14}                   \\
+b'_2 &= b_{a7} + b_{a14} + b_{23}          \\
 b'_3 &= b_{a1} + b_{a2} + b_{a6} + b_{a7}  \\
-b'_4 &= b_{a1} + b_{a5} + b_{a7} + b_{a23} \\
-b'_5 &= b_{a5} + b_{a7} + b_{a23}          \\
-b'_6 &= b_{a6} + b_{a7} + b_{a1234}        \\
-b'_7 &= b_{a5} + b_{a7}                    
+b'_4 &= b_{a1} + b_{a57} + b_{a23}         \\
+b'_5 &= b_{a57} + b_{a23}                  \\
+b'_6 &= b_{a6} + b_{a7} + b_{a14} + b_{a23}\\
+b'_7 &= b_{a57}                            
 \end{aligned}
 \end{equation}
 
-In SubBytes transformation after mapping $f(x)$ from $GF(2^8)$ to $GF((2^4)^2)$ high and low words of the result are xored together. This operation can be performed concurently with $f_b(x)$ mapping to avoid creating a separate stage only for a xor operation.
+\end{multicols}
+\end{figure}
+
+\newpage
+In SubBytes transformation after mapping $f(x)$ from $GF(2^8)$ to $GF((2^4)^2)$ high and low words of the result are xored together (fig. \ref{fig:mul_inv_gf242}). This operation can be performed concurently with $f_b(x)$ mapping to avoid creating a separate stage only for a xor operation.
 
 \begin{equation}
 \begin{aligned}
-f_{xor}(x) &= f(x)_{0123} + f(x)_{4567} \\
+f_{xor}(x) &= f(x)_{low} + f(x)_{high} \\
 f_{xor}(x) &= f_{xorb} \circ f_a(x)
 \end{aligned}
 \end{equation}
@@ -85,6 +95,9 @@ f^{-1}(x) &= f_b^{-1}(x) \circ f_a^{-1}(x) \\
 \end{figure}
 
 
+\begin{figure}[!h]
+\begin{multicols}{2}
+
 \begin{equation}
 \label{eq:mul_delta_inf_a}
 \begin{aligned}
@@ -113,6 +126,9 @@ b'_6 &= b_{a456} + b_{a7} + 1        \\
 b'_7 &= b_{a23} + b_{a7}                    
 \end{aligned}
 \end{equation}
+
+\end{multicols}
+\end{figure}
 
 From equations (\ref{eq:mul_delta_inf_a}) and (\ref{eq:mul_delta_inf_b}) it is apparent that each stage output bit depends on no more than 4 inputs. Note that $xor$ with $1$ value is merely a $not$ operation, and it does not increase input count. It is also true that all outputs of $f_b^{-1}(x)$ stage depend on no more than 2 inputs, so they can be xored with 2 other independent inputs to form a stage, which is important for a stage in key expansion pipeline.
 
@@ -147,7 +163,7 @@ This split uses only 4-input LUT operation mode, because:
 \item Each bit of signals $a$ and $d$ depends on no more than 3 input signals, because on their paths there are only multiplications in $GF(2^2)$, which have this property. 
 \item Each bit of signals $b$ and $c$ depends only on 2 input signals, because they are xors.
 \item Each bit of signal $e$ depends on no more than 2 input signals, because this is a property of multiplication by $\phi$.
-\item Each bit of signal $f$ depends on no more than 3 input signals, because this is a property of multiplications in $GF(2^2)$.
+\item Each bit of signal $f$ depends on no more than 3 input signals, because this is a property of multiplication in $GF(2^2)$.
 \item Each bit of signal $g$ depends on no more than 4 input signals, because signals from $f$ are xored with independent signals.
 \item Each bit of signal $h$ depends on no more than 3 input signals, because signals from $e$ are xored with independent signals.
 \end{itemize}
@@ -162,7 +178,7 @@ This transformation does not do combinatorial logic and thus can be joined with 
 
 
 \paragraph{MixColumns transformation}\mbox{}\\
-Lets first notice that some output bits of multiplication by $\{02\}_{16}$ depend on 2 input signals, all of which are already $xors$. This means that outputs of multiplication blocks already depend on $2 * 2 = 4$ signals. Those outputs are than xored again, which results in exceeding 4-input limit. MixColumns transformation, therefore, needs to be split into two stages. It can be done as shown in figure \ref{fig:mix-columns-split}.
+Lets first notice that some output bits of multiplication by $\{02\}_{16}$ depend on 2 input signals (\ref{eq:mul2}). In MixColumns transformation this multiplication is performed on signals which were are already $xored$ (fig. \ref{fig:mix_columns}). This means that outputs of multiplication by $\{02\}_{16}$ blocks already depend on $2 * 2 = 4$ signals. Those outputs are then xored again, which results in exceeding 4-input limit. MixColumns transformation, therefore, needs to be split into two stages. It can be done as shown in figure \ref{fig:mix-columns-split}.
 
 \begin{figure}[!h]
 \centering
@@ -179,20 +195,28 @@ Those stages can be implemented using only 4-input LUTs, because:
 \item Each bit of signals marked $d$ depends on no nore than 3 input signals.
 \end{itemize}
 
-Note that all output bits depend on no more than 3 input signals, which means that they can be xored with other independent inputs in one stage. This is useful for combining it with AddRoundKey transformation.
+Note that all output bits depend on no more than 3 input signals, which means that they can be $xored$ with other independent inputs in one stage. This is useful for combining it with AddRoundKey transformation.
 
 
 \paragraph{AddRoundKey transformation}\mbox{}\\
 This transformation consists only of a xor gate, which means that it can be combined into one stage with MixColumns.
 
 
-\subsubsection{Final design of throughput-optimized AES encryption circuit}
-Taking all points presented in section \ref{sec:pipeline-stages-design} into consideration, it follows that a pipelied circuit using only 4-input LUTs can be implemeted according to diagram in figure \ref{fig:high-speed-pipe-full}.
+\paragraph{$Rot$ operaiton in KeyExpansion}\mbox{}\\
+$Rot$ operation rotates a word (4 bytes) left by one byte, therefore it does not require any combinatorial logic. Similarly to ShiftRows transformation it can be joined with any other operation to form a stage.
+
+\paragraph{$Rcon$ operation in KeyExpansion}\mbox{}\\
+$Rcon$ operation xors highest byte of a word with $2^{N + 1}$, which means that it adds at most one signal to input. It is performed after second stage of mapping $f^{-1}(x)$ from $GF((2^4)^2)$ to $GF(2^8)$ combined with AES affine transformation ($f_b^{-1}(x)$), outputs of which depend on only 2 input bits. This means that combining $f_b^{-1}(x)$ with $Rcon$ in a stage results in outputs depending on 3 bits, which still leaves space in this stage. This one extra signal is utilised in KeyExpansion pipeline.
+
+\paragraph{Final design of throughput-optimized AES encryption circuit}\mbox{}\\
+Taking all points presented in this section into consideration, it follows that a pipelied circuit using only 4-input LUTs can be implemeted according to diagram in figure \ref{fig:high-speed-pipe-full}.
 
 
 \begin{sidewaysfigure}[!h]
-\label{fig:high-speed-pipe-full}
 \centering
 \includegraphics[scale=2]{high-speed-pipe-full}
 \caption{Throughput optimized AES encryption pipelined circuit}
+\label{fig:high-speed-pipe-full}
 \end{sidewaysfigure}
+
+\newpage
