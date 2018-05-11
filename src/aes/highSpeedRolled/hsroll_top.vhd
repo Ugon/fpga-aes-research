@@ -189,9 +189,7 @@ architecture rtl of hsroll_top is
 
 begin
 
-	LEDR(8) <= started;
-	LEDR(7) <= KEY(0);
-	LEDR(0) <= '1';
+	LEDR(9) <= started;
 
 	rom_data_key(255 downto 128) <= rom_data_key_high;
 	rom_data_key(127 downto 0)   <= rom_data_key_low;
@@ -252,7 +250,7 @@ begin
 			--data           => sub_bytes_lookup(rom_data_in),
 			--data           => mix_columns(rom_data_in),
 			expected       => rom_data_out,
-			error_detected => LEDR(9));
+			error_detected => LEDR(0));
 
 	aes256enc_inst0: entity work.hsroll_aes256enc 
     	port map (
