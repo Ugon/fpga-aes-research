@@ -37,12 +37,12 @@ begin
 	end process;
 
 	gen_check: for i in ROM_WIDTH - 1 downto 0 generate
-		process(main_clk, data_reg(i), expected_reg(i)) begin
+		process(main_clk, data_reg(i), expected_reg(i), started) begin
 			if (started = '0') then
 				xored(i) <= '0';
 			elsif (rising_edge(main_clk)) then
 				if ((data_reg(i) xor expected_reg(i))) then 
-					xored(i) <= detect_reg;
+					xored(i) <= xored(i) or detect_reg;
 				end if;
 			end if;
 		end process;

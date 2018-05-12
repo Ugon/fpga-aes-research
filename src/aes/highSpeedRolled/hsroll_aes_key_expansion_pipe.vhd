@@ -12,8 +12,9 @@ package hsroll_aes_key_expansion_pipe is
 	type hsroll_ake_elevens   is array (0 to 3) of std_logic_vector(10 downto 0);
 	
 	type hsroll_ake_pipe_1res is record
+		prev_key: std_logic_vector(127 downto 0);
 		current_key: std_logic_vector(127 downto 0);
-		next_key: std_logic_vector(127 downto 0);
+
 		w8_init: std_logic_vector(31 downto 0);	
 		w1: std_logic_vector(31 downto 0);
 		w2: std_logic_vector(31 downto 0);
@@ -23,8 +24,8 @@ package hsroll_aes_key_expansion_pipe is
 	end record;
 
 	type hsroll_ake_pipe_2res is record
+		prev_key: std_logic_vector(127 downto 0);
 		current_key: std_logic_vector(127 downto 0);
-		next_key: std_logic_vector(127 downto 0);
 		w8_init: std_logic_vector(31 downto 0);
 		w9_init: std_logic_vector(31 downto 0);
 		w2: std_logic_vector(31 downto 0);
@@ -36,8 +37,8 @@ package hsroll_aes_key_expansion_pipe is
 	end record;
 
 	type hsroll_ake_pipe_3res is record
+		prev_key: std_logic_vector(127 downto 0);
 		current_key: std_logic_vector(127 downto 0);
-		next_key: std_logic_vector(127 downto 0);
 		w8_init: std_logic_vector(31 downto 0);
 		w9_init: std_logic_vector(31 downto 0);
 		w10_init: std_logic_vector(31 downto 0);
@@ -50,8 +51,8 @@ package hsroll_aes_key_expansion_pipe is
 	end record;
 
 	type hsroll_ake_pipe_4res is record
+		prev_key: std_logic_vector(127 downto 0);
 		current_key: std_logic_vector(127 downto 0);
-		next_key: std_logic_vector(127 downto 0);
 		w8_init: std_logic_vector(31 downto 0);
 		w9_init: std_logic_vector(31 downto 0);
 		w10_init: std_logic_vector(31 downto 0);
@@ -63,8 +64,8 @@ package hsroll_aes_key_expansion_pipe is
 	end record;
 
 	type hsroll_ake_pipe_5res is record
+		prev_key: std_logic_vector(127 downto 0);
 		current_key: std_logic_vector(127 downto 0);
-		next_key: std_logic_vector(127 downto 0);
 		w8_init: std_logic_vector(31 downto 0);
 		w9_init: std_logic_vector(31 downto 0);
 		w10_init: std_logic_vector(31 downto 0);
@@ -76,8 +77,8 @@ package hsroll_aes_key_expansion_pipe is
 	end record;
 
 	type hsroll_ake_pipe_6res is record
+		prev_key: std_logic_vector(127 downto 0);
 		current_key: std_logic_vector(127 downto 0);
-		next_key: std_logic_vector(127 downto 0);
 		w8_init: std_logic_vector(31 downto 0);
 		w9_init: std_logic_vector(31 downto 0);
 		w10_init: std_logic_vector(31 downto 0);
@@ -88,8 +89,8 @@ package hsroll_aes_key_expansion_pipe is
 	end record;
 
 	type hsroll_ake_pipe_7res is record
+		prev_key: std_logic_vector(127 downto 0);
 		current_key: std_logic_vector(127 downto 0);
-		next_key: std_logic_vector(127 downto 0);
 		w8_init: std_logic_vector(31 downto 0);
 		w9_init: std_logic_vector(31 downto 0);
 		w10_init: std_logic_vector(31 downto 0);
@@ -100,8 +101,8 @@ package hsroll_aes_key_expansion_pipe is
 	end record;
 
 	type hsroll_ake_pipe_8res is record
+		prev_key: std_logic_vector(127 downto 0);
 		current_key: std_logic_vector(127 downto 0);
-		next_key: std_logic_vector(127 downto 0);
 		w8_init: std_logic_vector(31 downto 0);
 		w9_init: std_logic_vector(31 downto 0);
 		w10_init: std_logic_vector(31 downto 0);
@@ -111,21 +112,21 @@ package hsroll_aes_key_expansion_pipe is
 	end record;
 
 	type hsroll_ake_pipe_9res is record
-		current_key  : std_logic_vector(127 downto 0);
-		next_key     : std_logic_vector(127 downto 0);
-		next_next_key: std_logic_vector(127 downto 0);
+		prev_key: std_logic_vector(127 downto 0);
+		current_key: std_logic_vector(127 downto 0);
+		next_key: std_logic_vector(127 downto 0);
 	end record;
 
 	type hsroll_ake_pipe_result is record
-		current_key  : std_logic_vector(127 downto 0);
-		next_key     : std_logic_vector(127 downto 0);
-		next_next_key: std_logic_vector(127 downto 0);
+		prev_key: std_logic_vector(127 downto 0);
+		current_key: std_logic_vector(127 downto 0);
+		next_key: std_logic_vector(127 downto 0);
 	end record;
 
 	function hsroll_ake_pipe_stage1 (
-		current_key          : std_logic_vector(127 downto 0);
-		next_key             : std_logic_vector(127 downto 0);
-		rot_word             : std_logic) return hsroll_ake_pipe_1res;
+		prev_key    : std_logic_vector(127 downto 0);
+		current_key : std_logic_vector(127 downto 0);
+		rot_word    : std_logic) return hsroll_ake_pipe_1res;
 
 	function hsroll_ake_pipe_stage2 (
 		state_in : hsroll_ake_pipe_1res) return hsroll_ake_pipe_2res;
@@ -160,9 +161,9 @@ end hsroll_aes_key_expansion_pipe;
 package body hsroll_aes_key_expansion_pipe is
 
 	function hsroll_ake_pipe_stage1 (
-		current_key          : std_logic_vector(127 downto 0);
-		next_key             : std_logic_vector(127 downto 0);
-		rot_word             : std_logic
+		prev_key    : std_logic_vector(127 downto 0);
+		current_key : std_logic_vector(127 downto 0);
+		rot_word    : std_logic
 	) return hsroll_ake_pipe_1res is
 		variable w7    : std_logic_vector(31 downto 0);
 		variable w7_rot: std_logic_vector(31 downto 0);
@@ -171,17 +172,16 @@ package body hsroll_aes_key_expansion_pipe is
 		variable inp_l : std_logic_vector(3 downto 0);
 		variable result: hsroll_ake_pipe_1res;
 	begin
-		result.next_key    := next_key;
 		result.current_key := current_key;
+		result.prev_key    := prev_key;
 
-		result.w8_init := current_key(127 downto 96);
-		result.w1      := current_key(95 downto 64);
-		result.w2      := current_key(63 downto 32);
-		result.w3      := current_key(31 downto 0);
+		result.w8_init := prev_key(127 downto 96);
+		result.w1      := prev_key(95 downto 64);
+		result.w2      := prev_key(63 downto 32);
+		result.w3      := prev_key(31 downto 0);
 		
-		w7 := next_key(31 downto 0);
+		w7 := current_key(31 downto 0);
 
-		--if (next_next_round_numer mod 2 = 1) then
 		if (rot_word = '1') then
 			w7_rot(31 downto 8) := w7(23 downto 0);
 			w7_rot(7 downto 0) := w7(31 downto 24);
@@ -206,8 +206,8 @@ package body hsroll_aes_key_expansion_pipe is
 		variable inp_l : std_logic_vector(3 downto 0);
 		variable result: hsroll_ake_pipe_2res;
 	begin
-		result.next_key    := state_in.next_key;
-		result.current_key := state_in.current_key;
+		result.current_key    := state_in.current_key;
+		result.prev_key := state_in.prev_key;
 
 		result.w8_init := state_in.w8_init;
 		result.w9_init := state_in.w1 xor state_in.w8_init;
@@ -232,8 +232,8 @@ package body hsroll_aes_key_expansion_pipe is
     	variable c: std_logic_vector(3 downto 0);
 		variable result: hsroll_ake_pipe_3res;
     begin
-		result.next_key    := state_in.next_key;
-		result.current_key := state_in.current_key;
+		result.current_key    := state_in.current_key;
+		result.prev_key := state_in.prev_key;
 
 		result.w8_init  := state_in.w8_init;
 		result.w9_init  := state_in.w9_init;
@@ -257,8 +257,8 @@ package body hsroll_aes_key_expansion_pipe is
 		variable f: std_logic_vector(3 downto 0);
 		variable result: hsroll_ake_pipe_4res;
     begin
-		result.next_key    := state_in.next_key;
-		result.current_key := state_in.current_key;
+		result.current_key    := state_in.current_key;
+		result.prev_key := state_in.prev_key;
 
 		result.w8_init  := state_in.w8_init;
 		result.w9_init  := state_in.w9_init;
@@ -280,8 +280,8 @@ package body hsroll_aes_key_expansion_pipe is
 	) return hsroll_ake_pipe_5res is
 		variable result: hsroll_ake_pipe_5res;
 	begin
-		result.next_key    := state_in.next_key;
-		result.current_key := state_in.current_key;
+		result.current_key    := state_in.current_key;
+		result.prev_key := state_in.prev_key;
 		
 		result.w8_init  := state_in.w8_init;
 		result.w9_init  := state_in.w9_init;
@@ -302,8 +302,8 @@ package body hsroll_aes_key_expansion_pipe is
 	) return hsroll_ake_pipe_6res is
 		variable result: hsroll_ake_pipe_6res;
 	begin
-		result.next_key    := state_in.next_key;
-		result.current_key := state_in.current_key;
+		result.current_key    := state_in.current_key;
+		result.prev_key := state_in.prev_key;
 
 		result.w8_init  := state_in.w8_init;
 		result.w9_init  := state_in.w9_init;
@@ -323,8 +323,8 @@ package body hsroll_aes_key_expansion_pipe is
 	) return hsroll_ake_pipe_7res is
 		variable result: hsroll_ake_pipe_7res;
 	begin
-		result.next_key    := state_in.next_key;
-		result.current_key := state_in.current_key;
+		result.current_key    := state_in.current_key;
+		result.prev_key := state_in.prev_key;
 
 		result.w8_init  := state_in.w8_init;
 		result.w9_init  := state_in.w9_init;
@@ -344,8 +344,8 @@ package body hsroll_aes_key_expansion_pipe is
 		variable bte   : std_logic_vector(7 downto 0);
 		variable result: hsroll_ake_pipe_8res;
 	begin
-		result.next_key    := state_in.next_key;
-		result.current_key := state_in.current_key;
+		result.current_key    := state_in.current_key;
+		result.prev_key := state_in.prev_key;
 		
 		result.w8_init  := state_in.w8_init;
 		result.w9_init  := state_in.w9_init;
@@ -376,8 +376,8 @@ package body hsroll_aes_key_expansion_pipe is
 		
 		variable result: hsroll_ake_pipe_9res;
 	begin
-		result.next_key    := state_in.next_key;
-		result.current_key := state_in.current_key;
+		result.current_key    := state_in.current_key;
+		result.prev_key := state_in.prev_key;
 		
 		for i in 0 to 3 loop
 			w7_sub((i + 1) * 8 - 1 downto i * 8) := mul_deltainv_affine_8b(state_in.w7_delta_mul_inter(i));
@@ -385,19 +385,16 @@ package body hsroll_aes_key_expansion_pipe is
 
 		w7_rcon := w7_sub;
 		w7_rcon(31 downto 24) := w7_rcon(31 downto 24) xor rcon;
-		--if (next_next_round_numer mod 2 = 1) then
-			--w7_rcon(31 downto 24) := w7_rcon(31 downto 24) xor std_logic_vector(to_unsigned(2 ** (next_next_round_numer / 2 - 1), 8));
-		--end if;
 
 		w8  := state_in.w8_init  xor w7_rcon;
 		w9  := state_in.w9_init  xor w7_rcon;
 		w10 := state_in.w10_init xor w7_rcon;
 		w11 := state_in.w11_init xor w7_rcon;
 
-		result.next_next_key(127 downto 96) := w8;
-		result.next_next_key(95 downto 64)  := w9;
-		result.next_next_key(63 downto 32)  := w10;
-		result.next_next_key(31 downto 0)   := w11;
+		result.next_key(127 downto 96) := w8;
+		result.next_key(95 downto 64)  := w9;
+		result.next_key(63 downto 32)  := w10;
+		result.next_key(31 downto 0)   := w11;
 
 		return result;
 	end function;
@@ -407,9 +404,9 @@ package body hsroll_aes_key_expansion_pipe is
 	) return hsroll_ake_pipe_result is
 		variable result: hsroll_ake_pipe_result;
 	begin
-		result.next_key      := state_in.next_key;
-		result.current_key   := state_in.current_key;
-		result.next_next_key := state_in.next_next_key;
+		result.current_key      := state_in.current_key;
+		result.prev_key   := state_in.prev_key;
+		result.next_key := state_in.next_key;
 		return result;
 	end function;
 

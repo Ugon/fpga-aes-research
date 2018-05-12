@@ -5,22 +5,22 @@ use ieee.numeric_std.all;
 use work.hsroll_aes_encryption_pipe.all;
 use work.hsroll_aes_key_expansion_pipe.all;
 
-entity hsroll_aes_round_1_14 is
+entity hsroll_aes_round is
 	generic (
 		block_bits             : Integer               := 128);
 	port (
 		main_clk                : in  std_logic;
 		block_in                : in  std_logic_vector(block_bits - 1 downto 0);
-		corresponding_round_key : in  std_logic_vector(block_bits - 1 downto 0);
+		prev_key_in             : in  std_logic_vector(block_bits - 1 downto 0);
 		block_out               : out std_logic_vector(block_bits - 1 downto 0);
 
-		last_round_key          : in  std_logic_vector(block_bits - 1 downto 0) := (others => '0');
+		last_key_in             : in  std_logic_vector(block_bits - 1 downto 0) := (others => '0');
 		last_block_out          : out std_logic_vector(block_bits - 1 downto 0);
 		last_block_fast_out     : out std_logic_vector(block_bits - 1 downto 0)
 	);
-end hsroll_aes_round_1_14;
+end hsroll_aes_round;
 
-architecture hsroll_aes_round_1_14_impl of hsroll_aes_round_1_14 is 
+architecture hsroll_aes_round_impl of hsroll_aes_round is 
 
 	signal hsroll_aenc_stage1_res: hsroll_aenc_pipe_1res;
 	signal hsroll_aenc_stage2_res: hsroll_aenc_pipe_2res;
@@ -45,7 +45,7 @@ begin
 	begin
 
 		if(rising_edge(main_clk)) then
-			hsroll_aenc_stage1_res  <= hsroll_aenc_pipe_stage1(block_in, corresponding_round_key);
+			hsroll_aenc_stage1_res  <= hsroll_aenc_pipe_stage1(block_in, prev_key_in);
 			hsroll_aenc_stage2_res  <= hsroll_aenc_pipe_stage2(hsroll_aenc_stage1_res);
 			hsroll_aenc_stage3_res  <= hsroll_aenc_pipe_stage3(hsroll_aenc_stage2_res);
 			hsroll_aenc_stage4_res  <= hsroll_aenc_pipe_stage4(hsroll_aenc_stage3_res);
@@ -57,7 +57,7 @@ begin
 			hsroll_aenc_stage10_res <= hsroll_aenc_pipe_stage10(hsroll_aenc_stage9_res);
 			block_out               <= hsroll_aenc_pipe_stage11(hsroll_aenc_stage10_res);
 			
-			blk_lst_out         := hsroll_aenc_stage9_res.state xor last_round_key;
+			blk_lst_out         := hsroll_aenc_stage9_res.state xor last_key_in;
 			last_block_fast_out <= blk_lst_out;
 			blk_lst_out_buf     <= blk_lst_out;
 			last_block_out      <= blk_lst_out_buf;
@@ -65,4 +65,4 @@ begin
 		end if;
 	end process;
 
-end hsroll_aes_round_1_14_impl;
+end hsroll_aes_round_impl;

@@ -8,7 +8,7 @@ use work.aes_sub_bytes.all;
 use work.aes_utils.all;
 
 
-entity high_speed_top is
+entity hs_top is
 generic (
 	NUMBER_OF_CYCLES: Integer := 14 * 11 + 10;
 	MEM_FOLDER:       String  := "enc2"
@@ -155,9 +155,9 @@ port (
 	VGA_R:                        out   std_logic_vector(7 downto 0);
 	VGA_SYNC_N:                   out   std_logic;
 	VGA_VS:                       out   std_logic);
-end entity high_speed_top;
+end entity hs_top;
 
-architecture rtl of high_speed_top is
+architecture hs_top_impl of hs_top is
 
 	component pll is
 		port (
@@ -262,4 +262,4 @@ begin
 	end process;
 
 
-end architecture rtl;
+end architecture hs_top_impl;

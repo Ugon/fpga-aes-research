@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 use work.aes_encryption_pipe.all;
 use work.aes_key_expansion_pipe.all;
 
-entity aes_key_expansion_14 is
+entity hs_aes_key_expansion_14 is
 	generic (
 		block_bits                 : Integer               := 128);
 	port (
@@ -16,9 +16,9 @@ entity aes_key_expansion_14 is
 		corresponding_round_key : out std_logic_vector(block_bits - 1 downto 0);
 		next_key_out            : out std_logic_vector(block_bits - 1 downto 0)
 	);
-end aes_key_expansion_14;
+end hs_aes_key_expansion_14;
 
-architecture aes_key_expansion_14_impl of aes_key_expansion_14 is 
+architecture hs_aes_key_expansion_14_impl of hs_aes_key_expansion_14 is 
 
 	signal ake_stage1_a: std_logic_vector(127 downto 0);
 	signal ake_stage2_a: std_logic_vector(127 downto 0);
@@ -71,4 +71,4 @@ begin
 		end if;
 	end process;
 
-end aes_key_expansion_14_impl;
+end hs_aes_key_expansion_14_impl;

@@ -6,7 +6,7 @@ use work.aes_shift_rows.all;
 use work.aes_sub_bytes.all;
 use work.aes_mix_columns.all;
 
-package aes_encryption_pipe is
+package hs_aes_encryption_pipe is
 
 	type asb_halfbytes is array (0 to 15) of std_logic_vector(3 downto 0);
 	type asb_bytes     is array (0 to 15) of std_logic_vector(7 downto 0);
@@ -77,9 +77,9 @@ package aes_encryption_pipe is
 	function aenc_pipe_stage11 (state_in: aenc_pipe_10res; round_key: std_logic_vector) return std_logic_vector;
 	function aenc_pipe_stage10_last (state_in: aenc_pipe_9res; round_key: std_logic_vector) return std_logic_vector;
 
-end aes_encryption_pipe;
+end hs_aes_encryption_pipe;
 
-package body aes_encryption_pipe is
+package body hs_aes_encryption_pipe is
 
 	function aenc_pipe_stage1 (state_in: std_logic_vector) return aenc_pipe_1res is
 		variable inp: std_logic_vector(7 downto 0);
@@ -222,4 +222,4 @@ package body aes_encryption_pipe is
 		return state_in.state xor round_key;	
 	end function;
 	
-end aes_encryption_pipe;
+end hs_aes_encryption_pipe;

@@ -5,22 +5,18 @@ use ieee.numeric_std.all;
 use work.aes_encryption_pipe.all;
 use work.aes_key_expansion_pipe.all;
 
-entity aes256enc is
+entity hs_aes256enc is
 	generic (
-		byte_bits          : Integer := 8;
-		block_bytes        : Integer := 16;
-		block_bits         : Integer := 128;
-		key_bytes          : Integer := 32;
-		key_expansion_bits : Integer := 15 * 128);
+		block_bits         : Integer := 128);
 	port (
 		main_clk      : in  std_logic;
 		key           : in  std_logic_vector(2 * block_bits - 1 downto 0);
 		plaintext     : in  std_logic_vector(block_bits - 1 downto 0);
 		cyphertext    : out std_logic_vector(block_bits - 1 downto 0)
 	);
-end aes256enc;
+end hs_aes256enc;
 
-architecture aes256enc_impl of aes256enc is 
+architecture hs_aes256enc_impl of hs_aes256enc is 
 
 	type round_connection is record
 		current_key       : std_logic_vector(block_bits - 1 downto 0);
@@ -50,7 +46,7 @@ begin
 		connections(i).block_in    <= connections(i - 1).block_out;
 	end generate GEN_CONNECTIONS; 
 
-	round1_inst: entity work.aes_round_1
+	round1_inst: entity work.hs_aes_round_1
     	port map (
     		main_clk                => main_clk,
 			block_in                => connections(1).block_in,
@@ -58,7 +54,7 @@ begin
 			corresponding_round_key => connections(1).corresponding_key
 		);
 
-	key1_inst: entity work.aes_key_expansion_1_13
+	key1_inst: entity work.hs_aes_key_expansion_1_13
 		generic map (corresponding_round_number => 1)
     	port map (
     		main_clk                => main_clk,
@@ -70,7 +66,7 @@ begin
 		);
 
     GEN_ROUNDS: for i in 2 to 13 generate
-		roundX_inst: entity work.aes_round_2_14
+		roundX_inst: entity work.hs_aes_round_2_14
 			generic map (round_number => i)
     		port map (
     			main_clk                => main_clk,
@@ -79,7 +75,7 @@ begin
 				block_out               => connections(i).block_out
 			);
 
-		keyX_inst: entity work.aes_key_expansion_1_13
+		keyX_inst: entity work.hs_aes_key_expansion_1_13
 			generic map (corresponding_round_number => i)
     		port map (
     			main_clk                => main_clk,
@@ -91,7 +87,7 @@ begin
 			);
 	end generate GEN_ROUNDS;
 
-	round14_inst: entity work.aes_round_2_14
+	round14_inst: entity work.hs_aes_round_2_14
     	port map (
     		main_clk                => main_clk,
 			block_in                => connections(14).block_in,
@@ -99,7 +95,7 @@ begin
 			corresponding_round_key => connections(14).corresponding_key
 		);
 
-	key14_inst: entity work.aes_key_expansion_14
+	key14_inst: entity work.hs_aes_key_expansion_14
     	port map (
     		main_clk                => main_clk,
 			current_key             => connections(14).current_key,
@@ -108,7 +104,7 @@ begin
 			corresponding_round_key => connections(14).corresponding_key
 		);	
 
-	round15_inst: entity work.aes_round_15
+	round15_inst: entity work.hs_aes_round_15
     	port map (
     		main_clk                => main_clk,
 			block_in                => connections(15).block_in,
@@ -116,11 +112,11 @@ begin
 			corresponding_round_key => connections(15).corresponding_key
 		);
 
-	key15_inst: entity work.aes_key_expansion_15
+	key15_inst: entity work.hs_aes_key_expansion_15
     	port map (
     		main_clk                => main_clk,
 			current_key             => connections(15).current_key,
 			corresponding_round_key => connections(15).corresponding_key
 		);	
 
-end aes256enc_impl;
+end hs_aes256enc_impl;

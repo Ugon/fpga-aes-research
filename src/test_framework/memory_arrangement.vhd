@@ -6,14 +6,12 @@ use work.aes_utils.all;
 
 entity memory_arrangement is
 	generic (
-		ROM_NUMBER       : Integer := 2;
-		ROM_DEPTH        : Integer := 32;
-		ROM_WIDTH        : Integer := 128;
-		NUMBER_OF_CYCLES : Integer := 32;
-		MEM_FOLDER       : String  := "identity";
-		MEM_IN_OUT       : String  := "in";
-		DATAS_OUT_QUEUE_NUMBER  : Integer := 3
-		);
+		ROM_NUMBER              : Integer := 2;
+		ROM_DEPTH               : Integer := 32;
+		ROM_WIDTH               : Integer := 128;
+		NUMBER_OF_CYCLES        : Integer := 32;
+		MEM_FOLDER              : String  := "identity";
+		MEM_IN_OUT              : String  := "in");
 	port (
 		main_clk     : in  std_logic;
 		data         : out std_logic_vector(ROM_WIDTH - 1 downto 0);
@@ -28,8 +26,7 @@ entity memory_arrangement is
 		dbg_sig_rom_enable1 : out std_logic;
 		dbg_sig_mem_enable0 : out std_logic;
 		dbg_sig_mem_enable1 : out std_logic
-
-		);
+	);
 end memory_arrangement;
 
 architecture double of memory_arrangement is 
@@ -88,14 +85,14 @@ begin
     	    clken    => sig_rom_enable(i),
     	    q        => rom_datas(i));
 
-		process(main_clk, rom_addresses) begin
+		process(main_clk, rom_addresses, sig_mem_enable) begin
 			if (rising_edge(main_clk) and sig_mem_enable(i) = '1') then
 				rom_addresses(i) <= rom_addresses(i) + 1;
 				registered(i) <= rom_datas(i);
 			end if;
 		end process;
 
-		process(main_clk, rom_addresses) begin
+		process(main_clk, rom_addresses, sig_mem_enable) begin
 			if (rising_edge(main_clk)) then
 				sig_rom_enable(i) <= not sig_rom_enable(i);
 				sig_mem_enable(i) <= not sig_mem_enable(i);

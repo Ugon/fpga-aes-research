@@ -10,13 +10,8 @@ use work.aes_utils.all;
 
 entity hsroll_top is
 generic (
-	--NUMBER_OF_CYCLES: Integer := 14 * 11 + 10;
-	--NUMBER_OF_CYCLES: Integer := 13 * 11;
-	--NUMBER_OF_CYCLES: Integer := 13 * 11 + 10;
 	NUMBER_OF_CYCLES: Integer := 14 * 11;
-	--NUMBER_OF_CYCLES: Integer := 11;
-	MEM_FOLDER:       String  := "enc2"
-);
+	MEM_FOLDER:       String  := "enc2");
 port (
       --------- ADC ---------
 	ADC_CS_N:                     inout std_logic;
@@ -243,12 +238,6 @@ begin
 			started        => started,
 			data           => rom_data_calculated,
 			detect         => exchange,
-			--data           => rom_data_in or rom_data_key_high or rom_data_key_low,
-			--data           => not reverse_bit_order(rom_data_in),
-			--data           => rom_data_late,
-			--data           => sub_bytes_lookup(rom_data_in),
-			--data           => sub_bytes_lookup(rom_data_in),
-			--data           => mix_columns(rom_data_in),
 			expected       => rom_data_out,
 			error_detected => LEDR(0));
 

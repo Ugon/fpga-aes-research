@@ -157,7 +157,7 @@ port (
 	VGA_VS:                       out   std_logic);
 end entity async_top;
 
-architecture rtl of async_top is
+architecture async_top_impl of async_top is
 
 	component pll is
 		port (
@@ -273,4 +273,4 @@ begin
 	end process;
 
 
-end architecture rtl;
+end architecture async_top_impl;

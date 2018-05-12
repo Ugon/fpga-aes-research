@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 use work.aes_sub_bytes.all;
 
-package aes_key_expansion_pipe is
+package hs_aes_key_expansion_pipe is
 
 	type ake_halfbytes is array (0 to 3) of std_logic_vector(3 downto 0);
 	type ake_bytes     is array (0 to 3) of std_logic_vector(7 downto 0);
@@ -164,9 +164,9 @@ package aes_key_expansion_pipe is
 		next_next_round_numer: Integer range 3 to 15) return ake_pipe_result;
 
 
-end aes_key_expansion_pipe;
+end hs_aes_key_expansion_pipe;
 
-package body aes_key_expansion_pipe is
+package body hs_aes_key_expansion_pipe is
 
 	function ake_pipe_stage1 (
 		current_key          : std_logic_vector(127 downto 0);
@@ -430,4 +430,4 @@ package body aes_key_expansion_pipe is
 		return result;
 	end function;
 
-end aes_key_expansion_pipe;
+end hs_aes_key_expansion_pipe;
