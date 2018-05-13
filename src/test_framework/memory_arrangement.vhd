@@ -2,8 +2,6 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-use work.aes_utils.all;
-
 entity memory_arrangement is
 	generic (
 		ROM_NUMBER              : Integer := 2;

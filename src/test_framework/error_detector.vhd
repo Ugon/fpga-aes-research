@@ -3,8 +3,6 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_misc.all;
 use ieee.numeric_std.all;
 
-use work.aes_utils.all;
-
 entity error_detector is
 	generic (
 		ROM_WIDTH      : Integer := 128);

@@ -5,13 +5,11 @@ use ieee.numeric_std.all;
 
 use work.aes_mix_columns.all;
 use work.aes_sub_bytes.all;
-use work.aes_utils.all;
-
 
 entity r7_top is
 generic (
 	--NUMBER_OF_CYCLES: Integer := 14 * 6 + 6;
-	NUMBER_OF_CYCLES: Integer := 14 * 6 + 6;
+	NUMBER_OF_CYCLES: Integer := 14 * 6;
 	MEM_FOLDER:       String  := "enc2"
 );
 port (
@@ -158,7 +156,7 @@ port (
 	VGA_VS:                       out   std_logic);
 end entity r7_top;
 
-architecture rtl of r7_top is
+architecture r7_top_impl of r7_top is
 
 	component pll is
 		port (
@@ -238,11 +236,6 @@ begin
     		main_clk       => main_clk,
 			started        => started,
 			data           => rom_data_calculated,
-			--data           => not reverse_bit_order(rom_data_in),
-			--data           => rom_data_late,
-			--data           => sub_bytes_lookup(rom_data_in),
-			--data           => sub_bytes_lookup(rom_data_in),
-			--data           => mix_columns(rom_data_in),
 			expected       => rom_data_out,
 			error_detected => LEDR(0));
 
@@ -262,4 +255,4 @@ begin
 	end process;
 
 
-end architecture rtl;
+end architecture r7_top_impl;

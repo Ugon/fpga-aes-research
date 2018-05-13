@@ -5,8 +5,6 @@ use ieee.numeric_std.all;
 
 use work.aes_mix_columns.all;
 use work.aes_sub_bytes.all;
-use work.aes_utils.all;
-
 
 entity hsroll_top is
 generic (

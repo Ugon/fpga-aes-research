@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY hsroll_top
+set_global_assignment -name TOP_LEVEL_ENTITY hs_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:59:17  AUGUST 15, 2017"
 set_global_assignment -name LAST_QUARTUS_VERSION "17.0.2 Lite Edition"
@@ -319,17 +319,25 @@ set_global_assignment -name ROUTER_CLOCKING_TOPOLOGY_ANALYSIS ON
 set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC_FOR_AREA ON
 set_global_assignment -name USE_LOGICLOCK_CONSTRAINTS_IN_BALANCING OFF
 set_global_assignment -name QII_AUTO_PACKED_REGISTERS "SPARSE AUTO"
+set_global_assignment -name VHDL_FILE ../src/aes/r7/r7_top.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/r7/r7_aes256enc.vhd
+set_global_assignment -name VECTOR_WAVEFORM_FILE ../src/aes/r7/r7_aes256enc_test.vwf
+set_global_assignment -name VHDL_FILE ../src/aes/r7/r7_aes_round.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/r7/r7_aes_key_expansion.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/hs_top.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/hs_aes256enc.vhd
+set_global_assignment -name VECTOR_WAVEFORM_FILE ../src/aes/highSpeed/hs_aes256enc_test.vwf
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/hs_aes_round.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/highSpeed/hs_aes_key_expansion.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/highSpeedRolled/hsroll_top.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/highSpeedRolled/hsroll_aes256enc.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/highSpeedRolled/hsroll_aes_round.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/highSpeedRolled/hsroll_aes_key_expansion_pipe.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/highSpeedRolled/hsroll_aes_key_expansion.vhd
-set_global_assignment -name VHDL_FILE ../src/aes/highSpeedRolled/hsroll_aes_encryption_pipe.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/memRolled/mroll_top.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/memRolled/mroll_aes256enc.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE ../src/aes/memRolled/mroll_aes256enc_test.vwf
 set_global_assignment -name VHDL_FILE ../src/aes/memRolled/mroll_aes_round_and_key.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE ../src/aes/memRolled/mroll_aes_round_and_key_test.vwf
+set_global_assignment -name VHDL_FILE ../src/aes/pipe/hs_aes_round_pipe.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/pipe/hs_aes_key_expansion_pipe.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/transformations/aes_utils.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/transformations/aes_sub_bytes.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/transformations/aes_shift_rows.vhd

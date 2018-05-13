@@ -2,9 +2,6 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-use work.hsroll_aes_encryption_pipe.all;
-use work.hsroll_aes_key_expansion_pipe.all;
-
 entity hsroll_aes256enc is
 	generic (
 		block_bits         : Integer := 128);
@@ -101,7 +98,7 @@ begin
 		end if;
 	end process;
 
-	key_inst: entity work.hsroll_aes_key_expansion
+	key_inst: entity work.hs_aes_key_expansion
    		port map (
    			main_clk                => main_clk,
 			prev_key_in             => prev_key_in,
@@ -114,7 +111,7 @@ begin
 		);
 
 
-	round_inst: entity work.hsroll_aes_round
+	round_inst: entity work.hs_aes_round
    		port map (
    			main_clk                => main_clk,
 			block_in                => block_in,

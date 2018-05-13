@@ -5,12 +5,11 @@ use ieee.numeric_std.all;
 
 use work.aes_mix_columns.all;
 use work.aes_sub_bytes.all;
-use work.aes_utils.all;
-
 
 entity hs_top is
 generic (
-	NUMBER_OF_CYCLES: Integer := 14 * 11 + 10;
+	--NUMBER_OF_CYCLES: Integer := 14 * 11 + 10;
+	NUMBER_OF_CYCLES: Integer := 14 * 11;
 	MEM_FOLDER:       String  := "enc2"
 );
 port (
@@ -246,7 +245,7 @@ begin
 			expected       => rom_data_out,
 			error_detected => LEDR(0));
 
-	aes256enc_inst0: entity work.aes256enc 
+	aes256enc_inst0: entity work.hs_aes256enc 
     	port map (
 			main_clk => main_clk,
 			key => rom_data_key,
