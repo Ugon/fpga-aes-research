@@ -1,8 +1,10 @@
 \section{System implementation}
 To compare performance of proposed AES circuit designs they were implemented in VHDL hardware description language and deployed on Terasic DE1-SoC development board. This chapter summarizes relevant to this research details of FPGA technology, describes implementation details of proposed AES designs and provides test results.
    
-\subsection{Chosen hardware platform}
-Terasic DE1-SoC deveopment board.
+\subsection{Chosen hardware platform and development tools}
+Terasic DE1-SoC development board \cite{plytka} was chosen to be a platform for deployment and testing of proposed designs. It is equipped with Altera Cyclone V SoC FPGA chip (5CSEMA5F31C6) \cite{cycloneVOverview}. This chip has (as reported by compilation report) 88277 logic elements and 32768 on-chip memory bits, which is enough for all of the tested designs.
+
+All proposed designs were implemented in VHDL hardware description language. Quartus Prime Version 10.0.2 Lite Edition IDE was used to create, build and deploy the project. Simulation tests were conducted using ModelSim, which is a part of Quartus platform.
 
 \subsection{Low level FPGA chip analysis}
 \label{sec:low-level-fpga}
@@ -27,14 +29,48 @@ Conducted tests showed that for AES encryption maximum frequency was higher for 
 
 
 \subsection{VHDL description of the system's general structure}
-np. na poziomie Entity, żeby pokazać w jakim języku była realizowana implementacja i jakie są interfejsy
+All designed circuits have identical interfaces (fig. \ref{fig:top-aes}, lst. \ref{lst:entity}). As input they take:
+\begin{itemize}[noitemsep]
+\item \textbf{plaintext} -- 128b vector containing block of data to be encrypted
+\item \textbf{key} -- 256b vector containing AES encryption key to be used
+\item \textbf{main\_clk} -- clock signal
+\end{itemize}
+All circuits output \textbf{cyphertext} -- 128b vector containing \textbf{plaintext} encrypted with \textbf{key}. Pipelined designs vary in number of \textbf{clock} cycles required for encryption process. Circuits do not input or output any control signals, it is up to the user of those entities to collect \textbf{cyphertext} after adequate number of \textbf{clock} cycles. Entity utilising \textit{Simple asynchronous architecture} does not use \textbf{clock} signal -- it is asynchronous.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=2]{top-aes}
+\caption{Modified pipeline for pipelined rolled up architecture}
+\label{fig:top-aes}
+\end{figure}
+
+\begin{figure}[!h]
+\begin{lstlisting}[style=vhdl, caption={AES encryption VHDL entity}, label={lst:entity}, captionpos=b]
+entity aes256enc is
+	generic (
+		block_bits    : Integer := 128);
+	port (
+		main_clk      : in  std_logic;
+		key           : in  std_logic_vector(2 * block_bits - 1 downto 0);
+		plaintext     : in  std_logic_vector(block_bits - 1 downto 0);
+		cyphertext    : out std_logic_vector(block_bits - 1 downto 0)
+	);
+end aes256enc;
+\end{lstlisting}
+\end{figure}
+
 
 \subsection{Implementation details of proposed designs}
+This section provides implementation details of all designed AES encryption circuits.
 
+\subsubsection{Simple asynchronous architecture}
+Asynchronous AES encryption circuit is not clocked and does not implement any optimizations. Encryption is done at the speed of signal propagation. As Author showed in his BsC thesis \cite{inzynierka}, this design is capable of encrypting \textbf{20M blocks per second}. Compilation report shows that it uses \textbf{27462} (excluding 806 elements required for testing circuit - section \ref{sec:testing-methodology}) FPGA ALMs.
+
+This design is described in detail in Author's past research - his BSc thesis \cite{inzynierka}.
 
 \subsubsection{Pipelined unrolled architecture with stages of equal critical path length}
 
-This design proposal was implemented as part of this research as proposed in \cite{vlsi}.
+This design was implemented as part of this research as proposed in \cite{vlsi}.
 
 Testing of the design showed that all transformations individually could run at frequencies exceeding 500MHz (close to or at testing circuits max frequency of 530MHz). One full round could run at this frequency as well, but adding more consecutive rounds resulted in decrease of frequency due to FPGA resource congestion resulting in longer routing paths. Full AES encryption circuit, which consists of 15 rounds, was capable of operating at \textbf{375MHz} and consumed \textbf{15123} ALM resources.
 
@@ -52,19 +88,75 @@ The conclusions of this research were:
 \subsubsection{Pipelined unrolled architecture with stages containing one ALM}
 \label{sec:implementation-pipe-unrolled-one-alm}
 
-First approach to implementing this circuit was to split pipelining stages so that they used 4-input as well as 6-input LUTs. This approach resulted in increased performance, but analysis of compilation reports showed that paths with longest signal propagation time typically led through ALMs utilising 6-input operation mode. The circuit was therefore further redesigned to take advantage of only 4-input operation mode. Final design was capable of operating at \textbf{406MHz}, which is the highest achieved frequency for AES encryption observed in this research. The number of logic elements as reported by compiler for this design was \textbf{22411} (excluding 806 elements required for testing circuit).
+First approach to implementing this circuit was to split pipelining stages so that they used 4-input as well as 6-input LUTs. This approach resulted in increased performance, but analysis of compilation reports showed that paths with longest signal propagation time typically led through ALMs utilising 6-input operation mode. The circuit was therefore further redesigned to take advantage of only 4-input operation mode. Final design was capable of operating at \textbf{401MHz}, which is the highest achieved frequency for AES encryption observed in this research. The number of logic elements as reported by compiler for this design was \textbf{22411} (excluding 806 elements required for testing circuit).
 
 This section will describe in detail how each operation in AES algorithm can be split into stages taking advantage of only 4-input LUT operation mode. To utilise this mode each registered output bit needs to depend on no more than 4 inputs.
 
 \input{sections/subsections/pipeline-details}
 
 
-\subsubsection{Pipelined looped architecture with stages containing one ALM}
+\subsubsection{Pipelined rolled up architecture with stages containing one ALM}
 
-speed: 467MHz\\
-LE: 2234\\
-Figure \ref{fig:rolled-high-speed-pipe-full}
+This design aims to reduce FPGA resource usage at the cost of reducing throughput by utilising rolling up of the pipeline (fig. \ref{fig:rolled-loop}).
 
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=2]{rolled-loop}
+\caption{Rolled up AES architecture}
+\label{fig:rolled-loop}
+\end{figure}
+
+AES round design is based on \textit{Pipelined unrolled architecture with stages containing one ALM} to take advantage of pipelining and optimal round pipeline structure (stages containing one ALM). Each block of plaintext is processed by AES round 14 times. Iteration process is controlled by \textit{loop} signal, which indicates when encryption is done and new block should be input. 
+
+AES rounds are not all the same - only in every other's round key expansion routine \textit{Rot} and \textit{Rcon} (fig. \ref{fig:rolled-high-speed-pipe-full}) operations are performed. This requires addition of extra control logic to orchestrate execution of each loop iteration: \textit{rcon\_en} and \textit{rot\_en} signals. Their purpose is to enable corresponding operations every other round. Two separate signals are required, because \textit{Rot} and \textit{Rcon} take place in different pipeline stages and thus their control signals need to be offset.
+
+Last AES round is different from previous ones in that it does not perform MixColumns transformation. To make it possible to reuse one round implementation for entire AES encryption process its original design was slightly altered (before fig. \ref{fig:high-speed-pipe-full}, after fig. \ref{fig:rolled-high-speed-pipe-full}). Before this modification, parallel to calculation of $N^{th}$ round was key expansion for $(N + 2)^{th}$ round. After modification, parallel to calculation of $N^{th}$ round is key expansion for $(N + \textbf{1})^{th}$ round. This modification is only a slight rearrangement of the pipeline which allows for more elegant design and does not change the complexity of the circuit. 
+
+This design was capable of operating at \textbf{455MHz}, which is an improvement over \textit{Pipelined unrolled architecture with stages containing one ALM}. This is due to this circuit consuming less FPGA resources, which reduces logic congestion and allows for more efficient routing. As reported by compiler, this design uses \textbf{1425} FPGA ALMS (excluding 806 elements required for testing circuit).
+
+
+\subsubsection{Pipelined rolled up architecture using on-chip memory}
+
+This architecture is based on \textit {Pipelined rolled up architecture with stages containing one ALM}. In this approach SubBytes transformation is implemented using on-chip memory, which stores an SBox -- look up table of substitution bytes. The circuit contains one such SBox, which is reused for all lookups (16 in SubButes transformation and 4 in key expansion routine).
+
+This design is capable of operating at \textbf{315MHz}, which is the limit of on-chip memory for Altera Cyclone V Devices \cite[Table 27]{cycloneVDatasheet}. As reported by compiler, this design uses \textbf{631} FPGA ALMS (excluding 806 elements required for testing circuit) and \textbf{2048} memory bits.
+
+\subsubsection{Results summary}
+
+Achieved results and parameters of all tested architectures are summarized in table \ref{tab:table-summary}.
+
+\begin{sidewaystable}[!h]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+	\hline 
+	\multicolumn{1}{|c|}{\bfseries Architecture} & 
+	\multicolumn{1}{c|}{\bfseries Max frequency} & 
+	\multicolumn{1}{c|}{\bfseries Throughput} & 
+	\multicolumn{1}{c|}{\bfseries Resource usage} & 
+	\multicolumn{1}{c|}{\bfseries Clock cycles} & 
+	\multicolumn{1}{c|}{\bfseries Latency} \\
+
+	\hline 
+	Simple asynchronous & 20M block per second & 2,5Gb/s & 27462 ALM & - & 50ns \\
+	\hline 
+	Pipelined unrolled with stages of equal critical path length & 375MHz & 48Gb/s & 15123 ALM & 90 & 240ns \\
+	\hline 
+	Pipelined unrolled with stages containing one ALM & 401MHz & 51,3Gb/s & 22411 ALM & 164 & 409ns \\
+	\hline 
+	Pipelined rolled up with stages containing one ALM & 455MHz & 378Mb/s & 1425 ALM & 154 & 338ns \\
+	\hline 
+	Pipelined rolled up using on-chip memory & 315MHz & 130Mb/s & 631 ALM + 2kb mem & 308 & 977ns \\
+	\hline 
+\end{tabular}
+\caption{\label{tab:table-summary}Results summary}
+\end{sidewaystable}
+
+\begin{sidewaysfigure}[!h]
+\centering
+\includegraphics[scale=2]{high-speed-pipe-full}
+\caption{Throughput optimized AES encryption pipelined circuit}
+\label{fig:high-speed-pipe-full}
+\end{sidewaysfigure}
 
 \begin{sidewaysfigure}[!h]
 \centering
@@ -72,6 +164,3 @@ Figure \ref{fig:rolled-high-speed-pipe-full}
 \caption{Modified pipeline for pipelined rolled up architecture}
 \label{fig:rolled-high-speed-pipe-full}
 \end{sidewaysfigure}
-
-
-\subsubsection{Pipelined rolled up architecture using on-chip memory}

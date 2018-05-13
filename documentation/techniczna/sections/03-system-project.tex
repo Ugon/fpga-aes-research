@@ -14,9 +14,7 @@ Proposed designs are:
 \subsection{Simple asynchronous architecture}
 The most basic approach to implementing AES encryption module is to utilize only combinatorial logic without any optimizations. Such approach was used in Author's BsC thesis \cite{inzynierka} and provides a good baseline for this research.
 
-Asynchronous AES encryption circuit is not clocked and does not use pipelining. Encryption is done at the speed of signal propagation. As Author showed in his BsC thesis \cite{inzynierka}, this design is capable of encrypting \textbf{20M blocks per second}. Compilation report shows that it uses \textbf{27462} (excluding 806 elements required for testing circuit - section \ref{sec:testing-methodology}) FPGA ALMs.
-
-This design is described in detail in Author's past research - his BSc thesis \cite{inzynierka}.
+This approach is asynchronous -- it does not use a clock signal. Encryption is performed at the speed of signal propagation. Pipelining or any other optimizations of throughput or area consumption are not used.
 
 % To test this design for maximum speed of operation it was placed into testing framework described in Chapter \ref{sec:testing-methodology} and clocked. Because this AES circuit is asynchronous, entire enryption algorithm was executen in a single clock cycle of the testing framework. 
 
@@ -36,18 +34,22 @@ This design proposal is based on utilising an unrolled pipeline. Authors of \cit
 
 
 \subsection{Pipelined unrolled architecture with stages containing one ALM}
-Next AES circuit proposal is an attempt to improve the design proposed in \cite{vlsi}. Author suspects that partitioning design into pipelining stages based on critical path length may not be an optimal solution for FPGA platform, because of FPGA's low level properties - utilisation of look-up tables for implementing combinatorial logic in particular.
+\label{sec:unrolled-one-alm}
+Next AES circuit proposal is an attempt to improve the throughput of design proposed in \cite{vlsi}. Author suspects that partitioning design into pipelining stages based on critical path length may not be an optimal solution for FPGA platform, because of FPGA's low level properties - utilisation of look-up tables for implementing combinatorial logic in particular.
 
 This design proposal is a modification of the one described in \cite{vlsi}. AES rounds will be partitioned into pipeline stages so that combinatorial logic in each stage can be fit into only one FPGA LUT. The reasoning behind this approach is that higher frequencies could be achieved by avoiding pipeline stages which consist of more than one FPGA LUT, which introduces extra delay caused by additional routing.
 
 FPGA technology details relevant to this approach will be discussed in detail in section \ref{sec:low-level-fpga} and implementation details in \ref{sec:implementation-pipe-unrolled-one-alm}. 
 
 
-\subsection{Pipelined looped architecture with stages containing one ALM}
+\subsection{Pipelined rolled up architecture with stages containing one ALM}
+This circuit design aims to reduce FPGA resource usage of \textit{Pipelined unrolled architecture with stages containing one ALM} at the cost or reducing throughput. It does so by rolling up the pipeline \cite[Chapter 2]{kilts2007advanced} (introducing a loop into the design).
 
-speed: 467MHz\\
-LE: 2234
+This modification to the circuit proposed in previous section \ref{sec:unrolled-one-alm} reuses the design of a pipelined, throughput-optimized AES round, but instead of repeating it 14 times, it only instantiates it once and creates a loop around it, so that AES state is processed by it 14 times. This modification should result in reducing the number of required FPGA resources roughly 14 times, but also reduce throughput by similar factor. Due to reduced design complexity it might be possible to achieve a little higher maximum frequency.
 
 
 \subsection{Pipelined rolled up architecture using on-chip memory}
-TBD
+This AES encryption circuit proposal is based on \textit{Pipelined rolled up architecture with stages containing one ALM}. It aims to reduce FPGA resource usage even further by utilising on-chip memory for implementing SubBytes transformation in place of calculating substitution bytes in runtime. 
+
+As SubBytes transformation is the most complex one, this should result in a sizeable circuit area reduction. Because of introducing memory into the circuit, maximum achievable frequency will be bounded by the speed of on-chip RAM (315MHz \cite[Table 27]{cycloneVDatasheet}). This will result in lowering of the throughput.
+

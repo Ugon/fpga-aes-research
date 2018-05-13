@@ -1,6 +1,15 @@
 \section{Testing methodology}
 \label{sec:testing-methodology}
-As part of this research all proposed design circuits were thoroughly tested for maximum throughput, logic utilisation and correctness. This chapter describes testing methodology for those criteria.
+As part of this research all proposed design circuits were thoroughly tested for correctness, maximum throughput and logic utilisation. This chapter describes testing methodology for those criteria.
+
+\subsection{Correctness}
+Correctness of the designs was tested in two ways:
+\begin{description}
+\item[Wave form simulations] were used for simulating and testing sections of the design. This kind of testing was performed during development process.
+\item[Testing of designs deployed in FPGA] was always performed by using test citcuit described in section \ref{sec:testing-circuit} at low frequency (1MHz. Those tests were performed only after implementation of given part of circuit was completed and wave form simulation testing showed no issues.
+\end{description}
+
+Input data and expected results for testing of transformations, key expansion and entire encryption algorithm were taken from examples in AES encryption standard \cite{aes-standard}. For testing of smaller portions of the design input data was randomly generated and expected results were precalculated either maually or by implementing a utility script in python.
 
 
 \subsection{Throughput}
@@ -45,6 +54,7 @@ Other similar designs with varying ROM depths and queue lenghts were tested, but
 
 
 \subsubsection{Testing circuit}
+\label{sec:testing-circuit}
 Testing circuit (fig. \ref{fig:test-circuit}) provides blocks of plaintext and encryption keys to tested design, and compares (using $xor$ gates) calculated cyphertext with expected result. If a bit difference occurs, then tested circuit is considered unstable at given frequency.
 
 \begin{figure}[!h]
@@ -65,11 +75,4 @@ Logic utilization for each design was calculated based on compiler output - afte
 
 
 
-\subsection{Correctness}
-Correctness of the design was tested in two ways:
-\begin{description}
-\item[Wave form simulations] were used for simulating and testing sections of the design. This kind of testing was performed during development process.
-\item[Testing of designs deployed in FPGA] was always performed along with performance testing (fig. \ref{fig:test-circuit}). Those tests were performed only after implementation of given part of circuit was completed and wave form simulation testing showed no issues.
-\end{description}
 
-Input data and expected results for testing of transformations, key expansion and entire encryption algorithm were taken from examples in AES encryption standard \cite{aes-standard}. For testing of smaller portions of the design input data was randomly generated and expected results were precalculated either maually or by implementing a utility script in python.
