@@ -8,10 +8,8 @@ use work.aes_sub_bytes.all;
 
 entity r7_top is
 generic (
-	--NUMBER_OF_CYCLES: Integer := 14 * 6 + 6;
 	NUMBER_OF_CYCLES: Integer := 14 * 6;
-	MEM_FOLDER:       String  := "enc2"
-);
+	MEM_FOLDER:       String  := "enc");
 port (
       --------- ADC ---------
 	ADC_CS_N:                     inout std_logic;

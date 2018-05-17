@@ -2,9 +2,11 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+use work.aes_round_constants.all;
+
 entity hs_aes256enc is
 	generic (
-		block_bits         : Integer := 128);
+		block_bits    : Integer := 128);
 	port (
 		main_clk      : in  std_logic;
 		key           : in  std_logic_vector(2 * block_bits - 1 downto 0);
@@ -57,8 +59,6 @@ architecture hs_aes256enc_impl of hs_aes256enc is
 		last_key_in       : std_logic_vector(block_bits - 1 downto 0);
 		block_out         : std_logic_vector(block_bits - 1 downto 0);
 		last_block_out    : std_logic_vector(block_bits - 1 downto 0);
-		rot_en            : std_logic;
-		rcon_word         : std_logic_vector(7 downto 0);
 	end record;
 
 	type round_connections is array (1 to 15) of round_connection;
@@ -105,36 +105,6 @@ begin
 	connections(1).current_key_in <= key(127 downto 0);
 	connections(1).block_in       <= plaintext;
 	
-	connections(1).rot_en <= '1';
-	connections(2).rot_en <= '0';
-	connections(3).rot_en <= '1';
-	connections(4).rot_en <= '0';
-	connections(5).rot_en <= '1';
-	connections(6).rot_en <= '0';
-	connections(7).rot_en <= '1';
-	connections(8).rot_en <= '0';
-	connections(9).rot_en <= '1';
-	connections(10).rot_en <= '0';
-	connections(11).rot_en <= '1';
-	connections(12).rot_en <= '0';
-	connections(13).rot_en <= '1';
-	connections(14).rot_en <= '0';
-	
-	connections(1).rcon_word <= "00000001";
-	connections(2).rcon_word <= "00000000";
-	connections(3).rcon_word <= "00000010";
-	connections(4).rcon_word <= "00000000";
-	connections(5).rcon_word <= "00000100";
-	connections(6).rcon_word <= "00000000";
-	connections(7).rcon_word <= "00001000";
-	connections(8).rcon_word <= "00000000";
-	connections(9).rcon_word <= "00010000";
-	connections(10).rcon_word <= "00000000";
-	connections(11).rcon_word <= "00100000";
-	connections(12).rcon_word <= "00000000";
-	connections(13).rcon_word <= "01000000";
-	connections(14).rcon_word <= "00000000";
-
 	GEN_CONNECTIONS: for i in 2 to 15 generate
 		connections(i).prev_key_in    <= connections(i - 1).current_key_out;
 		connections(i).current_key_in <= connections(i - 1).next_key_out;
@@ -161,8 +131,8 @@ begin
 				current_key_out   => connections(i).current_key_out,
 				next_key_out      => connections(i).next_key_out,
 				last_key_out      => connections(i).last_key_out,
-				rot_en            => connections(i).rot_en,
-				rcon_word         => connections(i).rcon_word
+				rot_en            => rot_en_array(i),
+				rcon_word         => rcon_word_array(i)
 			);
 	end generate GEN_ROUNDS;
 

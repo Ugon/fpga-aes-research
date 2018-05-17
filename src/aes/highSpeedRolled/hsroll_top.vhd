@@ -9,7 +9,7 @@ use work.aes_sub_bytes.all;
 entity hsroll_top is
 generic (
 	NUMBER_OF_CYCLES: Integer := 14 * 11;
-	MEM_FOLDER:       String  := "enc2");
+	MEM_FOLDER:       String  := "enc");
 port (
       --------- ADC ---------
 	ADC_CS_N:                     inout std_logic;

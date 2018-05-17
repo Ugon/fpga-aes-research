@@ -14,7 +14,8 @@ entity error_detector is
 		data           : in  std_logic_vector(ROM_WIDTH - 1 downto 0);
 		expected       : in  std_logic_vector(ROM_WIDTH - 1 downto 0);
 		
-		error_detected : out std_logic);
+		error_detected : out std_logic
+	);
 end error_detector;
 
 architecture error_detector_impl of error_detector is 

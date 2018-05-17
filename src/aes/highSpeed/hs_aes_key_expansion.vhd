@@ -7,18 +7,18 @@ use work.aes_key_expansion_pipe.all;
 
 entity hs_aes_key_expansion is
 	generic (
-		block_bits                 : Integer               := 128);
+		block_bits      : Integer := 128);
 	port (
-		main_clk                : in  std_logic;
-		prev_key_in             : in  std_logic_vector(block_bits - 1 downto 0) := (others => '0');
-		current_key_in          : in  std_logic_vector(block_bits - 1 downto 0);
+		main_clk        : in  std_logic;
+		prev_key_in     : in  std_logic_vector(block_bits - 1 downto 0) := (others => '0');
+		current_key_in  : in  std_logic_vector(block_bits - 1 downto 0);
 		
-		current_key_out         : out std_logic_vector(block_bits - 1 downto 0);
-		next_key_out            : out std_logic_vector(block_bits - 1 downto 0);
-		last_key_out            : out std_logic_vector(block_bits - 1 downto 0);
+		current_key_out : out std_logic_vector(block_bits - 1 downto 0);
+		next_key_out    : out std_logic_vector(block_bits - 1 downto 0);
+		last_key_out    : out std_logic_vector(block_bits - 1 downto 0);
 
-		rot_en                  : in  std_logic;
-		rcon_word               : in  std_logic_vector(7 downto 0)
+		rot_en          : std_logic;
+		rcon_word       : std_logic_vector(7 downto 0)
 	);
 end hs_aes_key_expansion;
 

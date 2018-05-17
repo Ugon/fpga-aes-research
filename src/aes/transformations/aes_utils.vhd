@@ -2,8 +2,6 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-use work.aes_sub_bytes.all;
-
 package aes_utils is
 	 
 	function idx (constant row: Integer; constant column: Integer) return std_logic_vector;

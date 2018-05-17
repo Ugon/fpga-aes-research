@@ -319,6 +319,11 @@ set_global_assignment -name ROUTER_CLOCKING_TOPOLOGY_ANALYSIS ON
 set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC_FOR_AREA ON
 set_global_assignment -name USE_LOGICLOCK_CONSTRAINTS_IN_BALANCING OFF
 set_global_assignment -name QII_AUTO_PACKED_REGISTERS "SPARSE AUTO"
+set_global_assignment -name VECTOR_WAVEFORM_FILE ../src/aes/async/async_aes256enc_test.vwf
+set_global_assignment -name VHDL_FILE ../src/aes/async/async_top.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/async/async_aes256enc.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/async/async_aes_round.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/async/async_aes_key_expansion.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/r7/r7_top.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/r7/r7_aes256enc.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE ../src/aes/r7/r7_aes256enc_test.vwf
@@ -342,6 +347,7 @@ set_global_assignment -name VHDL_FILE ../src/aes/transformations/aes_utils.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/transformations/aes_sub_bytes.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/transformations/aes_shift_rows.vhd
 set_global_assignment -name VHDL_FILE ../src/aes/transformations/aes_mix_columns.vhd
+set_global_assignment -name VHDL_FILE ../src/aes/transformations/aes_round_constants.vhd
 set_global_assignment -name VHDL_FILE ../src/test_framework/memory_queue.vhd
 set_global_assignment -name VHDL_FILE ../src/test_framework/memory_arrangement.vhd
 set_global_assignment -name VHDL_FILE ../src/test_framework/error_detector.vhd

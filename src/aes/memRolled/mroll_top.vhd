@@ -3,13 +3,10 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_misc.all;
 use ieee.numeric_std.all;
 
-use work.aes_mix_columns.all;
-use work.aes_sub_bytes.all;
-
 entity mroll_top is
 generic (
 	NUMBER_OF_CYCLES: Integer := 14 * 22;
-	MEM_FOLDER:       String  := "enc2");
+	MEM_FOLDER:       String  := "enc");
 port (
       --------- ADC ---------
 	ADC_CS_N:                     inout std_logic;

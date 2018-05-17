@@ -11,17 +11,17 @@ entity memory_queue is
 		NUMBER_OF_CYCLES        : Integer := 6;
 		MEM_FOLDER              : String  := "identity";
 		MEM_IN_OUT              : String  := "in";
-      DATAS_OUT_QUEUE_NUMBER  : Integer := 3);
+		DATAS_OUT_QUEUE_NUMBER  : Integer := 3);
 	port (
-		main_clk     : in  std_logic;
-		data         : out std_logic_vector(ROM_WIDTH - 1 downto 0);
+		main_clk    : in  std_logic;
+		data        : out std_logic_vector(ROM_WIDTH - 1 downto 0);
 
-		dbg_address   : out Integer range 0 to ROM_DEPTH - 1;
+		dbg_address : out Integer range 0 to ROM_DEPTH - 1;
 
 		dbg_data_mem       : out std_logic_vector(ROM_WIDTH - 1 downto 0);
-		dbg_data_mem_latch       : out std_logic_vector(ROM_WIDTH - 1 downto 0);
-		dbg_mem_clock       : out std_logic;
-		dbg_data_enable   : out std_logic
+		dbg_data_mem_latch : out std_logic_vector(ROM_WIDTH - 1 downto 0);
+		dbg_mem_clock      : out std_logic;
+		dbg_data_enable    : out std_logic
 	);
 end memory_queue;
 
