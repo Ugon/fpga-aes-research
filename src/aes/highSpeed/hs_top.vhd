@@ -6,9 +6,9 @@ use ieee.numeric_std.all;
 use work.aes_mix_columns.all;
 use work.aes_sub_bytes.all;
 
-entity r7_top is
+entity hs_top is
 generic (
-	NUMBER_OF_CYCLES: Integer := 14 * 6;
+	NUMBER_OF_CYCLES: Integer := 14 * 11;
 	MEM_FOLDER:       String  := "enc");
 port (
       --------- ADC ---------
@@ -40,7 +40,7 @@ port (
 	DRAM_CS_N:                    out   std_logic;
 	DRAM_DQ:                      inout std_logic_vector(15 downto 0);
 	DRAM_LDQM:                    out   std_logic;
-	DRAM_RAS_N:                   out   std_logic; 
+	DRAM_RAS_N:                   out   std_logic;
 	DRAM_UDQM:                    out   std_logic;
 	DRAM_WE_N:                    out   std_logic;
 
@@ -152,9 +152,9 @@ port (
 	VGA_R:                        out   std_logic_vector(7 downto 0);
 	VGA_SYNC_N:                   out   std_logic;
 	VGA_VS:                       out   std_logic);
-end entity r7_top;
+end entity hs_top;
 
-architecture r7_top_impl of r7_top is
+architecture hs_top_impl of hs_top is
 
 	component pll is
 		port (
@@ -181,6 +181,13 @@ architecture r7_top_impl of r7_top is
 
 begin
 
+	HEX0 <= (others => '1');
+	HEX1 <= (others => '1');
+	HEX2 <= (others => '1');
+	HEX3 <= (others => '1');
+	HEX4 <= (others => '1');
+	HEX5 <= (others => '1');
+	
 	LEDR(9) <= started;
 
 	rom_data_key(255 downto 128) <= rom_data_key_high;
@@ -236,7 +243,7 @@ begin
 			expected       => rom_data_out,
 			error_detected => LEDR(0));
 
-	aes256enc_inst0: entity work.r7_aes256enc 
+	aes256enc_inst0: entity work.hs_aes256enc 
     	port map (
 			main_clk => main_clk,
 			key => rom_data_key,
@@ -252,4 +259,4 @@ begin
 	end process;
 
 
-end architecture r7_top_impl;
+end architecture hs_top_impl;

@@ -7,12 +7,10 @@ use work.aes_mix_columns.all;
 use work.aes_sub_bytes.all;
 use work.aes_utils.all;
 
-
 entity async_top is
 generic (
 	NUMBER_OF_CYCLES: Integer := 1;
-	MEM_FOLDER:       String  := "enc2"
-);
+	MEM_FOLDER:       String  := "enc");
 port (
       --------- ADC ---------
 	ADC_CS_N:                     inout std_logic;
@@ -157,7 +155,7 @@ port (
 	VGA_VS:                       out   std_logic);
 end entity async_top;
 
-architecture rtl of async_top is
+architecture async_top_impl of async_top is
 
 	component pll is
 		port (
@@ -184,6 +182,13 @@ architecture rtl of async_top is
 
 begin
 
+	HEX0 <= (others => '1');
+	HEX1 <= (others => '1');
+	HEX2 <= (others => '1');
+	HEX3 <= (others => '1');
+	HEX4 <= (others => '1');
+	HEX5 <= (others => '1');
+	
 	LEDR(9) <= started;
 
 	rom_data_key(255 downto 128) <= rom_data_key_high;
@@ -195,18 +200,6 @@ begin
 			refclk   => CLOCK_50,
 			rst      => '0',
 			outclk_0 => main_clk);
-
-	--process (main_clk, CLOCK_50) 
-		--variable counter: integer range 0 to 2500;
-	--begin
-		--if(rising_edge(CLOCK_50)) then
-			--counter := counter + 1;
-			--if (counter = 5) then --5MHz
-				--main_clk <= not main_clk;
-				--counter := 0;
-			--end if;
-		--end if;
-	--end process;
 
 	memory_arrangement_inst0: entity work.memory_arrangement 
 		generic map (
@@ -249,19 +242,14 @@ begin
     		main_clk       => main_clk,
 			started        => started,
 			data           => rom_data_calculated,
-			--data           => not reverse_bit_order(rom_data_in),
-			--data           => rom_data_late,
-			--data           => sub_bytes_lookup(rom_data_in),
-			--data           => sub_bytes_lookup(rom_data_in),
-			--data           => mix_columns(rom_data_in),
 			expected       => rom_data_out,
 			error_detected => LEDR(0));
 
 	aes256enc_inst0: entity work.async_aes256enc 
     	port map (
-			main_clk => main_clk,
-			key => rom_data_key,
-			plaintext => rom_data_in,
+			main_clk   => main_clk,
+			key        => rom_data_key,
+			plaintext  => rom_data_in,
 			cyphertext => rom_data_calculated);
 
 	process(main_clk, KEY(0)) begin
@@ -273,4 +261,4 @@ begin
 	end process;
 
 
-end architecture rtl;
+end architecture async_top_impl;

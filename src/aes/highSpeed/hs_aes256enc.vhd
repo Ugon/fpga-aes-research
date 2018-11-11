@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 use work.aes_round_constants.all;
 
-entity async_aes256enc is
+entity hs_aes256enc is
 	generic (
 		block_bits    : Integer := 128);
 	port (
@@ -44,11 +44,10 @@ entity async_aes256enc is
 		--dbg_next_key_out12 : out std_logic_vector(block_bits - 1 downto 0);
 		--dbg_next_key_out13 : out std_logic_vector(block_bits - 1 downto 0);
 		--dbg_next_key_out14 : out std_logic_vector(block_bits - 1 downto 0)
-
 	);
-end async_aes256enc;
+end hs_aes256enc;
 
-architecture async_aes256enc_impl of async_aes256enc is 
+architecture hs_aes256enc_impl of hs_aes256enc is 
 
 	type round_connection is record
 		prev_key_in       : std_logic_vector(block_bits - 1 downto 0);
@@ -100,25 +99,21 @@ begin
 
 	--dbg_last_key_out   <= connections(14).last_key_out;
 
+	cyphertext <= connections(14).last_block_out;
+
 	connections(1).prev_key_in    <= key(255 downto 128);
 	connections(1).current_key_in <= key(127 downto 0);
 	connections(1).block_in       <= plaintext;
-
-	process(main_clk, connections) begin
-		if(rising_edge(main_clk)) then
-			cyphertext <= connections(14).last_block_out;
-		end if;
-	end process;
-
+	
 	GEN_CONNECTIONS: for i in 2 to 15 generate
 		connections(i).prev_key_in    <= connections(i - 1).current_key_out;
 		connections(i).current_key_in <= connections(i - 1).next_key_out;
 		connections(i).block_in       <= connections(i - 1).block_out;
 	end generate GEN_CONNECTIONS; 
 	connections(14).last_key_in       <= connections(14).last_key_out;
-
+	
     GEN_ROUNDS: for i in 1 to 14 generate
-		roundX_inst: entity work.async_aes_round
+		roundX_inst: entity work.hs_aes_round
     		port map (
     			main_clk          => main_clk,
 				block_in          => connections(i).block_in,
@@ -128,7 +123,7 @@ begin
 				last_key_in       => connections(i).last_key_in
 			);
 
-		keyX_inst: entity work.async_aes_key_expansion
+		keyX_inst: entity work.hs_aes_key_expansion
     		port map (
     			main_clk          => main_clk,
 				prev_key_in       => connections(i).prev_key_in,
@@ -141,4 +136,4 @@ begin
 			);
 	end generate GEN_ROUNDS;
 
-end async_aes256enc_impl;
+end hs_aes256enc_impl;
