@@ -182,12 +182,18 @@ architecture rtl of hsroll_top is
 
 begin
 
+	HEX0 <= (others => '1');
+	HEX1 <= (others => '1');
+	HEX2 <= (others => '1');
+	HEX3 <= (others => '1');
+	HEX4 <= (others => '1');
+	HEX5 <= (others => '1');
+
 	LEDR(9) <= started;
 
 	rom_data_key(255 downto 128) <= rom_data_key_high;
 	rom_data_key(127 downto 0)   <= rom_data_key_low;
 
-	--main_clk <= CLOCK_50;
 	pll_inst: pll
 		port map (
 			refclk   => CLOCK_50,

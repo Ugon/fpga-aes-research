@@ -182,6 +182,13 @@ architecture async_top_impl of async_top is
 
 begin
 
+	HEX0 <= (others => '1');
+	HEX1 <= (others => '1');
+	HEX2 <= (others => '1');
+	HEX3 <= (others => '1');
+	HEX4 <= (others => '1');
+	HEX5 <= (others => '1');
+	
 	LEDR(9) <= started;
 
 	rom_data_key(255 downto 128) <= rom_data_key_high;

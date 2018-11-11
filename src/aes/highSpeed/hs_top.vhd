@@ -181,12 +181,18 @@ architecture hs_top_impl of hs_top is
 
 begin
 
+	HEX0 <= (others => '1');
+	HEX1 <= (others => '1');
+	HEX2 <= (others => '1');
+	HEX3 <= (others => '1');
+	HEX4 <= (others => '1');
+	HEX5 <= (others => '1');
+	
 	LEDR(9) <= started;
 
 	rom_data_key(255 downto 128) <= rom_data_key_high;
 	rom_data_key(127 downto 0)   <= rom_data_key_low;
 
-	--main_clk <= CLOCK_50;
 	pll_inst: pll
 		port map (
 			refclk   => CLOCK_50,
@@ -234,12 +240,6 @@ begin
     		main_clk       => main_clk,
 			started        => started,
 			data           => rom_data_calculated,
-			--data           => rom_data_in or rom_data_key_high or rom_data_key_low,
-			--data           => not reverse_bit_order(rom_data_in),
-			--data           => rom_data_late,
-			--data           => sub_bytes_lookup(rom_data_in),
-			--data           => sub_bytes_lookup(rom_data_in),
-			--data           => mix_columns(rom_data_in),
 			expected       => rom_data_out,
 			error_detected => LEDR(0));
 

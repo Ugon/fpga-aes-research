@@ -186,7 +186,6 @@ begin
 	rom_data_key(255 downto 128) <= rom_data_key_high;
 	rom_data_key(127 downto 0)   <= rom_data_key_low;
 
-	--main_clk <= CLOCK_50;
 	pll_inst: pll
 		port map (
 			refclk   => CLOCK_50,
