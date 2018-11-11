@@ -18,9 +18,8 @@
 \newcommand*{\LangAgh}{AGH University of Science and Technology}
 \newcommand*{\LangFaculty}{Faculty of Computer Science, Electronics and Telecommunications\\[1mm] Department of Computer Science}
 \newcommand*{\LangSupervisor}{Supervisor:}
-\newcommand*{\LangStatementHead}{NON-PLAGIARISM STATEMENT}
-\newcommand*{\LangStatementBody}{I hereby declare that I have written this thesis completely by myself, that I have used no other sources or resources than the ones mentioned,
-and that I am aware of the rules of the Penal Code referring to criminal liability for providing false evidence.}
+\newcommand*{\LangStatementHead}{NON PLAGIARISM DECLARATION}
+\newcommand*{\LangStatementBody}{Uprzedzony o~odpowiedzialno\'sci karnej na~podstawie art.~115 ust.~1~i~2 ustawy z~dnia 4~lutego 1994~r. o~prawie autorskim i~prawach pokrewnych (t.j. Dz.U. z~2006~r. Nr~90, poz.~631 z~p{\'o}{\'z}n. zm.): ,,Kto przyw\l{}aszcza sobie autorstwo albo~wprowadza w~b\l{}\k{a}d co~do~autorstwa ca\l{}o\'sci lub cz\k{e}\'sci cudzego utworu albo~artystycznego wykonania, podlega grzywnie, karze ograniczenia wolno\'sci albo~pozbawienia wolno\'sci do~lat~3. Tej~samej karze podlega, kto~rozpowszechnia bez~podania nazwiska lub~pseudonimu tw\'orcy cudzy utw\'or w~wersji oryginalnej albo~w~postaci opracowania, artystycznego wykonania albo~publicznie zniekszta\l{}ca taki utw\'or, artystyczne wykonanie, fonogram, wideogram lub nadanie.'', a~tak\.ze uprzedzony o~odpowiedzialno\'sci dyscyplinarnej na~podstawie art.~211 ust.~1 ustawy z~dnia 27~lipca 2005~r. Prawo o~szkolnictwie wy\.zszym (t.j. Dz.~U. z~2012~r. poz.~572, z~p\'o\'zn. zm.): ,,Za~naruszenie przepis\'ow obowi\k{a}zuj\k{a}cych w~uczelni oraz~za~czyny uchybiaj\k{a}ce godno\'sci studenta student ponosi odpowiedzialno\'s\'c dyscyplinarn\k{a} przed komisj\k{a} dyscyplinarn\k{a} albo~przed s\k{a}dem kole\.ze\'nskim samorz\k{a}du studenckiego, zwanym dalej <<s\k{a}dem kole\.ze\'nskim>>.'', o\'swiadczam, \.ze~niniejsz\k{a} prac\k{e} dyplomow\k{a} wykona\l{}em(-am) osobi\'scie i~samodzielnie i~\.ze~nie~korzysta\l{}em(-am) ze~\'zr\'ode\l{} innych ni\.z~wymienione w pracy.}
 \newcommand*{\LangSignature}{SIGNATURE}
 }
 
@@ -44,6 +43,7 @@ and that I am aware of the rules of the Penal Code referring to criminal liabili
 
 
 
+
 \addto\captionspolish{%
   \def\bibname{Materia{\l}y {\'z}r{\'o}d{\l}owe}%
   \def\refname{Materia{\l}y {\'z}r{\'o}d{\l}owe}%
@@ -59,6 +59,7 @@ and that I am aware of the rules of the Penal Code referring to criminal liabili
 
 \def\thesistype#1   {\gdef\@thesistype{#1}}
 \def\title#1        {\gdef\@title{#1}}
+\def\titlepl#1     {\gdef\@titlepl{#1}}
 \def\faculty#1      {\gdef\@faculty{#1}}
 \def\thesistype#1   {\gdef\@thesistype{#1}}
 \def\supervisor#1   {\gdef\@supervisor{#1}}
@@ -79,28 +80,34 @@ and that I am aware of the rules of the Penal Code referring to criminal liabili
 
 \vspace*{1mm}\rule{.9\textwidth}{1mm}\vspace*{1mm}
 
-{\large \LangFaculty}\vspace*{1cm}
+{\large \LangFaculty}\vspace*{0.5cm}
 
-\includegraphics[width=70pt,viewport=250 350 350 500]{../common/agh.pdf}
+\includegraphics[width=100pt,viewport=250 350 350 500]{../common/agh.pdf}
 
-\vspace*{1.5cm}
+\vspace*{1cm}
 {\huge\scshape \@thesistype}\\
 \vspace*{1.5cm}
 
 %\begin{changemargin}{-0.7cm}{-0.7cm} 
 \doublespacing
 {\LARGE{\bfseries\scshape \@title}}\\
-\vspace*{3cm}
+\vspace*{0.7cm}
 %\end{changemargin}
+
+{\large{\scshape \@titlepl}}\\
+\vspace*{1.5cm}
+
 
 {\LARGE\scshape \@author}\\
 %\vspace*{5cm}
-\vfill
+%\vfill
+
+\vspace*{0.7cm}
 
 \singlespacing
 
-\large{\scshape \LangSupervisor}\\
-{\@supervisor}
+\large{\scshape Field of study:} {Information Technology}\\
+\large{\scshape \LangSupervisor} {\@supervisor}
 \vfill
 
 \rule{.7\textwidth}{1mm}\\
@@ -120,7 +127,7 @@ and that I am aware of the rules of the Penal Code referring to criminal liabili
 \begin{flushright}
 \begin{minipage}[!h]{13cm}
 \mbox{\large{\scshape \textbf{\LangStatementHead}}}\\[3mm]
-{\scshape \LangStatementBody}\\
+{\footnotesize \scshape \LangStatementBody}\\
 \end{minipage}
 
 \vspace{2cm}

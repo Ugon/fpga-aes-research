@@ -1,13 +1,13 @@
 \subsection{AES encryption round}
 
-AES Encryption rounds consist of four transformations explained in previous sections. A circuit that can be used to implement a round is presented in figure \ref{fig:aes-round}.
+AES Encryption rounds consist of four transformations explained in previous sections. A circuit that can be used to implement a round is presented in figure \ref{fig:aes-round}. It is designed so that it can be used for all rounds - rounds 1 to 13 use \textit{block out} output, and last round uses \textit{last block out} output.
 
-\begin{figure}[!h]
+\begin{figure}[!H]
 \centering
 \includegraphics[scale=4]{aes-round}
 \caption{AES round circuit}
 \label{fig:aes-round}
 \end{figure}
 
-256-bit version of AES encryption algorithm, which is analysed here, has 15 rounds. Rounds 2 to 14 are the same and use all four transformations (fig. \ref{fig:aes-round}). First round only applies AddRoundKey transformation to the state. Last round is similar to rounds 2 to 14, but it does not apply MixColumns transformation.
+256-bit version of AES encryption algorithm, which is analysed here, has 14 rounds. Rounds 1 to 13 are the same and use all four transformations (fig. \ref{fig:aes-round}). Last round is different from other rounds in that it applies AddRoundKey transformation twice, and does not use MixColumns transformation.
 

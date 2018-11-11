@@ -6,7 +6,7 @@ SubBytes transformation can be implemented in two ways:
 \item As a look-up table of precomputed values stored in on-chip memory
 \item As combinatorial logic circuit.
 \end{itemize}
-This section will discuss advantages, disadvantages and implementation details of both approaches.
+This section discusses advantages, disadvantages and implementation details of both approaches.
 
 \subsubsection{Look-up table approach}
 SubBytes transformation can be implemented as a look-up table of precomputed values (\cite[Fig. 7]{aes-standard}). Implementing it this way is simple and resource efficient, but has a major limitation -- it can operate only as fast as on-chip memory, which in case of DE1-SoC FPGA device is 315MHz \cite[Table 2-1]{altera-vol1}. This limits the overall throughput of AES encryption to
@@ -17,7 +17,7 @@ This approach can be considered for resource-optimized hardware implementations 
 
 \subsubsection{Combinatorial logic approach}
 \label{sec:comb-theory}
-Alternative approach to implementing SubBytes transformation is to not store any precomputed substitution bytes in on-chip memory and use combinatorial logic to calculate them instead \cite{practical-sub-bytes}. This method is not limited by frequency of memory and therefore capable of achieving higher throughput. It is however significantly more complex and uses more FPGA logic elements. It is therefore suitable for performance optimized AES architectures, but not for resource-optimized ones.
+Alternative approach to implementing SubBytes transformation is to not store any precomputed substitution bytes in on-chip memory and use combinatorial logic to calculate them instead \cite{practical-sub-bytes}. This method is not limited by frequency of memory and therefore capable of achieving higher throughput. It is, however, significantly more complex and uses more FPGA logic elements. It is therefore suitable for performance optimized AES architectures, but not for resource-optimized ones.
 
 \paragraph{Top level design of SubBytes transformation}\mbox{}\\
 As defined in AES standard \cite{aes-standard} SubBytes transformation consists of:
@@ -129,6 +129,7 @@ v = v_hx + v_l
 \end{equation}
 where $v_h = \{b_{2^n-1}...b_{2^{n-1}}\} \in GF(2^n)$ (high bits) and $v_l = \{b_{2^{n-1}-1}...b_0\} \in GF(2^n)$ (low bits) \cite{vlsi}. This holds true for decomposing values in $GF((2^n)^2)$ for any $n > 0$.
 
+\newpage
 \paragraph{Affine transformation}\mbox{}\\
 In SubBytes transformation, last step of calculating multiplicative inversion in $GF(2^8)$ is mapping $f^{-1}(x)$ from $GF((2^4)^2)$ to $GF(2^8)$. Immediately after this operation an affine transformation $a(x)$ is applied.
 \begin{equation}

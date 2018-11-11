@@ -1,30 +1,26 @@
 \section{Summary}
-This chapter provides a summary of conducted research. In Section \ref{sec:results} achieved results are summarized. Section \ref{sec:possible-applications} discusses possible applications of proposed designs and section \ref{sec:future-work} puts forward further research that could be conducted.
+This chapter provides a summary of conducted research. In Section \ref{sec:results} achieved results are summarized. Section \ref{sec:possible-applications} discusses possible applications of proposed designs and section \ref{sec:future-work} puts forward ideas for further research that could be conducted.
 
 
-% \subsection{Results}
-% \label{sec:results}
-% The goal of this thesis was to perform evaluation and efficiency comparison of different hardware AES implementations. Two routes of optimizations were considered: maximum throughput and minimum FPGA resource consumption. Conducted researched was focused around five different architectures of AES encryption module.
+\subsection{Results}
+\label{sec:results}
+The goal of this thesis was to perform evaluation and efficiency comparison of different hardware AES implementations. Two routes of optimizations were considered: maximum throughput and minimum FPGA resource consumption. Conducted researched was focused around five different architectures of AES encryption module.
 
-% \textit{Pipelined unrolled architecture with stages containing one ALM} is capable of achieving the highest throughput (xxx Mb/s) out of researched designs. It is an improvement over \textif{Pipelined unrolled architecture with stages of equal critical path}, which is an implementation of the fastest design proposed in \cite{vlsi}.
+Proposed solution with highest throughput (\textbf{51,3Gb/s $\approx$ 6,4GB/s}) is based on a design proposed in \cite{vlsi} (46,3Gb/s) and improved by the author to better utilise low-level FPGA technology characteristics -- rather than splitting a pipeline so that critical path lengths are similar, it is designed so that each stage fits into a single FPGA ALM.
 
-% \textit{Pipelined rolled up architecture with stages containing one ALM} provides the best throughput to FPGA resource usage ratio out of the researched designs. 
-
-% \textit{Pipelined rolled up using on-chip memory} is the most compact proposed solution
-
+Design with the lowest resource usage (\textbf{725 ALM + 2kb mem}) utilizes on-chip memory for SubByes transformation and KeyExpansion routine. It also incorporates a loop to reuse one instance of AES round for entire encryption process.
 
 \subsection{Possible applications}
 \label{sec:possible-applications}
-High throughput version would be most suitable for applications where large amounts of data are processed, eg. datacenters. An example of a technology utilizing FPGA hardware acceleration is IBM Netezza \cite{netezzafast, francisco2011netezza} database management system, which uses FPGA for compression and query processing. Accelerated AES encryption could be considered for such applications.
+High throughput versions of AES encryption designs would be most suitable for applications where large amounts of data are processed, eg. datacenters. An example of a technology utilizing FPGA hardware acceleration is IBM Netezza \cite{netezzafast, francisco2011netezza} database management system, which uses FPGA for compression and query processing. Accelerated AES encryption could be considered for similar applications.
 
-Area optimized AES encryption designs could be used for chips targeting Internet of Things. IoT devices need to be cost-effective and power efficient. Utilizing specialized chips for encryption purposes could lead to reduction of power consumption and cost.
-
+Area optimized AES encryption designs could be used for chips targeting Internet of Things. IoT devices need to be cost-effective and power efficient. Utilizing specialized chips for encryption purposes could lead to reduction of power consumption and cost and thus provide a viable solution for IoT devices.
 
 \subsection{Future work}
 \label{sec:future-work}
 This research could be continued in different areas. One would be to adapt and optimize proposed designs for deployment on ASIC chips. ASIC (Application-Specific Integrated Circuit) chips are highly specialized components designed for a particular use. It differs from FPGA in that instead of using look-up tables to implement logic its structure is predefined and implemented in hardware. Using this technology could make it possible to achieve even higher throughput and for creating large quantities of chips reduce cost of production.
 
-More optimization techniques could be utilized to attempt to improve proposed designs for low are consumption even further. Presented in this research SubBytes transformation operates on all 16 bytes of the state in parallel, which could be converted into 16 sequential steps in order to reduce the number of required on-chip memory bits. Authors of \cite{good2005aes} proposed a design with 32-bit data paths and elaborate control module. Those two (and possibly other) optimizations could be incorporated into the design to achieve even lower FPGA resource requirements.
+More optimization techniques could be utilized to attempt to improve proposed designs for low resource consumption even further. All presented in this research architectures use 128 bit data paths. Authors of \cite{good2005aes} proposed a design with 32-bit data paths and elaborate control module. The idea of reducing data path width could be incorporated into the design to achieve even lower FPGA resource requirements.
 
 Another area that could be explored is optimization of power consumption. One of the advantages of creating specialized circuits over using general-purpose processors is that they usually consume less power. The author did not test power efficiency of proposed AES encryption designs, but he suspects that the results would be very competitive against regular CPUs.
 

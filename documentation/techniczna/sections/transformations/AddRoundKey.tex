@@ -9,7 +9,7 @@ AddRoundKey is a transformation that adds ($xor$) round key to AES state. Round 
 
 Advantages and disadvantages of both approaches are same as for SubBytes transformation. This section will describe KeyExpansion circuit based on operations already defined in section \ref{sec:sub-bytes}.
 
-To calculate round key for round $N + 2$, key for round $N$ is used. In order to be able to construct efficient pipeline, key expansion for each round needs to be calculated 2 rounds ahead of time. To perform expansion of key for round $N + 2$ circuit in figure \ref{fig:key-expansion} can be used. Such circuit would be placed in final pipelined design concurrent to round $N$. Note that key for round $N + 1$ is not used in calculation and is forwarded to next pipeline stage unmodified.
+To calculate round key for round $N + 1$, keys for rounds $N$ ans $N - 1$ are used. In order to be able to construct pipeline, key expansion for each round needs to be calculated 1 round ahead of time. To perform expansion of key for round $N + 1$ circuit in figure \ref{fig:key-expansion} can be used. Such circuit would be placed in final pipelined design concurrent to round $N$.
 
 Key schedule for first round is 128 highest bits of AES key provided by user. For second round 128 lowest bits of AES key are used. For subsequent rounds key schedules are calculated according to AES key expansion algorithm (\cite{aes-standard}).
 
@@ -20,5 +20,5 @@ Key schedule for first round is 128 highest bits of AES key provided by user. Fo
 \label{fig:key-expansion}
 \end{figure}
 
-Operation $Rot$ rotates a word (4 bytes) left by one byte, and $Rcon$ xors highest byte of a word with $2^{N + 1}$. Those operation are only applied in rounds $N$, where $N \equiv 1 \pmod{2}$.
+Operation $Rot$ rotates a word (4 bytes) left by one byte, and $Rcon$ xors highest byte of a word with $2^{(N - 1)/2}$. Those operations are only applied in rounds $N$, where $N \equiv 1 \pmod{2}$.
 

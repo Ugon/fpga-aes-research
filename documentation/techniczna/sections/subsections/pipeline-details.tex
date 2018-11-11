@@ -195,21 +195,26 @@ Those stages can be implemented using only 4-input LUTs, because:
 \item Each bit of signals marked $d$ depends on no nore than 3 input signals.
 \end{itemize}
 
-Note that all output bits depend on no more than 3 input signals, which means that they can be $xored$ with other independent inputs in one stage. This is useful for combining it with AddRoundKey transformation.
+% Note that all output bits depend on no more than 3 input signals, which means that they can be $xored$ with other independent inputs in one stage. This is useful for combining it with AddRoundKey transformation.
 
 
 \paragraph{AddRoundKey transformation}\mbox{}\\
-This transformation consists only of a xor gate, which means that it can be combined into one stage with MixColumns.
+This transformation consists only of a xor gate, which means that it can be combined into one stage with $f_a$ operation.
 
 
 \paragraph{$Rot$ operaiton in KeyExpansion}\mbox{}\\
 $Rot$ operation rotates a word (4 bytes) left by one byte, therefore it does not require any combinatorial logic. Similarly to ShiftRows transformation it can be joined with any other operation to form a stage.
 
 \paragraph{$Rcon$ operation in KeyExpansion}\mbox{}\\
-$Rcon$ operation xors highest byte of a word with $2^{N + 1}$, which means that it adds at most one signal to input. It is performed after second stage of mapping $f^{-1}(x)$ from $GF((2^4)^2)$ to $GF(2^8)$ combined with AES affine transformation ($f_b^{-1}(x)$), outputs of which depend on only 2 input bits. This means that combining $f_b^{-1}(x)$ with $Rcon$ in a stage results in outputs depending on 3 bits, which still leaves space in this stage. This one extra signal is utilised in KeyExpansion pipeline.
+$Rcon$ operation xors highest byte of a word with $2^{(N - 1)/2}$, which means that it adds at most one signal to input. It is performed after second stage of mapping $f^{-1}(x)$ from $GF((2^4)^2)$ to $GF(2^8)$ combined with AES affine transformation ($f_b^{-1}(x)$), outputs of which depend on only 2 input bits. This means that combining $f_b^{-1}(x)$ with $Rcon$ in a stage results in outputs depending on 3 bits, which still leaves space in this stage. This one extra signal is utilised in KeyExpansion pipeline.
 
 \paragraph{Final design of throughput-optimized AES encryption circuit}\mbox{}\\
-Taking all points presented in this section into consideration, it follows that a pipelied circuit using only 4-input LUTs can be implemeted according to diagram in figure \ref{fig:high-speed-pipe-full}.
+Taking all points presented in this section into consideration, it follows that a pipelied circuit using only 4-input LUTs can be implemeted according to diagram in figure \ref{fig:aes-round-stages}.
 
-
+\begin{sidewaysfigure}[p]
+\centering
+\includegraphics[scale=2]{aes-round-stages}
+\caption{Throughput optimized AES encryption round pipeline}
+\label{fig:aes-round-stages}
+\end{sidewaysfigure}
 
